@@ -83,9 +83,11 @@ void DriveCommand::SetAngleWithButton()
 	}
 
 	if(buttonBPressed) {
+		setAngle = 60;
 	}
 
 	if(buttonXPressed) {
+		setAngle = -60;
 	}
 
 	if(buttonYPressed) {
