@@ -9,6 +9,9 @@ void Robot::RobotInit() {
 
 	oi.reset(new OI());
 
+	Robot::drivebaseSubsystem->ZeroYaw();
+
+
 }
 
 void Robot::DisabledInit(){
