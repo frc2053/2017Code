@@ -2,10 +2,17 @@
 
 #include "SmartDashboard/SmartDashboard.h"
 #include "Commands/Drive/ZeroYaw.h"
+#include "Commands/Shooter/ShooterWheel.h"
 
 
 OI::OI() {
 	driverJoystick.reset(new Joystick(0));
+	operatorJoystick.reset(new Joystick(1));
+
+	aButtonOperator.reset(new JoystickButton(operatorJoystick.get(), 1));
+
+	aButtonOperator->WhileActive(new ShooterWheel(6000, 0));
+	aButtonOperator->WhenInactive(new ShooterWheel(6000, 0));
 
 	SmartDashboard::PutData("Zero Yaw", new ZeroYaw());
 
@@ -28,6 +35,26 @@ double OI::GetRightXAxisDriver() {
 
 double OI::GetRightYAxisDriver() {
 	double joystickValue = OI::DeadBandJoystick(driverJoystick.get()->GetRawAxis(5));
+	return joystickValue;
+}
+
+double OI::GetLeftXAxisOperator() {
+	double joystickValue = OI::DeadBandJoystick(operatorJoystick.get()->GetRawAxis(0));
+	return joystickValue;
+}
+
+double OI::GetLeftYAxisOperator() {
+	double joystickValue = OI::DeadBandJoystick(operatorJoystick.get()->GetRawAxis(1));
+	return joystickValue;
+}
+
+double OI::GetRightXAxisOperator() {
+	double joystickValue = OI::DeadBandJoystick(operatorJoystick.get()->GetRawAxis(4));
+	return joystickValue;
+}
+
+double OI::GetRightYAxisOperator() {
+	double joystickValue = OI::DeadBandJoystick(operatorJoystick.get()->GetRawAxis(5));
 	return joystickValue;
 }
 
@@ -81,4 +108,44 @@ bool OI::GetLeftStickButtonDriver() {
 
 bool OI::GetRightStickButtonDriver() {
 	return driverJoystick->GetRawButton(10);
+}
+
+bool OI::GetAButtonOperator() {
+	return operatorJoystick->GetRawButton(1);
+}
+
+bool OI::GetBButtonOperator() {
+	return operatorJoystick->GetRawButton(2);
+}
+
+bool OI::GetXButtonOperator() {
+	return operatorJoystick->GetRawButton(3);
+}
+
+bool OI::GetYButtonOperator() {
+	return operatorJoystick->GetRawButton(4);
+}
+
+bool OI::GetLeftBumperOperator() {
+	return operatorJoystick->GetRawButton(5);
+}
+
+bool OI::GetRightBumperOperator() {
+	return operatorJoystick->GetRawButton(6);
+}
+
+bool OI::GetBackButtonOperator() {
+	return operatorJoystick->GetRawButton(7);
+}
+
+bool OI::GetStartButtonOperator() {
+	return operatorJoystick->GetRawButton(8);
+}
+
+bool OI::GetLeftStickButtonOperator() {
+	return operatorJoystick->GetRawButton(9);
+}
+
+bool OI::GetRightStickButtonOperator() {
+	return operatorJoystick->GetRawButton(10);
 }

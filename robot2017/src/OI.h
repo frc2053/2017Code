@@ -9,10 +9,14 @@
 class OI {
 private:
 	std::shared_ptr<Joystick> driverJoystick;
+	std::shared_ptr<Joystick> operatorJoystick;
 public:
 	OI();
 
 	std::shared_ptr<Joystick> GetDriverJoystick();
+	std::shared_ptr<Joystick> GetOperatorJoystick();
+
+	std::shared_ptr<JoystickButton> aButtonOperator;
 
 	double GetLeftXAxisDriver();
 	double GetLeftYAxisDriver();
@@ -28,6 +32,21 @@ public:
 	bool GetStartButtonDriver();
 	bool GetLeftStickButtonDriver();
 	bool GetRightStickButtonDriver();
+
+	double GetLeftXAxisOperator();
+	double GetLeftYAxisOperator();
+	double GetRightXAxisOperator();
+	double GetRightYAxisOperator();
+	bool GetAButtonOperator();
+	bool GetBButtonOperator();
+	bool GetXButtonOperator();
+	bool GetYButtonOperator();
+	bool GetLeftBumperOperator();
+	bool GetRightBumperOperator();
+	bool GetBackButtonOperator();
+	bool GetStartButtonOperator();
+	bool GetLeftStickButtonOperator();
+	bool GetRightStickButtonOperator();
 
 	float DeadBandJoystick(float axis);
 };

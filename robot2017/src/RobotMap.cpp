@@ -6,6 +6,8 @@ std::shared_ptr<CANTalon> RobotMap::driveBaseSubsystemBackLeftTalon;
 std::shared_ptr<CANTalon> RobotMap::driveBaseSubsystemBackRightTalon;
 std::shared_ptr<frc::RobotDrive> RobotMap::driveBaseSubsystemRobotDrive;
 
+std::shared_ptr<CANTalon> RobotMap::shooterSubsystemFlywheelTalon;
+
 std::shared_ptr<frc::PowerDistributionPanel> RobotMap::pdp;
 
 std::shared_ptr<AHRS> RobotMap::robotIMU;
@@ -26,6 +28,14 @@ void RobotMap::init() {
     driveBaseSubsystemRobotDrive->SetInvertedMotor(frc::RobotDrive::kFrontRightMotor, true);
     driveBaseSubsystemRobotDrive->SetInvertedMotor(frc::RobotDrive::kRearRightMotor, true);
 
+    shooterSubsystemFlywheelTalon.reset(new CANTalon(3));
+
+    shooterSubsystemFlywheelTalon->SetControlMode(CANTalon::kSpeed);
+    shooterSubsystemFlywheelTalon->SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
+    shooterSubsystemFlywheelTalon->SetF(0);
+    shooterSubsystemFlywheelTalon->SetD(0);
+    shooterSubsystemFlywheelTalon->SetI(0);
+    shooterSubsystemFlywheelTalon->SetD(0);
 
     pdp.reset(new frc::PowerDistributionPanel());
 

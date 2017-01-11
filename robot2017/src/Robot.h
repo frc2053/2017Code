@@ -5,6 +5,7 @@
 #include "RobotMap.h"
 
 #include "Subsystems/DrivebaseSubsystem.h"
+#include "Subsystems/ShooterSubsystem.h"
 
 #include "OI.h"
 
@@ -12,6 +13,7 @@ class Robot : public IterativeRobot {
 public:
 	static std::unique_ptr<OI> oi;
     static std::shared_ptr<DrivebaseSubsystem> drivebaseSubsystem;
+    static std::shared_ptr<ShooterSubsystem> shooterSubsystem;
 
 
     virtual void RobotInit();

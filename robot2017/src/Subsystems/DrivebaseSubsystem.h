@@ -1,8 +1,8 @@
 #ifndef DRIVEBASESUBSYSTEM_H
 #define DRIVEBASESUBSYSTEM_H
+
 #include "Commands/Subsystem.h"
 #include "../Tigerdrive/Tigerdrive.h"
-#include "WPILib.h"
 #include "CANTalon.h"
 
 class DrivebaseSubsystem: public Subsystem {
