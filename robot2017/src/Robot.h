@@ -6,16 +6,15 @@
 
 #include "Subsystems/DrivebaseSubsystem.h"
 #include "Subsystems/ShooterSubsystem.h"
-#include "Subsystems/gearLoaderServosSubsystem.h"
-
 #include "OI.h"
+#include "Subsystems/GearSubsystem.h"
 
 class Robot : public IterativeRobot {
 public:
 	static std::unique_ptr<OI> oi;
     static std::shared_ptr<DrivebaseSubsystem> drivebaseSubsystem;
     static std::shared_ptr<ShooterSubsystem> shooterSubsystem;
-    static std::shared_ptr<gearLoaderServosSubsystem> servosSubsystem;
+    static std::shared_ptr<GearSubsystem> gearSubsystem;
 
 
     virtual void RobotInit();

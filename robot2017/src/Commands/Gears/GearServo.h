@@ -17,4 +17,4 @@ private:
 	float angle;
 };
 
-#endif  // GearServo_H
+#endif

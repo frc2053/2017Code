@@ -1,7 +1,7 @@
 #include "GearServo.h"
 
 GearServo::GearServo(float inputAngle) {
-	Requires(Robot::servosSubsystem.get());
+	Requires(Robot::gearSubsystem.get());
 	angle = inputAngle;
 	isDone = false;
 }
@@ -11,7 +11,7 @@ void GearServo::Initialize() {
 }
 
 void GearServo::Execute() {
-	Robot::servosSubsystem->SetAngleGearLoaderServos(angle);
+	Robot::gearSubsystem->SetAngleGearLoaderServos(angle);
 	isDone = true;
 }
 

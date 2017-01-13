@@ -15,7 +15,7 @@ public:
 	static std::shared_ptr<CANTalon> driveBaseSubsystemBackRightTalon;
 	static std::shared_ptr<RobotDrive> driveBaseSubsystemRobotDrive;
 
-	static std::shared_ptr<Servo> gearLoaderServo;
+	static std::shared_ptr<Servo> gearSubsystemLoaderServo;
 
 	static std::shared_ptr<CANTalon> shooterSubsystemFlywheelTalon;
 

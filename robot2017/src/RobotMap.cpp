@@ -5,7 +5,7 @@ std::shared_ptr<CANTalon> RobotMap::driveBaseSubsystemFrontRightTalon;
 std::shared_ptr<CANTalon> RobotMap::driveBaseSubsystemBackLeftTalon;
 std::shared_ptr<CANTalon> RobotMap::driveBaseSubsystemBackRightTalon;
 std::shared_ptr<frc::RobotDrive> RobotMap::driveBaseSubsystemRobotDrive;
-std::shared_ptr<frc::Servo> RobotMap::gearLoaderServo;
+std::shared_ptr<frc::Servo> RobotMap::gearSubsystemLoaderServo;
 
 
 std::shared_ptr<CANTalon> RobotMap::shooterSubsystemFlywheelTalon;
@@ -40,7 +40,7 @@ void RobotMap::init() {
     shooterSubsystemFlywheelTalon->SetD(0);
 
 
-    gearLoaderServo.reset(new Servo(0));
+    gearSubsystemLoaderServo.reset(new frc::Servo(0));
 
 
     pdp.reset(new frc::PowerDistributionPanel());
