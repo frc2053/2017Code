@@ -2,12 +2,15 @@
 
 std::shared_ptr<DrivebaseSubsystem> Robot::drivebaseSubsystem;
 std::shared_ptr<ShooterSubsystem> Robot::shooterSubsystem;
+std::shared_ptr<gearLoaderServosSubsystem> Robot::servosSubsystem;
 std::unique_ptr<OI> Robot::oi;
 
 void Robot::RobotInit() {
 	RobotMap::init();
     drivebaseSubsystem.reset(new DrivebaseSubsystem());
     shooterSubsystem.reset(new ShooterSubsystem());
+    servosSubsystem.reset(new gearLoaderServosSubsystem());
+
 
 	oi.reset(new OI());
 

@@ -17,6 +17,7 @@ public:
 	std::shared_ptr<Joystick> GetOperatorJoystick();
 
 	std::shared_ptr<JoystickButton> aButtonOperator;
+	std::shared_ptr<JoystickButton> bButtonOperator;
 
 	double GetLeftXAxisDriver();
 	double GetLeftYAxisDriver();

@@ -5,6 +5,8 @@ std::shared_ptr<CANTalon> RobotMap::driveBaseSubsystemFrontRightTalon;
 std::shared_ptr<CANTalon> RobotMap::driveBaseSubsystemBackLeftTalon;
 std::shared_ptr<CANTalon> RobotMap::driveBaseSubsystemBackRightTalon;
 std::shared_ptr<frc::RobotDrive> RobotMap::driveBaseSubsystemRobotDrive;
+std::shared_ptr<frc::Servo> RobotMap::gearLoaderServo;
+
 
 std::shared_ptr<CANTalon> RobotMap::shooterSubsystemFlywheelTalon;
 
@@ -32,10 +34,14 @@ void RobotMap::init() {
 
     shooterSubsystemFlywheelTalon->SetControlMode(CANTalon::kSpeed);
     shooterSubsystemFlywheelTalon->SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
-    shooterSubsystemFlywheelTalon->SetF(0);
+    shooterSubsystemFlywheelTalon->SetF(.0299707);
     shooterSubsystemFlywheelTalon->SetD(0);
     shooterSubsystemFlywheelTalon->SetI(0);
     shooterSubsystemFlywheelTalon->SetD(0);
+
+
+    gearLoaderServo.reset(new Servo(0));
+
 
     pdp.reset(new frc::PowerDistributionPanel());
 
