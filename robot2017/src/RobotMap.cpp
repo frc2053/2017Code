@@ -9,6 +9,7 @@ std::shared_ptr<frc::Servo> RobotMap::gearSubsystemLoaderServo;
 
 
 std::shared_ptr<CANTalon> RobotMap::shooterSubsystemFlywheelTalon;
+std::shared_ptr<CANTalon> RobotMap::shooterSubsystemLoaderTalon;
 
 std::shared_ptr<frc::PowerDistributionPanel> RobotMap::pdp;
 
@@ -31,6 +32,11 @@ void RobotMap::init() {
     driveBaseSubsystemRobotDrive->SetInvertedMotor(frc::RobotDrive::kRearRightMotor, true);
 
     shooterSubsystemFlywheelTalon.reset(new CANTalon(3));
+
+    //temporary talon id
+    shooterSubsystemLoaderTalon.reset(new CANTalon(5));
+
+
 
     shooterSubsystemFlywheelTalon->SetControlMode(CANTalon::kSpeed);
     shooterSubsystemFlywheelTalon->SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);

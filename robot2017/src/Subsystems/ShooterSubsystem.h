@@ -4,13 +4,17 @@
 #include <Commands/Subsystem.h>
 #include <CANTalon.h>
 
+
 class ShooterSubsystem : public Subsystem {
 private:
 	std::shared_ptr<CANTalon> flywheelTalon;
+	std::shared_ptr<CANTalon> loaderTalon;
 public:
+
 	ShooterSubsystem();
 	void InitDefaultCommand();
-	void RunMotor(float rpm);
+	void RunShooterMotor(float rpm);
+	void RunLoaderMotor(float speed);
 };
 
 #endif

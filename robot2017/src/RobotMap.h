@@ -18,6 +18,7 @@ public:
 	static std::shared_ptr<Servo> gearSubsystemLoaderServo;
 
 	static std::shared_ptr<CANTalon> shooterSubsystemFlywheelTalon;
+	static std::shared_ptr<CANTalon> shooterSubsystemLoaderTalon;
 
 	static std::shared_ptr<PowerDistributionPanel> pdp;
 

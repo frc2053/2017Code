@@ -3,8 +3,8 @@
 #include "SmartDashboard/SmartDashboard.h"
 #include "Commands/Drive/ZeroYaw.h"
 #include "Commands/Shooter/ShooterWheel.h"
+#include "Commands/Shooter/LoaderWheel.h"
 #include "Commands/Gears/GearServo.h"
-
 
 OI::OI() {
 	driverJoystick.reset(new Joystick(0));
@@ -15,6 +15,10 @@ OI::OI() {
 
 	aButtonOperator->WhileActive(new ShooterWheel(5000, 0));
 	aButtonOperator->WhenInactive(new ShooterWheel(0, 0));
+
+	xButtonOperator->WhileActive(new LoaderWheel(1, 0));
+	xButtonOperator->WhenInactive(new LoaderWheel(0, 0));
+
 
 	bButtonOperator->WhileActive(new GearServo(180));
 	bButtonOperator->WhenInactive(new GearServo(0));

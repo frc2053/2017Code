@@ -21,16 +21,16 @@ void ShooterWheel::Initialize() {
 void ShooterWheel::Execute() {
 	timeCurrent = timer->Get();
 	if(timeTarget == 0) {
-		Robot::shooterSubsystem->RunMotor(inputSpeed);
+		Robot::shooterSubsystem->RunShooterMotor(inputSpeed);
 		isDone = true;
 	}
 	else {
 		if(timeCurrent >= timeTarget) {
-			Robot::shooterSubsystem->RunMotor(0);
+			Robot::shooterSubsystem->RunShooterMotor(0);
 			isDone = true;
 		}
 		else {
-			Robot::shooterSubsystem->RunMotor(inputSpeed);
+			Robot::shooterSubsystem->RunShooterMotor(inputSpeed);
 			isDone = false;
 		}
 	}
@@ -47,3 +47,4 @@ void ShooterWheel::End() {
 void ShooterWheel::Interrupted() {
 
 }
+

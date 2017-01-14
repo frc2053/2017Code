@@ -3,12 +3,19 @@
 
 ShooterSubsystem::ShooterSubsystem() : Subsystem("ShooterSubsystem") {
 	flywheelTalon = RobotMap::shooterSubsystemFlywheelTalon;
+	loaderTalon = RobotMap::shooterSubsystemLoaderTalon;
 }
 
 void ShooterSubsystem::InitDefaultCommand() {
 
 }
 
-void ShooterSubsystem::RunMotor(float speed) {
-	flywheelTalon->Set(speed);
+void ShooterSubsystem::RunShooterMotor(float rpm) {
+
+	flywheelTalon->Set(rpm);
 }
+
+void ShooterSubsystem::RunLoaderMotor(float speed){
+	loaderTalon->Set(speed);
+}
+

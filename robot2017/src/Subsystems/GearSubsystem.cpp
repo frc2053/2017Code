@@ -3,7 +3,7 @@
 #include "../RobotMap.h"
 
 GearSubsystem::GearSubsystem() : Subsystem("GearSubsystem") {
-	gearLoaderServo = RobotMap::gearLoaderServo;
+	gearLoaderServo = RobotMap::gearSubsystemLoaderServo;
 }
 
 void GearSubsystem::InitDefaultCommand() {
