@@ -12,6 +12,7 @@ OI::OI() {
 
 	aButtonOperator.reset(new JoystickButton(operatorJoystick.get(), 1));
 	bButtonOperator.reset(new JoystickButton(operatorJoystick.get(), 2));
+	xButtonOperator.reset(new JoystickButton(operatorJoystick.get(), 3));
 
 	aButtonOperator->WhileActive(new ShooterWheel(5000, 0));
 	aButtonOperator->WhenInactive(new ShooterWheel(0, 0));
