@@ -20,6 +20,9 @@ public:
 	static std::shared_ptr<CANTalon> shooterSubsystemFlywheelTalon;
 	static std::shared_ptr<CANTalon> shooterSubsystemLoaderTalon;
 
+	static std::shared_ptr<CANTalon> climberSubsystemLeftTalon;
+	static std::shared_ptr<CANTalon> climberSubsystemRightTalon;
+
 	static std::shared_ptr<PowerDistributionPanel> pdp;
 
 	static std::shared_ptr<AHRS> robotIMU;

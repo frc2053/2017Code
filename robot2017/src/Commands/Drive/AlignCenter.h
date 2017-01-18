@@ -12,15 +12,12 @@ public:
 	bool IsFinished();
 	void End();
 	void Interrupted();
-	float CalculateSpeedValue(int toCenter);
+	float CalculateSpeedValue(int distToCenter);
 private:
 	int distanceToCenter;
 	float adjyaw;
-	float speedRot;
-	const int TOLERANCE = 5;
-	const int TARGET = 0;
+	float speedX;
 	bool isDone;
-	float XAxis, YAxis, RotAxis;
 };
 
-#endif  // AlignCenter_H
+#endif

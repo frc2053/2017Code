@@ -6,6 +6,7 @@
 #include "Commands/Shooter/LoaderWheel.h"
 #include "Commands/Gears/GearServo.h"
 #include "Commands/Drive/AlignCenter.h"
+#include "Commands/Climber/ClimbMotor.h"
 
 OI::OI() {
 	driverJoystick.reset(new Joystick(0));
@@ -14,6 +15,9 @@ OI::OI() {
 	aButtonOperator.reset(new JoystickButton(operatorJoystick.get(), 1));
 	bButtonOperator.reset(new JoystickButton(operatorJoystick.get(), 2));
 	xButtonOperator.reset(new JoystickButton(operatorJoystick.get(), 3));
+	leftBumperOperator.reset(new JoystickButton(operatorJoystick.get(), 5));
+	rightBumperOperator.reset(new JoystickButton(operatorJoystick.get(), 6));
+
 	leftBumperDriver.reset(new JoystickButton(driverJoystick.get(), 5));
 
 	leftBumperDriver->WhenPressed(new AlignCenter());
@@ -28,6 +32,12 @@ OI::OI() {
 
 	bButtonOperator->WhileActive(new GearServo(180));
 	bButtonOperator->WhenInactive(new GearServo(0));
+
+	leftBumperOperator->WhenPressed(new ClimbMotor(1, 0));
+	leftBumperOperator->WhenPressed(new ClimbMotor(0, 0));
+
+	rightBumperOperator->WhenPressed(new ClimbMotor(-1, 0));
+	rightBumperOperator->WhenPressed(new ClimbMotor(0, 0));
 
 	SmartDashboard::PutData("Zero Yaw", new ZeroYaw());
 

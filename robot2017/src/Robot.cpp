@@ -3,6 +3,7 @@
 std::shared_ptr<DrivebaseSubsystem> Robot::drivebaseSubsystem;
 std::shared_ptr<ShooterSubsystem> Robot::shooterSubsystem;
 std::shared_ptr<GearSubsystem> Robot::gearSubsystem;
+std::shared_ptr<ClimberSubsystem> Robot::climberSubsystem;
 std::unique_ptr<OI> Robot::oi;
 std::shared_ptr<NetworkTable> Robot::visionTable;
 
@@ -11,6 +12,7 @@ void Robot::RobotInit() {
     drivebaseSubsystem.reset(new DrivebaseSubsystem());
     shooterSubsystem.reset(new ShooterSubsystem());
     gearSubsystem.reset(new GearSubsystem());
+    climberSubsystem.reset(new ClimberSubsystem());
 
 
 	oi.reset(new OI());
@@ -43,7 +45,6 @@ void Robot::TeleopPeriodic() {
 	Scheduler::GetInstance()->Run();
 	SmartDashboard::PutNumber("centerX", visionTable->GetNumber("centerX", 0.0));
 	SmartDashboard::PutNumber("centerY", visionTable->GetNumber("centerY", 0.0));
-	visionTable->GetNumber("centerY", 0.0);
 }
 
 void Robot::TestPeriodic() {
