@@ -18,12 +18,12 @@ OI::OI() {
 
 	leftBumperDriver->WhenPressed(new AlignCenter());
 
-	aButtonOperator->WhileActive(new ShooterWheel(5000, 0));
-	aButtonOperator->WhenInactive(new ShooterWheel(0, 0));
+	aButtonOperator->WhenPressed(new ShooterWheel(5000, 0));
+	aButtonOperator->WhenReleased(new ShooterWheel(0, 0));
 
 
-	xButtonOperator->WhileActive(new LoaderWheel(1, 0));
-	xButtonOperator->WhenInactive(new LoaderWheel(0, 0));
+	xButtonOperator->WhenPressed(new LoaderWheel(1, 0));
+	xButtonOperator->WhenReleased(new LoaderWheel(0, 0));
 
 
 	bButtonOperator->WhileActive(new GearServo(180));
