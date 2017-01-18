@@ -7,7 +7,6 @@ std::shared_ptr<CANTalon> RobotMap::driveBaseSubsystemBackRightTalon;
 std::shared_ptr<frc::RobotDrive> RobotMap::driveBaseSubsystemRobotDrive;
 std::shared_ptr<frc::Servo> RobotMap::gearSubsystemLoaderServo;
 
-
 std::shared_ptr<CANTalon> RobotMap::shooterSubsystemFlywheelTalon;
 std::shared_ptr<CANTalon> RobotMap::shooterSubsystemLoaderTalon;
 
@@ -53,5 +52,4 @@ void RobotMap::init() {
 
     robotIMU.reset(new AHRS(frc::SPI::Port::kMXP));
     tigerDrive.reset(new TigerDrive(robotIMU.get()));
-
 }

@@ -5,6 +5,7 @@
 #include "Commands/Shooter/ShooterWheel.h"
 #include "Commands/Shooter/LoaderWheel.h"
 #include "Commands/Gears/GearServo.h"
+#include "Commands/Drive/AlignCenter.h"
 
 OI::OI() {
 	driverJoystick.reset(new Joystick(0));
@@ -13,9 +14,13 @@ OI::OI() {
 	aButtonOperator.reset(new JoystickButton(operatorJoystick.get(), 1));
 	bButtonOperator.reset(new JoystickButton(operatorJoystick.get(), 2));
 	xButtonOperator.reset(new JoystickButton(operatorJoystick.get(), 3));
+	leftBumperDriver.reset(new JoystickButton(driverJoystick.get(), 5));
+
+	leftBumperDriver->WhenPressed(new AlignCenter());
 
 	aButtonOperator->WhileActive(new ShooterWheel(5000, 0));
 	aButtonOperator->WhenInactive(new ShooterWheel(0, 0));
+
 
 	xButtonOperator->WhileActive(new LoaderWheel(1, 0));
 	xButtonOperator->WhenInactive(new LoaderWheel(0, 0));

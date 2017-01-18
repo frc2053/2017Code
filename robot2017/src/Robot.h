@@ -16,6 +16,8 @@ public:
     static std::shared_ptr<ShooterSubsystem> shooterSubsystem;
     static std::shared_ptr<GearSubsystem> gearSubsystem;
 
+    static std::shared_ptr<NetworkTable> visionTable;
+
 
     virtual void RobotInit();
 	virtual void DisabledInit();
