@@ -1,12 +1,12 @@
-#ifndef GearServo_H
-#define GearServo_H
+#ifndef FlapperSolenoid_H
+#define FlapperSolenoid_H
 
 #include "Commands/Command.h"
 #include "../../Robot.h"
 
-class GearServo : public Command {
+class FlapperSolenoid : public Command {
 public:
-	GearServo(float inputAngle);
+	FlapperSolenoid(bool input);
 	void Initialize();
 	void Execute();
 	bool IsFinished();
@@ -14,7 +14,7 @@ public:
 	void Interrupted();
 private:
 	bool isDone;
-	float angle;
+	bool direction;
 };
 
 #endif

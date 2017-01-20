@@ -6,12 +6,17 @@
 
 class GearSubsystem : public Subsystem {
 private:
-	std::shared_ptr<Servo> gearLoaderServo;
+	std::shared_ptr<DoubleSolenoid> flapperSolenoid;
+	std::shared_ptr<DoubleSolenoid> pusherSolenoid;
 public:
 	GearSubsystem();
 	void InitDefaultCommand();
 
-	void SetAngleGearLoaderServos(float inputAngle);
+	void SetFlapperUp();
+	void SetFlapperDown();
+
+	void SetPusherForward();
+	void SetPusherBack();
 };
 
 #endif

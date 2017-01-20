@@ -79,18 +79,22 @@ void DriveCommand::Interrupted() {
 void DriveCommand::SetAngleWithButton()
 {
 	if(buttonAPressed) {
+		RobotMap::tigerDrive->turnController->SetSetpoint(180);
 		setAngle = 180;
 	}
 
 	if(buttonBPressed) {
+		RobotMap::tigerDrive->turnController->SetSetpoint(60);
 		setAngle = 60;
 	}
 
 	if(buttonXPressed) {
+		RobotMap::tigerDrive->turnController->SetSetpoint(-60);
 		setAngle = -60;
 	}
 
 	if(buttonYPressed) {
+		RobotMap::tigerDrive->turnController->SetSetpoint(0);
 		setAngle = 0;
 	}
 }

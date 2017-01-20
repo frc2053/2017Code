@@ -24,6 +24,16 @@ TigerDrive::TigerDrive(AHRS* imuP)
 	yawOffset = 0;
 	calculatedOffset = 0;
 	isRotDoneOverride = false;
+	rotateToAngleRate = 0.0f;
+    turnController = new frc::PIDController(kP, kI, kD, kF, imuPointer, this);
+    turnController->SetInputRange(-180.0f,  180.0f);
+    turnController->SetOutputRange(-1.0, 1.0);
+    turnController->SetAbsoluteTolerance(kToleranceDegrees);
+    turnController->SetContinuous(true);
+}
+
+TigerDrive::~TigerDrive() {
+
 }
 
 float TigerDrive::CalculateRotValue(float angle, float speed)

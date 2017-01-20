@@ -4,9 +4,10 @@
 #include "Commands/Drive/ZeroYaw.h"
 #include "Commands/Shooter/ShooterWheel.h"
 #include "Commands/Shooter/LoaderWheel.h"
-#include "Commands/Gears/GearServo.h"
 #include "Commands/Drive/AlignCenter.h"
 #include "Commands/Climber/ClimbMotor.h"
+#include "Commands/Gears/FlapperSolenoid.h"
+#include "Commands/Gears/PusherSolenoid.h"
 
 OI::OI() {
 	driverJoystick.reset(new Joystick(0));
@@ -15,6 +16,7 @@ OI::OI() {
 	aButtonOperator.reset(new JoystickButton(operatorJoystick.get(), 1));
 	bButtonOperator.reset(new JoystickButton(operatorJoystick.get(), 2));
 	xButtonOperator.reset(new JoystickButton(operatorJoystick.get(), 3));
+	yButtonOperator.reset(new JoystickButton(operatorJoystick.get(), 4));
 	leftBumperOperator.reset(new JoystickButton(operatorJoystick.get(), 5));
 	rightBumperOperator.reset(new JoystickButton(operatorJoystick.get(), 6));
 
@@ -25,13 +27,14 @@ OI::OI() {
 	aButtonOperator->WhenPressed(new ShooterWheel(5000, 0));
 	aButtonOperator->WhenReleased(new ShooterWheel(0, 0));
 
-
 	xButtonOperator->WhenPressed(new LoaderWheel(1, 0));
 	xButtonOperator->WhenReleased(new LoaderWheel(0, 0));
 
+	bButtonOperator->ToggleWhenPressed(new FlapperSolenoid(1));
+	//bButtonOperator->WhenReleased(new FlapperSolenoid(0));
 
-	bButtonOperator->WhileActive(new GearServo(180));
-	bButtonOperator->WhenInactive(new GearServo(0));
+	yButtonOperator->ToggleWhenPressed(new PusherSolenoid(1));
+	//yButtonOperator->WhenReleased(new PusherSolenoid(0));
 
 	leftBumperOperator->WhenPressed(new ClimbMotor(1, 0));
 	leftBumperOperator->WhenPressed(new ClimbMotor(0, 0));

@@ -3,9 +3,13 @@
 
 #include "AHRS.h"
 
-class TigerDrive
+class TigerDrive : public frc::PIDOutput
 {
 private:
+	double kP = 0.03f;
+	double kI = 0.00f;
+	double kD = 0.00f;
+	double kF = 0.00f;
 	AHRS* imuPointer;
 	float angleTolerance; // Tolerance in degrees on either side of set angle
 	int rotateLoopCheck; //checks for iterations through loop. Change later depending on robot
@@ -27,8 +31,11 @@ private:
 	float calculatedOffset; //used for auto modes
 	float yawOffset; //passed in for auto modes
 	bool isRotDoneOverride; //TESTING
+    double rotateToAngleRate; //Current rotation rate
+    double kToleranceDegrees = 2.0f;
 public:
 	TigerDrive(AHRS* imuYaw);
+	virtual ~TigerDrive();
 	float CalculateRotValue(float angle, float speed);
 	float GetAdjYaw();
 	void SetAdjYaw(float offset);
@@ -38,5 +45,11 @@ public:
 	void SetIsRotDoneOverride(bool isDone);
 	void SetTimesThroughLoop(int timeLoop);
 	bool GetIsRotDoneOverride();
+
+    frc::PIDController* turnController; //PID Controller
+
+    void PIDWrite(double output) {
+        this->rotateToAngleRate = output;
+    }
 };
 #endif
