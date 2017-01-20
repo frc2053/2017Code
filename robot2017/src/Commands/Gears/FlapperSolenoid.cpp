@@ -1,38 +1,45 @@
 #include "FlapperSolenoid.h"
 
-FlapperSolenoid::FlapperSolenoid(bool input) {
-	std::cout << "constructor" << std::endl;
+FlapperSolenoid::FlapperSolenoid(bool mode, bool direction) {
 	Requires(Robot::gearSubsystem.get());
 	isDone = false;
-	direction = input;
+	currentMode = mode;
+	currentDirection = direction;
 }
 
 void FlapperSolenoid::Initialize() {
-	std::cout << "init" << std::endl;
 	isDone = false;
-	direction = 0;
+	currentMode = 0;
+	currentDirection = 0;
 }
 
 void FlapperSolenoid::Execute() {
-	std::cout << "execute" << std::endl;
-	Robot::gearSubsystem->SetFlapperUp();
-	isDone = true;
+	if(currentMode == 0) {
+		if(Robot::gearSubsystem->GetFlapperState() == DoubleSolenoid::kForward) {
+			Robot::gearSubsystem->SetFlapperDown();
+		}
+		else {
+			Robot::gearSubsystem->SetFlapperUp();
+		}
+		isDone = true;
+	}
+	else {
+		if(currentDirection == 1) {
+			Robot::gearSubsystem->SetFlapperUp();
+		}
+		if(currentDirection == 0) {
+			Robot::gearSubsystem->SetFlapperDown();
+		}
+		isDone = true;
+	}
 }
 
 bool FlapperSolenoid::IsFinished() {
-	std::cout << "is finished" << std::endl;
 	return isDone;
 }
 
 void FlapperSolenoid::End() {
-	Robot::gearSubsystem->SetFlapperDown();
-
-	std::cout << "end" << std::endl;
 }
 
 void FlapperSolenoid::Interrupted() {
-	Robot::gearSubsystem->SetFlapperDown();
-
-	std::cout << "interrupt" << std::endl;
-
 }

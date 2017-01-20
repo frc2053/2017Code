@@ -26,3 +26,11 @@ void GearSubsystem::SetPusherForward() {
 void GearSubsystem::SetPusherBack() {
 	pusherSolenoid->Set(DoubleSolenoid::kReverse);
 }
+
+DoubleSolenoid::Value GearSubsystem::GetFlapperState() {
+	return flapperSolenoid->Get();
+}
+
+DoubleSolenoid::Value GearSubsystem::GetPusherState() {
+	return pusherSolenoid->Get();
+}

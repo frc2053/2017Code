@@ -6,7 +6,7 @@
 
 class FlapperSolenoid : public Command {
 public:
-	FlapperSolenoid(bool input);
+	FlapperSolenoid(bool mode, bool direction);
 	void Initialize();
 	void Execute();
 	bool IsFinished();
@@ -14,7 +14,8 @@ public:
 	void Interrupted();
 private:
 	bool isDone;
-	bool direction;
+	bool currentMode;
+	bool currentDirection;
 };
 
 #endif

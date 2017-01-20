@@ -1,24 +1,37 @@
 #include "PusherSolenoid.h"
 
-PusherSolenoid::PusherSolenoid(bool input) {
+PusherSolenoid::PusherSolenoid(bool mode, bool direction) {
 	Requires(Robot::gearSubsystem.get());
-	direction = input;
 	isDone = false;
+	currentMode = mode;
+	currentDirection = direction;
 }
 
 void PusherSolenoid::Initialize() {
 	isDone = false;
-	direction = 0;
+	currentMode = 0;
+	currentDirection = 0;
 }
 
 void PusherSolenoid::Execute() {
-	if(direction == 0) {
-		Robot::gearSubsystem->SetPusherBack();
+	if(currentMode == 0) {
+		if(Robot::gearSubsystem->GetPusherState() == DoubleSolenoid::kForward) {
+			Robot::gearSubsystem->SetPusherBack();
+		}
+		else {
+			Robot::gearSubsystem->SetPusherForward();
+		}
+		isDone = true;
 	}
 	else {
-		Robot::gearSubsystem->SetPusherForward();
+		if(currentDirection == 1) {
+			Robot::gearSubsystem->SetPusherForward();
+		}
+		if(currentDirection == 0) {
+			Robot::gearSubsystem->SetPusherBack();
+		}
+		isDone = true;
 	}
-	isDone = true;
 }
 
 bool PusherSolenoid::IsFinished() {

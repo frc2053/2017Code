@@ -1,5 +1,9 @@
 #include "Robot.h"
 
+//AUTO MODE INCLUDE
+#include "Commands/Autonomous/DoNothingAuto.h"
+#include "Commands/Autonomous/GearAlign.h"
+
 std::shared_ptr<DrivebaseSubsystem> Robot::drivebaseSubsystem;
 std::shared_ptr<ShooterSubsystem> Robot::shooterSubsystem;
 std::shared_ptr<GearSubsystem> Robot::gearSubsystem;
@@ -17,6 +21,11 @@ void Robot::RobotInit() {
 
 	oi.reset(new OI());
 
+	autoChooser.AddDefault("Do Nothing", new DoNothingAuto(15));
+	autoChooser.AddObject("Gear Align", new GearAlign());
+
+	SmartDashboard::PutData("Auto Mode Chooser", &autoChooser);
+
 	Robot::drivebaseSubsystem->ZeroYaw();
 	visionTable = NetworkTable::GetTable("vision");
 }
@@ -30,7 +39,10 @@ void Robot::DisabledPeriodic() {
 }
 
 void Robot::AutonomousInit() {
-
+	selectedMode.reset(autoChooser.GetSelected());
+	if(selectedMode != nullptr){
+		selectedMode->Start();
+	}
 }
 
 void Robot::AutonomousPeriodic() {
@@ -38,7 +50,9 @@ void Robot::AutonomousPeriodic() {
 }
 
 void Robot::TeleopInit() {
-
+	if (selectedMode != nullptr) {
+		selectedMode->Cancel();
+	}
 }
 
 void Robot::TeleopPeriodic() {

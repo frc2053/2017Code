@@ -30,11 +30,9 @@ OI::OI() {
 	xButtonOperator->WhenPressed(new LoaderWheel(1, 0));
 	xButtonOperator->WhenReleased(new LoaderWheel(0, 0));
 
-	bButtonOperator->ToggleWhenPressed(new FlapperSolenoid(1));
-	//bButtonOperator->WhenReleased(new FlapperSolenoid(0));
+	bButtonOperator->WhenPressed(new FlapperSolenoid(0, 0));
 
-	yButtonOperator->ToggleWhenPressed(new PusherSolenoid(1));
-	//yButtonOperator->WhenReleased(new PusherSolenoid(0));
+	yButtonOperator->WhenPressed(new PusherSolenoid(0, 0));
 
 	leftBumperOperator->WhenPressed(new ClimbMotor(1, 0));
 	leftBumperOperator->WhenPressed(new ClimbMotor(0, 0));

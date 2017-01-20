@@ -6,7 +6,7 @@
 
 class PusherSolenoid : public Command {
 public:
-	PusherSolenoid(bool input);
+	PusherSolenoid(bool mode, bool direction);
 	void Initialize();
 	void Execute();
 	bool IsFinished();
@@ -14,7 +14,8 @@ public:
 	void Interrupted();
 private:
 	bool isDone;
-	bool direction;
+	bool currentMode;
+	bool currentDirection;
 };
 
 #endif

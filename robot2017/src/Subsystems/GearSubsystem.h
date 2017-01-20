@@ -17,6 +17,9 @@ public:
 
 	void SetPusherForward();
 	void SetPusherBack();
+
+	DoubleSolenoid::Value GetFlapperState();
+	DoubleSolenoid::Value GetPusherState();
 };
 
 #endif
