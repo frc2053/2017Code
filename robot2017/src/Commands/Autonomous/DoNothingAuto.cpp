@@ -7,8 +7,6 @@ DoNothingAuto::DoNothingAuto(float timeToWait)
 	timeTarget = timeToWait;
 	timeCurrent = 0;
 	timer.reset(new Timer());
-	timer->Reset();
-	timer->Start();
 	isDone = false;
 }
 
@@ -16,6 +14,8 @@ void DoNothingAuto::Initialize()
 {
 	timeCurrent = 0;
 	isDone = false;
+	timer->Reset();
+	timer->Start();
 }
 
 void DoNothingAuto::Execute()

@@ -9,8 +9,6 @@ FlapperSolenoid::FlapperSolenoid(bool mode, bool direction) {
 
 void FlapperSolenoid::Initialize() {
 	isDone = false;
-	currentMode = 0;
-	currentDirection = 0;
 }
 
 void FlapperSolenoid::Execute() {
