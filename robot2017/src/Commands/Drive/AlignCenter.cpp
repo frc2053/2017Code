@@ -36,7 +36,7 @@ void AlignCenter::Execute()
 	speedX = CalculateSpeedValue(distanceToCenter);
 	std::cout << "speedX: " << speedX << std::endl;
 
-	float rot = Robot::drivebaseSubsystem->CalculateRotValue(0, 1);
+	float rot = Robot::drivebaseSubsystem->CalculateRotValue(180, 1);
 	Robot::drivebaseSubsystem->MecanumDrive(speedX, 0, rot, adjyaw);
 	std::cout << "isDone: " <<  isDone << std::endl;
 }
@@ -59,16 +59,16 @@ void AlignCenter::Interrupted()
 
 float AlignCenter::CalculateSpeedValue(int distToCenter) {
 	float returnedSpeed = 0;
-	if(distToCenter > 15) {
+	if(distToCenter > 15 || distToCenter > 2) {
 		returnedSpeed = -.20;
 		isDone = false;
 	}
 
-	if(distToCenter <= -15) {
+	if(distToCenter <= -15 || distToCenter < -2 ) {
 		returnedSpeed = .20;
 		isDone = false;
 	}
-
+// if 2 < abs(distToCenter) < 15, what happens?
 	if(abs(distToCenter) <= 2) {
 		returnedSpeed = 0;
 		isDone = true;
