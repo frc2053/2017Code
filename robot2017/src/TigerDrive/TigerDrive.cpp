@@ -25,9 +25,9 @@ TigerDrive::TigerDrive(AHRS* imuP)
 	calculatedOffset = 0;
 	isRotDoneOverride = false;
 	rotateToAngleRate = 0.0f;
-    turnController = new frc::PIDController(kP, kI, kD, kF, this, this);
-    turnController->SetInputRange(0.0f,  180.0f);
-    turnController->SetOutputRange(0.2, 1.0);
+    turnController = new frc::PIDController(kP, kI, kD, kF, imuPointer, this);
+    turnController->SetInputRange(-180.0f,  180.0f);
+    turnController->SetOutputRange(-1.0, 1.0);
     turnController->SetAbsoluteTolerance(kToleranceDegrees);
     turnController->SetContinuous(true);
 }
@@ -78,11 +78,13 @@ float TigerDrive::CalculateRotValue(float angle, float speed)
 	//only start spinning if we need to
 	if(tooFarCW || tooFarCCW)
 	{
+		degreesToAngleAbs = fabs(degreesToAngle);
+		std::cout << "degreesToAngleAbs" << degreesToAngleAbs << std::endl;
 		turnController->Enable();
 		speedWhileRotating = rotateToAngleRate;
 		std::cout << "speedWhileRotating: " << speedWhileRotating << std::endl;
+		std::cout << "error: " << turnController->GetError() << std::endl;
 		isRotDone = false;
-		degreesToAngleAbs = fabs(degreesToAngle);
 		//why not an exponential function? :(
 		/*if(degreesToAngleAbs <= 180)
 		{
@@ -100,8 +102,8 @@ float TigerDrive::CalculateRotValue(float angle, float speed)
 		{
 			speedWhileRotating = 0.2;
 		}*/
-		calculatedRotate = spinDirection * speedWhileRotating;
-		calculatedRotate = calculatedRotate * speedScaleFactor;
+		calculatedRotate = /*spinDirection **/ speedWhileRotating;
+		calculatedRotate = calculatedRotate * .75;
 		timesThroughLoop = 1;
 		//printf("TimesThroughLoopIf: %d\n", timesThroughLoop);
 	}
