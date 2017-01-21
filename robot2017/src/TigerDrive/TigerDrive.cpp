@@ -25,7 +25,7 @@ TigerDrive::TigerDrive(AHRS* imuP)
 	calculatedOffset = 0;
 	isRotDoneOverride = false;
 	rotateToAngleRate = 0.0f;
-    turnController = new frc::PIDController(kP, kI, kD, kF, imuPointer, this);
+    turnController = new frc::PIDController(kP, kI, kD, kF, this, this);
     turnController->SetInputRange(0.0f,  180.0f);
     turnController->SetOutputRange(0.2, 1.0);
     turnController->SetAbsoluteTolerance(kToleranceDegrees);
@@ -38,11 +38,11 @@ TigerDrive::~TigerDrive() {
 
 float TigerDrive::CalculateRotValue(float angle, float speed)
 {
-	printf("I am in CalculateRotValue\n");
+	//printf("I am in CalculateRotValue\n");
 	originalAngle = angle;
 	speedScaleFactor = speed;
-	printf("originalAngle%f\n", originalAngle);
-	printf("speedScaleFactor%f\n", speedScaleFactor);
+	//printf("originalAngle%f\n", originalAngle);
+	//printf("speedScaleFactor%f\n", speedScaleFactor);
 	tooFarCW = false;
 	tooFarCCW = false;
 	calculatedRotate = 0;
@@ -54,18 +54,18 @@ float TigerDrive::CalculateRotValue(float angle, float speed)
 			tooFarCW = true;
 			spinDirection = -1;
 			degreesToAngle = imuYaw - originalAngle;
-	   printf("tooFarCW is true\n");
+	   //printf("tooFarCW is true\n");
 		}
 		else {
 			//sets spin direction and degrees to rotate to
 			tooFarCCW = true;
 			spinDirection = 1;
 			degreesToAngle = originalAngle - imuYaw;
-			printf("tooFarCCW is true\n");
+			//printf("tooFarCCW is true\n");
 		}
 	}
-	printf("after\n");
-	printf("imuScaled: %f3.2 scaledAngle: %f3.2 tolerance: %f3.2 degreesToAngle: %f3.2 \n", imuScaled, scaledAngle, angleTolerance, degreesToAngle);
+	//printf("after\n");
+	//printf("imuScaled: %f3.2 scaledAngle: %f3.2 tolerance: %f3.2 degreesToAngle: %f3.2 \n", imuScaled, scaledAngle, angleTolerance, degreesToAngle);
 	//makes sure when rotating to 180 robot does not turn wrong way
 	if(degreesToAngle > 180)
 	{
@@ -73,8 +73,8 @@ float TigerDrive::CalculateRotValue(float angle, float speed)
 		spinDirection = spinDirection * -1;
 	}
 
-	printf("tooFarCW: %d\n", tooFarCW);
-	printf("tooFarCCW: %d\n", tooFarCCW);
+	//printf("tooFarCW: %d\n", tooFarCW);
+	//printf("tooFarCCW: %d\n", tooFarCCW);
 	//only start spinning if we need to
 	if(tooFarCW || tooFarCCW)
 	{
@@ -103,26 +103,26 @@ float TigerDrive::CalculateRotValue(float angle, float speed)
 		calculatedRotate = spinDirection * speedWhileRotating;
 		calculatedRotate = calculatedRotate * speedScaleFactor;
 		timesThroughLoop = 1;
-		printf("TimesThroughLoopIf: %d\n", timesThroughLoop);
+		//printf("TimesThroughLoopIf: %d\n", timesThroughLoop);
 	}
 	else
 	{
-		printf("rotateLoopCheck = %d\n", rotateLoopCheck);
-		printf("TimesThroughLoopElse: %d\n", timesThroughLoop);
-		printf("We do not need to rotate anymore at least i think");
+		//printf("rotateLoopCheck = %d\n", rotateLoopCheck);
+		//printf("TimesThroughLoopElse: %d\n", timesThroughLoop);
+		//printf("We do not need to rotate anymore at least i think");
 		if(timesThroughLoop == rotateLoopCheck || timesThroughLoop == 0)
 		{
 			turnController->Disable();
-			printf("times through loop == loopcheck or timesthroughloop == 0");
+			//printf("times through loop == loopcheck or timesthroughloop == 0");
 			isRotDone = true;
 			timesThroughLoop = 0;
 			calculatedRotate = 0;
 		}
 		timesThroughLoop = timesThroughLoop + 1;
-		printf("TimesThroughLoop%d\n", timesThroughLoop);
+		//printf("TimesThroughLoop%d\n", timesThroughLoop);
 	}
 
-	printf("isRotDoneOverride: %d\n", isRotDoneOverride);
+	//printf("isRotDoneOverride: %d\n", isRotDoneOverride);
 	if(isRotDoneOverride)
 	{
 		calculatedRotate = 0;

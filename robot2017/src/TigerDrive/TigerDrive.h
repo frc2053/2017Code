@@ -3,10 +3,10 @@
 
 #include "AHRS.h"
 
-class TigerDrive : public frc::PIDOutput
+class TigerDrive : public frc::PIDOutput, public frc::PIDSource
 {
 private:
-	double kP = 0.01f;
+	double kP = 0.05f;
 	double kI = 0.00f;
 	double kD = 0.00f;
 	double kF = 0.00f;
@@ -50,6 +50,10 @@ public:
 
     void PIDWrite(double output) {
         this->rotateToAngleRate = output;
+    }
+
+    double PIDGet() {
+    	return this->degreesToAngleAbs;
     }
 };
 #endif
