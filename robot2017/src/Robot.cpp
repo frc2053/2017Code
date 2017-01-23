@@ -26,8 +26,28 @@ void Robot::RobotInit() {
 
 	SmartDashboard::PutData("Auto Mode Chooser", &autoChooser);
 
+	SmartDashboard::PutNumber("minH", 44);
+	SmartDashboard::PutNumber("minS", 163);
+	SmartDashboard::PutNumber("minV", 83);
+	SmartDashboard::PutNumber("maxH", 80);
+	SmartDashboard::PutNumber("maxS", 255);
+	SmartDashboard::PutNumber("maxV", 255);
+
+	double minH = SmartDashboard::GetNumber("minH", 44);
+	double minS = SmartDashboard::GetNumber("minS", 163);
+	double minV = SmartDashboard::GetNumber("minV", 83);
+	double maxH = SmartDashboard::GetNumber("maxH", 80);
+	double maxS = SmartDashboard::GetNumber("maxS", 255);
+	double maxV = SmartDashboard::GetNumber("maxV", 255);
+
 	Robot::drivebaseSubsystem->ZeroYaw();
 	visionTable = NetworkTable::GetTable("vision");
+	visionTable->PutNumber("minH", minH);
+	visionTable->PutNumber("minS", minS);
+	visionTable->PutNumber("minV", minV);
+	visionTable->PutNumber("maxH", maxH);
+	visionTable->PutNumber("maxS", maxS);
+	visionTable->PutNumber("maxV", maxV);
 }
 
 void Robot::DisabledInit(){
@@ -36,6 +56,20 @@ void Robot::DisabledInit(){
 
 void Robot::DisabledPeriodic() {
 	Scheduler::GetInstance()->Run();
+	double minH = SmartDashboard::GetNumber("minH", 44);
+	double minS = SmartDashboard::GetNumber("minS", 163);
+	double minV = SmartDashboard::GetNumber("minV", 83);
+	double maxH = SmartDashboard::GetNumber("maxH", 80);
+	double maxS = SmartDashboard::GetNumber("maxS", 255);
+	double maxV = SmartDashboard::GetNumber("maxV", 255);
+
+	visionTable = NetworkTable::GetTable("vision");
+	visionTable->PutNumber("minH", minH);
+	visionTable->PutNumber("minS", minS);
+	visionTable->PutNumber("minV", minV);
+	visionTable->PutNumber("maxH", maxH);
+	visionTable->PutNumber("maxS", maxS);
+	visionTable->PutNumber("maxV", maxV);
 }
 
 void Robot::AutonomousInit() {
