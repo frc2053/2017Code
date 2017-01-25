@@ -41,6 +41,8 @@ void Robot::RobotInit() {
 	double maxV = SmartDashboard::GetNumber("maxV", 255);
 
 	Robot::drivebaseSubsystem->ZeroYaw();
+	Robot::drivebaseSubsystem->IMU_YAWoffset(0);
+
 	visionTable = NetworkTable::GetTable("vision");
 	visionTable->PutNumber("minH", minH);
 	visionTable->PutNumber("minS", minS);

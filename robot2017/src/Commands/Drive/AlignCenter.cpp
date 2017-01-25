@@ -1,6 +1,6 @@
 #include "AlignCenter.h"
 
-AlignCenter::AlignCenter()
+AlignCenter::AlignCenter(float inputAngle)
 {
 	Requires(Robot::drivebaseSubsystem.get());
 	distanceToCenter = 0;
@@ -8,6 +8,7 @@ AlignCenter::AlignCenter()
 	isDone = false;
 	speedX = 0;
 	std::cout << "Align Constructor" << std::endl;
+	gearAngle = inputAngle;
 }
 
 void AlignCenter::Initialize()
@@ -36,7 +37,7 @@ void AlignCenter::Execute()
 	speedX = CalculateSpeedValue(distanceToCenter);
 	std::cout << "speedX: " << speedX << std::endl;
 
-	float rot = Robot::drivebaseSubsystem->CalculateRotValue(180, 1);
+	float rot = Robot::drivebaseSubsystem->CalculateRotValue(gearAngle, 1);
 	Robot::drivebaseSubsystem->MecanumDrive(speedX, 0, rot, adjyaw);
 	std::cout << "isDone: " <<  isDone << std::endl;
 }
@@ -59,16 +60,16 @@ void AlignCenter::Interrupted()
 
 float AlignCenter::CalculateSpeedValue(int distToCenter) {
 	float returnedSpeed = 0;
-	if(distToCenter > 15 || distToCenter > 2) {
+	if(distToCenter > 2) {
 		returnedSpeed = -.20;
 		isDone = false;
 	}
 
-	if(distToCenter <= -15 || distToCenter < -2 ) {
+	if(distToCenter < -2 ) {
 		returnedSpeed = .20;
 		isDone = false;
 	}
-// if 2 < abs(distToCenter) < 15, what happens?
+
 	if(abs(distToCenter) <= 2) {
 		returnedSpeed = 0;
 		isDone = true;

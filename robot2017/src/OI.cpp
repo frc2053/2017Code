@@ -22,7 +22,7 @@ OI::OI() {
 
 	leftBumperDriver.reset(new JoystickButton(driverJoystick.get(), 5));
 
-	leftBumperDriver->WhenPressed(new AlignCenter());
+	leftBumperDriver->WhenPressed(new AlignCenter(0));
 
 	aButtonOperator->WhenPressed(new ShooterWheel(5000, 0));
 	aButtonOperator->WhenReleased(new ShooterWheel(0, 0));

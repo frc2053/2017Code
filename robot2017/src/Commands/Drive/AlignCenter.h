@@ -6,7 +6,7 @@
 
 class AlignCenter : public Command {
 public:
-	AlignCenter();
+	AlignCenter(float inputAngle);
 	void Initialize();
 	void Execute();
 	bool IsFinished();
@@ -18,6 +18,7 @@ private:
 	float adjyaw;
 	float speedX;
 	bool isDone;
+	float gearAngle;
 };
 
 #endif
