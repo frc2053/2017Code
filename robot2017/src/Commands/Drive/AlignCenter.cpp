@@ -9,6 +9,8 @@ AlignCenter::AlignCenter(float inputAngle)
 	speedX = 0;
 	std::cout << "Align Constructor" << std::endl;
 	gearAngle = inputAngle;
+	isRotDone = false;
+	finalAutoRot = 0;
 }
 
 void AlignCenter::Initialize()
@@ -18,12 +20,16 @@ void AlignCenter::Initialize()
 	adjyaw = 0;
 	isDone = false;
 	speedX = 0;
+	isRotDone = false;
 }
 
 void AlignCenter::Execute()
 {
 	std::cout << "Align Execute" << std::endl;
+	RobotMap::tigerDrive->turnController->SetSetpoint(gearAngle);
 	adjyaw = Robot::drivebaseSubsystem->GetAdjYaw();
+	isRotDone = Robot::drivebaseSubsystem->GetIsRotDone();
+	finalAutoRot = Robot::drivebaseSubsystem->CalculateRotValue(gearAngle, 1);
 	distanceToCenter = (320 / 2) - Robot::visionTable->GetNumber("centerX", 0.0);
 	SmartDashboard::PutNumber("distanceToCenter", distanceToCenter);
 
@@ -34,11 +40,19 @@ void AlignCenter::Execute()
 		isDone = true;
 	}
 
+
 	speedX = CalculateSpeedValue(distanceToCenter);
 	std::cout << "speedX: " << speedX << std::endl;
 
-	float rot = Robot::drivebaseSubsystem->CalculateRotValue(gearAngle, 1);
-	Robot::drivebaseSubsystem->MecanumDrive(speedX, 0, rot, adjyaw);
+
+	if(isRotDone) {
+		Robot::drivebaseSubsystem->MecanumDrive(0, 0, 0, 0);
+		isDone = true;
+	}
+	else {
+		Robot::drivebaseSubsystem->MecanumDrive(speedX, 0, finalAutoRot, adjyaw);
+	}
+
 	std::cout << "isDone: " <<  isDone << std::endl;
 }
 
@@ -61,12 +75,12 @@ void AlignCenter::Interrupted()
 float AlignCenter::CalculateSpeedValue(int distToCenter) {
 	float returnedSpeed = 0;
 	if(distToCenter > 2) {
-		returnedSpeed = -.20;
+		returnedSpeed = -.15;
 		isDone = false;
 	}
 
 	if(distToCenter < -2 ) {
-		returnedSpeed = .20;
+		returnedSpeed = .15;
 		isDone = false;
 	}
 

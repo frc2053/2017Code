@@ -8,7 +8,7 @@ class TigerDrive : public frc::PIDOutput
 private:
 	double kP = 0.0225f;
 	double kI = 0.00f;
-	double kD = 0.05f;
+	double kD = 0.075f;
 	double kF = 0.00f;
 	AHRS* imuPointer;
 	float angleTolerance; // Tolerance in degrees on either side of set angle

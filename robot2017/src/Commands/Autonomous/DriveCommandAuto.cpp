@@ -27,11 +27,12 @@ void DriveCommandAuto::Initialize()
 void DriveCommandAuto::Execute()
 {
 	timeCurrent = timer->Get();
+	RobotMap::tigerDrive->turnController->SetSetpoint(inputAngle);
 	adjustedYaw = Robot::drivebaseSubsystem->GetAdjYaw();
 	isRotDone = Robot::drivebaseSubsystem->GetIsRotDone();
 	finalAutoRot = Robot::drivebaseSubsystem->CalculateRotValue(inputAngle, 1);
 	Robot::drivebaseSubsystem->MecanumDrive(inputSide, inputFow, finalAutoRot, adjustedYaw);
-	if((timeCurrent >= timeTarget) || isRotDone) {
+	if((timeCurrent >= timeTarget) && isRotDone) {
 		Robot::drivebaseSubsystem->MecanumDrive(0,0,0,0);
 		isDone = true;
 	}

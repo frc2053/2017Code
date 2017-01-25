@@ -1,4 +1,4 @@
-#include "Autonomous/DriveOnlyAuto.h"
+#include "DriveOnlyAuto.h"
 #include "DriveCommandAuto.h"
 
 DriveOnlyAuto::DriveOnlyAuto() {

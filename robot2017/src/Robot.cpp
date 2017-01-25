@@ -2,7 +2,9 @@
 
 //AUTO MODE INCLUDE
 #include "Commands/Autonomous/DoNothingAuto.h"
-#include "Commands/Autonomous/GearAlign.h"
+#include "Commands/Autonomous/GearAlignCenter.h"
+#include "Commands/Autonomous/GearAlignLeft.h"
+#include "Commands/Autonomous/GearAlignRight.h"
 
 std::shared_ptr<DrivebaseSubsystem> Robot::drivebaseSubsystem;
 std::shared_ptr<ShooterSubsystem> Robot::shooterSubsystem;
@@ -22,7 +24,9 @@ void Robot::RobotInit() {
 	oi.reset(new OI());
 
 	autoChooser.AddDefault("Do Nothing", new DoNothingAuto(15));
-	autoChooser.AddObject("Gear Align", new GearAlign());
+	autoChooser.AddObject("Gear Align Center", new GearAlignCenter());
+	autoChooser.AddObject("Gear Align Right", new GearAlignRight());
+	autoChooser.AddObject("Gear Align Left", new GearAlignLeft());
 
 	SmartDashboard::PutData("Auto Mode Chooser", &autoChooser);
 
@@ -41,7 +45,7 @@ void Robot::RobotInit() {
 	double maxV = SmartDashboard::GetNumber("maxV", 255);
 
 	Robot::drivebaseSubsystem->ZeroYaw();
-	Robot::drivebaseSubsystem->IMU_YAWoffset(0);
+	Robot::drivebaseSubsystem->SetAdjYaw(0);
 
 	visionTable = NetworkTable::GetTable("vision");
 	visionTable->PutNumber("minH", minH);

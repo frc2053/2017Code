@@ -19,6 +19,8 @@ private:
 	float speedX;
 	bool isDone;
 	float gearAngle;
+	bool isRotDone;
+	float finalAutoRot;
 };
 
 #endif

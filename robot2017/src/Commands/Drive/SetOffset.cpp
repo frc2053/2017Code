@@ -1,4 +1,4 @@
-#include "Drive/SetOffset.h"
+#include "SetOffset.h"
 
 SetOffset::SetOffset(float input) {
 	Requires(Robot::drivebaseSubsystem.get());
@@ -11,7 +11,7 @@ void SetOffset::Initialize() {
 }
 
 void SetOffset::Execute() {
-	Robot::drivebaseSubsystem->IMU_YAWoffset(inputYaw);
+	Robot::drivebaseSubsystem->SetAdjYaw(inputYaw);
 	isDone = true;
 }
 

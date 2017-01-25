@@ -9,7 +9,7 @@ TigerDrive::TigerDrive(AHRS* imuP)
 	rotateLoopCheck = 5;
 	originalAngle = 0;
 	speedWhileRotating = 0;
-	speedScaleFactor = 0.5;
+	speedScaleFactor = 1;
 	imuRaw = 0;
 	imuScaled = 0;
 	scaledAngle = 0;
@@ -103,7 +103,7 @@ float TigerDrive::CalculateRotValue(float angle, float speed)
 			speedWhileRotating = 0.2;
 		}*/
 		calculatedRotate = /*spinDirection **/ speedWhileRotating;
-		calculatedRotate = calculatedRotate * .75;
+		calculatedRotate = calculatedRotate * speedScaleFactor;
 		timesThroughLoop = 1;
 		//printf("TimesThroughLoopIf: %d\n", timesThroughLoop);
 	}
