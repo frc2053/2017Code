@@ -8,6 +8,7 @@
 #include "Subsystems/ShooterSubsystem.h"
 #include "Subsystems/GearSubsystem.h"
 #include "Subsystems/ClimberSubsystem.h"
+#include "Subsystems/LedSubsystem.h"
 #include "OI.h"
 
 class Robot : public IterativeRobot {
@@ -17,6 +18,7 @@ public:
     static std::shared_ptr<ShooterSubsystem> shooterSubsystem;
     static std::shared_ptr<GearSubsystem> gearSubsystem;
     static std::shared_ptr<ClimberSubsystem> climberSubsystem;
+    static std::shared_ptr<LedSubsystem> ledSubsystem;
 
     static std::shared_ptr<NetworkTable> visionTable;
 

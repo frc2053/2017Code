@@ -10,6 +10,7 @@ std::shared_ptr<DrivebaseSubsystem> Robot::drivebaseSubsystem;
 std::shared_ptr<ShooterSubsystem> Robot::shooterSubsystem;
 std::shared_ptr<GearSubsystem> Robot::gearSubsystem;
 std::shared_ptr<ClimberSubsystem> Robot::climberSubsystem;
+std::shared_ptr<LedSubsystem> Robot::ledSubsystem;
 std::unique_ptr<OI> Robot::oi;
 std::shared_ptr<NetworkTable> Robot::visionTable;
 
@@ -19,7 +20,7 @@ void Robot::RobotInit() {
     shooterSubsystem.reset(new ShooterSubsystem());
     gearSubsystem.reset(new GearSubsystem());
     climberSubsystem.reset(new ClimberSubsystem());
-
+    ledSubsystem.reset(new LedSubsystem());
 
 	oi.reset(new OI());
 

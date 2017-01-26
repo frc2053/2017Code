@@ -14,6 +14,11 @@ std::shared_ptr<CANTalon> RobotMap::shooterSubsystemLoaderTalon;
 std::shared_ptr<CANTalon> RobotMap::climberSubsystemLeftTalon;
 std::shared_ptr<CANTalon> RobotMap::climberSubsystemRightTalon;
 
+std::shared_ptr<frc::DigitalOutput> RobotMap::ledSubsystemRedLED;
+std::shared_ptr<frc::DigitalOutput> RobotMap::ledSubsystemGreenLED;
+std::shared_ptr<frc::DigitalOutput> RobotMap::ledSubsystemBlueLED;
+
+
 std::shared_ptr<frc::PowerDistributionPanel> RobotMap::pdp;
 
 std::shared_ptr<AHRS> RobotMap::robotIMU;
@@ -49,6 +54,10 @@ void RobotMap::init() {
 
     climberSubsystemLeftTalon.reset(new CANTalon(6));
     climberSubsystemRightTalon.reset(new CANTalon(7));
+
+    ledSubsystemRedLED.reset(new frc::DigitalOutput(1));
+    ledSubsystemGreenLED.reset(new frc::DigitalOutput(2));
+    ledSubsystemBlueLED.reset(new frc::DigitalOutput(3));
 
     pdp.reset(new frc::PowerDistributionPanel());
 
