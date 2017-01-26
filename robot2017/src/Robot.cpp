@@ -13,6 +13,8 @@ std::shared_ptr<ClimberSubsystem> Robot::climberSubsystem;
 std::shared_ptr<LedSubsystem> Robot::ledSubsystem;
 std::unique_ptr<OI> Robot::oi;
 std::shared_ptr<NetworkTable> Robot::visionTable;
+DriverStation::Alliance Robot::currentAlliance;
+bool Robot::doBoiler;
 
 void Robot::RobotInit() {
 	RobotMap::init();
@@ -23,6 +25,11 @@ void Robot::RobotInit() {
     ledSubsystem.reset(new LedSubsystem());
 
 	oi.reset(new OI());
+
+	currentAlliance = DriverStation::GetInstance().GetAlliance();
+
+	doBoiler = true;
+	SmartDashboard::PutBoolean("Do Boiler", doBoiler);
 
 	autoChooser.AddDefault("Do Nothing", new DoNothingAuto(15));
 	autoChooser.AddObject("Gear Align Center", new GearAlignCenter());

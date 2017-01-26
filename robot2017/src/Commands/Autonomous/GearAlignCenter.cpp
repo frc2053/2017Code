@@ -5,6 +5,7 @@
 #include "../Gears/FlapperSolenoid.h"
 #include "../Gears/PusherSolenoid.h"
 #include "../Autonomous/DoNothingAuto.h"
+#include "DriveToBoilerShootCenter.h"
 
 GearAlignCenter::GearAlignCenter() {
 	AddSequential(new DriveCommandAuto(0, -.5, 0, .7, 0));
@@ -15,4 +16,5 @@ GearAlignCenter::GearAlignCenter() {
 	AddSequential(new DoNothingAuto(.5));
 	AddSequential(new FlapperSolenoid(1, 1));
 	AddSequential(new PusherSolenoid(1, 1));
+	AddSequential(new DriveToBoilerShootCenter());
 }

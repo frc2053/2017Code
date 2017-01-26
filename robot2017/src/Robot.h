@@ -22,6 +22,9 @@ public:
 
     static std::shared_ptr<NetworkTable> visionTable;
 
+	static frc::DriverStation::Alliance currentAlliance;
+
+	static bool doBoiler;
 
     virtual void RobotInit();
 	virtual void DisabledInit();
