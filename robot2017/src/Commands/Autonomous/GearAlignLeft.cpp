@@ -4,6 +4,8 @@
 #include "../Gears/FlapperSolenoid.h"
 #include "../Gears/PusherSolenoid.h"
 #include "../Autonomous/DoNothingAuto.h"
+#include "DriveToBoilerClose.h"
+#include "DriveToBoilerShootCenter.h"
 
 GearAlignLeft::GearAlignLeft() {
 	AddSequential(new DriveCommandAuto(0, -.5, 0, .7, 0));
@@ -17,7 +19,7 @@ GearAlignLeft::GearAlignLeft() {
 	AddSequential(new PusherSolenoid(1, 1));
 	if(Robot::doBoiler) {
 		if(Robot::currentAlliance == frc::DriverStation::Alliance::kBlue) {
-
+			AddSequential(new DriveToBoilerShootCenter());
 		}
 		if(Robot::currentAlliance == frc::DriverStation::Alliance::kRed) {
 			AddSequential(new DriveCommandAuto(0, .5, 0, .5, 60)); // drive backwards

@@ -6,6 +6,7 @@
 #include "../Gears/PusherSolenoid.h"
 #include "DoNothingAuto.h"
 #include "DriveToBoilerShootCenter.h"
+#include "DriveToBoilerClose.h"
 
 GearAlignRight::GearAlignRight() {
 	AddSequential(new DriveCommandAuto(0, -.5, 0, .7, 0));
@@ -24,7 +25,7 @@ GearAlignRight::GearAlignRight() {
 			AddSequential(new DriveToBoilerShootCenter()); //align and shoot
 		}
 		if(Robot::currentAlliance == frc::DriverStation::Alliance::kRed) {
-
+			AddSequential(new DriveToBoilerClose());
 		}
 	}
 }
