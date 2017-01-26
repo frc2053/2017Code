@@ -6,7 +6,7 @@
 class TigerDrive : public frc::PIDOutput
 {
 private:
-	double kP = 0.0225f;
+	double kP = 0.0228f;
 	double kI = 0.00f;
 	double kD = 0.075f;
 	double kF = 0.00f;

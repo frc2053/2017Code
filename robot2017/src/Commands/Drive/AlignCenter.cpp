@@ -48,15 +48,16 @@ void AlignCenter::Execute()
 	std::cout << "speedX: " << speedX << std::endl;
 
 
-	if(speedX == 0) {
+	if(speedX == 0 || abs(distanceToCenter) <= 2) {
 		Robot::ledSubsystem->SetRedLED(0);
 		Robot::ledSubsystem->SetGreenLED(0);
 		Robot::ledSubsystem->SetBlueLED(1);
-	Robot::drivebaseSubsystem->MecanumDrive(0, 0, 0, 0);
-		isDone = false;
+		Robot::drivebaseSubsystem->MecanumDrive(0, 0, 0, 0);
+		isDone = true;
 	}
 	else {
 		Robot::drivebaseSubsystem->MecanumDrive(speedX, 0, finalAutoRot, adjyaw);
+		isDone = false;
 	}
 
 	std::cout << "isDone: " <<  isDone << std::endl;
@@ -81,12 +82,12 @@ void AlignCenter::Interrupted()
 float AlignCenter::CalculateSpeedValue(int distToCenter) {
 	float returnedSpeed = 0;
 	if(distToCenter > 2) {
-		returnedSpeed = -.15;
+		returnedSpeed = -.2;
 		isDone = false;
 	}
 
 	if(distToCenter < -2 ) {
-		returnedSpeed = .15;
+		returnedSpeed = .2;
 		isDone = false;
 	}
 

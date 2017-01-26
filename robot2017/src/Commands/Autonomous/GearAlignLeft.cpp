@@ -15,4 +15,14 @@ GearAlignLeft::GearAlignLeft() {
 	AddSequential(new DoNothingAuto(.5));
 	AddSequential(new FlapperSolenoid(1, 1));
 	AddSequential(new PusherSolenoid(1, 1));
+	if(Robot::doBoiler) {
+		if(Robot::currentAlliance == frc::DriverStation::Alliance::kBlue) {
+
+		}
+		if(Robot::currentAlliance == frc::DriverStation::Alliance::kRed) {
+			AddSequential(new DriveCommandAuto(0, .5, 0, .5, 60)); // drive backwards
+			AddSequential(new DriveCommandAuto(.5, 0, 0, 1, 0)); //drive right
+			AddSequential(new DriveToBoilerShootCenter()); //align and shoot
+		}
+	}
 }

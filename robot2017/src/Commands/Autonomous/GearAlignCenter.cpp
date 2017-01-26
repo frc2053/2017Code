@@ -8,13 +8,16 @@
 #include "DriveToBoilerShootCenter.h"
 
 GearAlignCenter::GearAlignCenter() {
-	AddSequential(new DriveCommandAuto(0, -.5, 0, .7, 0));
-	AddSequential(new AlignCenter(0));
-	AddSequential(new FlapperSolenoid(1, 0));
-	AddSequential(new DoNothingAuto(.25));
-	AddSequential(new PusherSolenoid(1, 0));
-	AddSequential(new DoNothingAuto(.5));
-	AddSequential(new FlapperSolenoid(1, 1));
-	AddSequential(new PusherSolenoid(1, 1));
-	AddSequential(new DriveToBoilerShootCenter());
+	AddSequential(new DriveCommandAuto(0, -.5, 0, .7, 0)); //drive forward
+	AddSequential(new AlignCenter(0)); //align
+	AddSequential(new FlapperSolenoid(1, 0)); //retract flapper
+	AddSequential(new DoNothingAuto(.25)); //wait
+	AddSequential(new PusherSolenoid(1, 0)); //push gear onto peg
+	AddSequential(new DoNothingAuto(.5)); //wait
+	AddSequential(new FlapperSolenoid(1, 1)); //retract gear pusher
+	AddSequential(new PusherSolenoid(1, 1)); //extend gear flapper
+	AddSequential(new DriveCommandAuto(0, .5, 0, .5, 0)); //drive backwards
+	if(Robot::doBoiler) {
+		AddSequential(new DriveToBoilerShootCenter()); //go to boiler
+	}
 }

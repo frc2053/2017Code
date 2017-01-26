@@ -6,7 +6,6 @@
 #include "../Shooter/ShooterWheel.h"
 
 DriveToBoilerShootCenter::DriveToBoilerShootCenter() {
-	AddSequential(new DriveCommandAuto(0, .5, 0, .5, 0));
 	if(Robot::currentAlliance == frc::DriverStation::Alliance::kBlue) {
 		AddSequential(new DriveCommandAuto(-.5, 0, 0, 1, 0)); //drives left
 		AddSequential(new AlignCenter(60)); //aligns with boiler
