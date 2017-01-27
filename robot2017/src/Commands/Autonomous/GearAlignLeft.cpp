@@ -8,18 +8,18 @@
 #include "DriveToBoilerShootCenter.h"
 
 GearAlignLeft::GearAlignLeft() {
-	AddSequential(new DriveCommandAuto(0, -.5, 0, .7, 0));
-	AddSequential(new AlignCenter(60));
-	AddSequential(new DriveCommandAuto(0, -.5, 0, .5, 60));
-	AddSequential(new FlapperSolenoid(1, 0));
-	AddSequential(new DoNothingAuto(.25));
-	AddSequential(new PusherSolenoid(1, 0));
-	AddSequential(new DoNothingAuto(.5));
-	AddSequential(new FlapperSolenoid(1, 1));
-	AddSequential(new PusherSolenoid(1, 1));
-	if(Robot::doBoiler) {
+	AddSequential(new DriveCommandAuto(0, -.5, 0, .7, 0)); //drive forward
+	AddSequential(new AlignCenter(60)); //align with the goal
+	AddSequential(new DriveCommandAuto(0, -.5, 0, .5, 60)); //drive forward onto airship
+	AddSequential(new FlapperSolenoid(1, 0)); //release gear
+	AddSequential(new DoNothingAuto(.25)); //wait
+	AddSequential(new PusherSolenoid(1, 0)); //push gear on
+	AddSequential(new DoNothingAuto(.5)); //wait
+	AddSequential(new FlapperSolenoid(1, 1)); //collapse gear mechanism
+	AddSequential(new PusherSolenoid(1, 1)); //collapse gear mechanism
+	if(Robot::doBoiler) { //if we do boiler
 		if(Robot::currentAlliance == frc::DriverStation::Alliance::kBlue) {
-			AddSequential(new DriveToBoilerShootCenter());
+			AddSequential(new DriveToBoilerShootCenter()); //if on blue we go to center
 		}
 		if(Robot::currentAlliance == frc::DriverStation::Alliance::kRed) {
 			AddSequential(new DriveCommandAuto(0, .5, 0, .5, 60)); // drive backwards
