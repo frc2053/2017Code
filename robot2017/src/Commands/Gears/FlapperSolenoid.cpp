@@ -1,9 +1,8 @@
 #include "FlapperSolenoid.h"
 
-FlapperSolenoid::FlapperSolenoid(bool mode, bool direction) {
+FlapperSolenoid::FlapperSolenoid(bool direction) {
 	Requires(Robot::gearSubsystem.get());
 	isDone = false;
-	currentMode = mode;
 	currentDirection = direction;
 }
 
@@ -12,24 +11,13 @@ void FlapperSolenoid::Initialize() {
 }
 
 void FlapperSolenoid::Execute() {
-	if(currentMode == 0) {
-		if(Robot::gearSubsystem->GetFlapperState() == DoubleSolenoid::kForward) {
-			Robot::gearSubsystem->SetFlapperDown();
-		}
-		else {
-			Robot::gearSubsystem->SetFlapperUp();
-		}
-		isDone = true;
+	if(currentDirection == 1) {
+		Robot::gearSubsystem->SetFlapperUp();
 	}
-	else {
-		if(currentDirection == 1) {
-			Robot::gearSubsystem->SetFlapperUp();
-		}
-		if(currentDirection == 0) {
-			Robot::gearSubsystem->SetFlapperDown();
-		}
-		isDone = true;
+	if(currentDirection == 0) {
+		Robot::gearSubsystem->SetFlapperDown();
 	}
+	isDone = true;
 }
 
 bool FlapperSolenoid::IsFinished() {

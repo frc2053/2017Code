@@ -6,7 +6,7 @@
 
 class ChuteSolenoid : public Command {
 public:
-	ChuteSolenoid(bool mode, bool direction);
+	ChuteSolenoid(bool direction);
 	void Initialize();
 	void Execute();
 	bool IsFinished();
@@ -14,7 +14,6 @@ public:
 	void Interrupted();
 private:
 	bool isDone;
-	bool currentMode;
 	bool currentDirection;
 };
 

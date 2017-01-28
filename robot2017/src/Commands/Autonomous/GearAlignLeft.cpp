@@ -1,22 +1,19 @@
 #include "GearAlignLeft.h"
 #include "../Drive/AlignCenter.h"
 #include "DriveCommandAuto.h"
-#include "../Gears/FlapperSolenoid.h"
-#include "../Gears/PusherSolenoid.h"
 #include "../Autonomous/DoNothingAuto.h"
 #include "DriveToBoilerClose.h"
 #include "DriveToBoilerShootCenter.h"
+#include "../Gears/PushGearGroup.h"
+#include "../Gears/RetractGearGroup.h"
 
 GearAlignLeft::GearAlignLeft() {
 	AddSequential(new DriveCommandAuto(0, -.5, 0, .7, 0)); //drive forward
 	AddSequential(new AlignCenter(60)); //align with the goal
 	AddSequential(new DriveCommandAuto(0, -.5, 0, .5, 60)); //drive forward onto airship
-	AddSequential(new FlapperSolenoid(1, 0)); //release gear
-	AddSequential(new DoNothingAuto(.25)); //wait
-	AddSequential(new PusherSolenoid(1, 0)); //push gear on
+	AddSequential(new PushGearGroup());
 	AddSequential(new DoNothingAuto(.5)); //wait
-	AddSequential(new FlapperSolenoid(1, 1)); //collapse gear mechanism
-	AddSequential(new PusherSolenoid(1, 1)); //collapse gear mechanism
+	AddSequential(new RetractGearGroup());
 	if(Robot::doBoiler) { //if we do boiler
 		if(Robot::currentAlliance == frc::DriverStation::Alliance::kBlue) {
 			AddSequential(new DriveToBoilerShootCenter()); //if on blue we go to center

@@ -6,8 +6,10 @@
 #include "Commands/Shooter/LoaderWheel.h"
 #include "Commands/Drive/AlignCenter.h"
 #include "Commands/Climber/ClimbMotor.h"
-#include "Commands/Gears/FlapperSolenoid.h"
-#include "Commands/Gears/PusherSolenoid.h"
+#include "Commands/Gears/GearRetractGroup.h"
+#include "Commands/Gears/GearRetrieveGroup.h"
+#include "Commands/Gears/PushGearGroup.h"
+#include "Commands/Gears/RetractGearGroup.h"
 
 OI::OI() {
 	driverJoystick.reset(new Joystick(0));
@@ -30,9 +32,11 @@ OI::OI() {
 	xButtonOperator->WhenPressed(new LoaderWheel(1, 0));
 	xButtonOperator->WhenReleased(new LoaderWheel(0, 0));
 
-	bButtonOperator->WhenPressed(new FlapperSolenoid(0, 0));
+	bButtonOperator->WhenPressed(new GearRetrieveGroup());
+	bButtonOperator->WhenReleased(new GearRetractGroup());
 
-	yButtonOperator->WhenPressed(new PusherSolenoid(0, 0));
+	yButtonOperator->WhenPressed(new PushGearGroup());
+	yButtonOperator->WhenReleased(new RetractGearGroup());
 
 	leftBumperOperator->WhenPressed(new ClimbMotor(1, 0));
 	leftBumperOperator->WhenPressed(new ClimbMotor(0, 0));
