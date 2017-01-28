@@ -5,8 +5,10 @@ std::shared_ptr<CANTalon> RobotMap::driveBaseSubsystemFrontRightTalon;
 std::shared_ptr<CANTalon> RobotMap::driveBaseSubsystemBackLeftTalon;
 std::shared_ptr<CANTalon> RobotMap::driveBaseSubsystemBackRightTalon;
 std::shared_ptr<frc::RobotDrive> RobotMap::driveBaseSubsystemRobotDrive;
+
 std::shared_ptr<frc::DoubleSolenoid> RobotMap::gearSubsystemFlapperSolenoid;
 std::shared_ptr<frc::DoubleSolenoid> RobotMap::gearSubsystemPusherSolenoid;
+std::shared_ptr<frc::DoubleSolenoid> RobotMap::gearSubsystemChuteSolenoid;
 
 std::shared_ptr<CANTalon> RobotMap::shooterSubsystemFlywheelTalon;
 std::shared_ptr<CANTalon> RobotMap::shooterSubsystemLoaderTalon;
@@ -51,6 +53,7 @@ void RobotMap::init() {
 
     gearSubsystemFlapperSolenoid.reset(new frc::DoubleSolenoid(0, 1));
     gearSubsystemPusherSolenoid.reset(new frc::DoubleSolenoid(2, 3));
+    gearSubsystemChuteSolenoid.reset(new frc::DoubleSolenoid(4, 5));
 
     climberSubsystemLeftTalon.reset(new CANTalon(6));
     climberSubsystemRightTalon.reset(new CANTalon(7));

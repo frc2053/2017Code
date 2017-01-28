@@ -31,6 +31,8 @@ void Robot::RobotInit() {
 	doBoiler = true;
 	SmartDashboard::PutBoolean("Do Boiler", doBoiler);
 
+	doBoiler = SmartDashboard::GetBoolean("Do Boiler", true);
+
 	autoChooser.AddDefault("Do Nothing", new DoNothingAuto(15));
 	autoChooser.AddObject("Gear Align Center", new GearAlignCenter());
 	autoChooser.AddObject("Gear Align Right", new GearAlignRight());

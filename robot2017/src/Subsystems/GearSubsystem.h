@@ -8,6 +8,7 @@ class GearSubsystem : public Subsystem {
 private:
 	std::shared_ptr<DoubleSolenoid> flapperSolenoid;
 	std::shared_ptr<DoubleSolenoid> pusherSolenoid;
+	std::shared_ptr<DoubleSolenoid> chuteSolenoid;
 public:
 	GearSubsystem();
 	void InitDefaultCommand();
@@ -18,8 +19,12 @@ public:
 	void SetPusherForward();
 	void SetPusherBack();
 
+	void SetChuteForward();
+	void SetChuteBack();
+
 	DoubleSolenoid::Value GetFlapperState();
 	DoubleSolenoid::Value GetPusherState();
+	DoubleSolenoid::Value GetChuteState();
 };
 
 #endif

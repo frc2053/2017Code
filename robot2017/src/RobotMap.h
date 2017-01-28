@@ -17,6 +17,7 @@ public:
 
 	static std::shared_ptr<DoubleSolenoid> gearSubsystemFlapperSolenoid;
 	static std::shared_ptr<DoubleSolenoid> gearSubsystemPusherSolenoid;
+	static std::shared_ptr<DoubleSolenoid> gearSubsystemChuteSolenoid;
 
 	static std::shared_ptr<CANTalon> shooterSubsystemFlywheelTalon;
 	static std::shared_ptr<CANTalon> shooterSubsystemLoaderTalon;
