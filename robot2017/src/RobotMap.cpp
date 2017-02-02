@@ -27,10 +27,10 @@ std::shared_ptr<AHRS> RobotMap::robotIMU;
 std::shared_ptr<TigerDrive> RobotMap::tigerDrive;
 
 void RobotMap::init() {
-    driveBaseSubsystemFrontLeftTalon.reset(new CANTalon(9));
+    driveBaseSubsystemFrontLeftTalon.reset(new CANTalon(2));
     driveBaseSubsystemFrontRightTalon.reset(new CANTalon(8));
-    driveBaseSubsystemBackLeftTalon.reset(new CANTalon(4));
-    driveBaseSubsystemBackRightTalon.reset(new CANTalon(2));
+    driveBaseSubsystemBackLeftTalon.reset(new CANTalon(9));
+    driveBaseSubsystemBackRightTalon.reset(new CANTalon(3));
     driveBaseSubsystemRobotDrive.reset(new frc::RobotDrive(driveBaseSubsystemFrontLeftTalon, driveBaseSubsystemBackLeftTalon, driveBaseSubsystemFrontRightTalon, driveBaseSubsystemBackRightTalon));
 
     driveBaseSubsystemRobotDrive->SetSafetyEnabled(false);
@@ -41,7 +41,7 @@ void RobotMap::init() {
     driveBaseSubsystemRobotDrive->SetInvertedMotor(frc::RobotDrive::kFrontRightMotor, true);
     driveBaseSubsystemRobotDrive->SetInvertedMotor(frc::RobotDrive::kRearRightMotor, true);
 
-    shooterSubsystemFlywheelTalon.reset(new CANTalon(3));
+    shooterSubsystemFlywheelTalon.reset(new CANTalon(12));
     shooterSubsystemLoaderTalon.reset(new CANTalon(5));
 
     shooterSubsystemFlywheelTalon->SetControlMode(CANTalon::kSpeed);
@@ -55,8 +55,8 @@ void RobotMap::init() {
     gearSubsystemPusherSolenoid.reset(new frc::DoubleSolenoid(2, 3));
     gearSubsystemChuteSolenoid.reset(new frc::DoubleSolenoid(4, 5));
 
-    climberSubsystemLeftTalon.reset(new CANTalon(6));
-    climberSubsystemRightTalon.reset(new CANTalon(7));
+    climberSubsystemLeftTalon.reset(new CANTalon(7));
+    climberSubsystemRightTalon.reset(new CANTalon(4));
 
     ledSubsystemRedLED.reset(new frc::DigitalOutput(1));
     ledSubsystemGreenLED.reset(new frc::DigitalOutput(2));

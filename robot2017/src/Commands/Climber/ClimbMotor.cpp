@@ -18,7 +18,8 @@ void ClimbMotor::Initialize() {
 	timer->Start();
 }
 
-void ClimbMotor::Execute() {
+void ClimbMotor::Execute()
+{
 	timeCurrent = timer->Get();
 	if(timeTarget == 0)
 	{

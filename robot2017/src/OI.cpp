@@ -39,10 +39,12 @@ OI::OI() {
 	yButtonOperator->WhenReleased(new RetractGearGroup());
 
 	leftBumperOperator->WhenPressed(new ClimbMotor(1, 0));
-	leftBumperOperator->WhenPressed(new ClimbMotor(0, 0));
+	leftBumperOperator->WhenReleased(new ClimbMotor(0, 0));
 
 	rightBumperOperator->WhenPressed(new ClimbMotor(-1, 0));
-	rightBumperOperator->WhenPressed(new ClimbMotor(0, 0));
+	rightBumperOperator->WhenReleased(new ClimbMotor(0, 0));
+
+
 
 	SmartDashboard::PutData("Zero Yaw", new ZeroYaw());
 
