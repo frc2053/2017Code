@@ -15,6 +15,7 @@ DriveCommand::DriveCommand(): Command() {
 	buttonBPressed = false;
 	buttonXPressed = false;
 	buttonYPressed = false;
+	leftBumperPressed = false;
 }
 
 void DriveCommand::Initialize() {
@@ -30,6 +31,7 @@ void DriveCommand::Initialize() {
 	buttonBPressed = false;
 	buttonXPressed = false;
 	buttonYPressed = false;
+	leftBumperPressed  = false;
 }
 
 void DriveCommand::Execute() {
@@ -49,6 +51,7 @@ void DriveCommand::Execute() {
 	buttonBPressed = Robot::oi->GetBButtonDriver();
 	buttonXPressed = Robot::oi->GetXButtonDriver();
 	buttonYPressed = Robot::oi->GetYButtonDriver();
+	leftBumperPressed  = Robot::oi->GetLeftBumperDriver();
 
 	//gets imu yaw and if the robot is done rotating
 	adjustedYaw = Robot::drivebaseSubsystem->GetAdjYaw();
@@ -97,11 +100,16 @@ void DriveCommand::SetAngleWithButton()
 		RobotMap::tigerDrive->turnController->SetSetpoint(0);
 		setAngle = 0;
 	}
+
+	if(leftBumperPressed){
+		RobotMap::tigerDrive->turnController->SetSetpoint(-70);
+		setAngle = -70;
+	}
 }
 
 void DriveCommand::RotateCommand()
 {
-	if(((buttonYPressed == true||buttonXPressed == true || buttonAPressed == true || buttonBPressed == true) && isRotDone == true) || (isRotDone == false))
+	if(((leftBumperPressed || buttonYPressed == true||buttonXPressed == true || buttonAPressed == true || buttonBPressed == true) && isRotDone == true) || (isRotDone == false))
 	{
 		finalAutoRot = Robot::drivebaseSubsystem->CalculateRotValue(setAngle, setSpeed);
 	}

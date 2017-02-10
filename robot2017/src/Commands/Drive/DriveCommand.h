@@ -33,6 +33,7 @@ private:
 	bool buttonBPressed;
 	bool buttonXPressed;
 	bool buttonYPressed;
+	bool leftBumperPressed;
 };
 
 #endif

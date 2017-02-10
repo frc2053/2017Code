@@ -22,14 +22,23 @@ OI::OI() {
 	leftBumperOperator.reset(new JoystickButton(operatorJoystick.get(), 5));
 	rightBumperOperator.reset(new JoystickButton(operatorJoystick.get(), 6));
 
-	leftBumperDriver.reset(new JoystickButton(driverJoystick.get(), 5));
+	rightBumperDriver.reset(new JoystickButton(driverJoystick.get(), 6));
 
-	leftBumperDriver->WhenPressed(new AlignCenter(0));
+	rightBumperDriver->WhenPressed(new AlignCenter(0));
 
-	aButtonOperator->WhenPressed(new ShooterWheel(5000, 0));
+
+	SmartDashboard::PutNumber("ShooterRPM", 4000);
+	double DefaultShooterRPM = SmartDashboard::GetNumber("ShooterRPM", 4000);
+	//double ShooterRPM = SmartDashboard::GetNumber("ShooterRPM", 1000);
+	//printf("Shooter RPM: %d\n", ShooterRPM);
+	//double ShooterRPM = SmartDashboard::("ShooterRPM",SmartDashboard::GetNumber("ShooterRPM", 1000));
+	//SmartDashboard::PutNumber("ShooterRPM", ShooterRPM);
+
+
+	aButtonOperator->WhenPressed(new ShooterWheel(4000, 0)); //change to ShooterRPM variable
 	aButtonOperator->WhenReleased(new ShooterWheel(0, 0));
 
-	xButtonOperator->WhenPressed(new LoaderWheel(1, 0));
+	xButtonOperator->WhenPressed(new LoaderWheel(2000, 0));
 	xButtonOperator->WhenReleased(new LoaderWheel(0, 0));
 
 	bButtonOperator->WhenPressed(new GearRetrieveGroup());

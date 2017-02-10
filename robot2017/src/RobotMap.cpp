@@ -29,7 +29,7 @@ std::shared_ptr<TigerDrive> RobotMap::tigerDrive;
 void RobotMap::init() {
     driveBaseSubsystemFrontLeftTalon.reset(new CANTalon(2));
     driveBaseSubsystemFrontRightTalon.reset(new CANTalon(8));
-    driveBaseSubsystemBackLeftTalon.reset(new CANTalon(9));
+    driveBaseSubsystemBackLeftTalon.reset(new CANTalon(12));
     driveBaseSubsystemBackRightTalon.reset(new CANTalon(3));
     driveBaseSubsystemRobotDrive.reset(new frc::RobotDrive(driveBaseSubsystemFrontLeftTalon, driveBaseSubsystemBackLeftTalon, driveBaseSubsystemFrontRightTalon, driveBaseSubsystemBackRightTalon));
 
@@ -41,7 +41,7 @@ void RobotMap::init() {
     driveBaseSubsystemRobotDrive->SetInvertedMotor(frc::RobotDrive::kFrontRightMotor, true);
     driveBaseSubsystemRobotDrive->SetInvertedMotor(frc::RobotDrive::kRearRightMotor, true);
 
-    shooterSubsystemFlywheelTalon.reset(new CANTalon(12));
+    shooterSubsystemFlywheelTalon.reset(new CANTalon(9));
     shooterSubsystemLoaderTalon.reset(new CANTalon(5));
 
     shooterSubsystemFlywheelTalon->SetControlMode(CANTalon::kSpeed);
@@ -50,6 +50,13 @@ void RobotMap::init() {
     shooterSubsystemFlywheelTalon->SetD(0);
     shooterSubsystemFlywheelTalon->SetI(0);
     shooterSubsystemFlywheelTalon->SetD(0);
+
+    shooterSubsystemLoaderTalon->SetControlMode(CANTalon::kSpeed);
+    shooterSubsystemLoaderTalon->SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
+    shooterSubsystemLoaderTalon->SetF(.0299707);
+    shooterSubsystemLoaderTalon->SetD(0);
+    shooterSubsystemLoaderTalon->SetI(0);
+    shooterSubsystemLoaderTalon->SetD(0);
 
     gearSubsystemFlapperSolenoid.reset(new frc::DoubleSolenoid(0, 1));
     gearSubsystemPusherSolenoid.reset(new frc::DoubleSolenoid(2, 3));

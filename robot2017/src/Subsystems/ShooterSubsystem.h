@@ -14,7 +14,7 @@ public:
 	ShooterSubsystem();
 	void InitDefaultCommand();
 	void RunShooterMotor(float rpm);
-	void RunLoaderMotor(float speed);
+	void RunLoaderMotor(float rpm);
 };
 
 #endif

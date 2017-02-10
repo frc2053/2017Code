@@ -22,7 +22,7 @@ public:
 	std::shared_ptr<JoystickButton> yButtonOperator;
 	std::shared_ptr<JoystickButton> leftBumperOperator;
 	std::shared_ptr<JoystickButton> rightBumperOperator;
-	std::shared_ptr<JoystickButton> leftBumperDriver;
+	std::shared_ptr<JoystickButton> rightBumperDriver;
 
 	double GetLeftXAxisDriver();
 	double GetLeftYAxisDriver();

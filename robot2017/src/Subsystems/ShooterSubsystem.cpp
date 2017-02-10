@@ -15,7 +15,7 @@ void ShooterSubsystem::RunShooterMotor(float rpm) {
 	flywheelTalon->Set(rpm);
 }
 
-void ShooterSubsystem::RunLoaderMotor(float speed){
-	loaderTalon->Set(speed);
+void ShooterSubsystem::RunLoaderMotor(float rpm){
+	loaderTalon->Set(rpm);
 }
 
