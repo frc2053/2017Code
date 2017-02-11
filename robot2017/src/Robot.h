@@ -13,7 +13,6 @@
 
 class Robot : public IterativeRobot {
 public:
-	//static std::unique_ptr<OI> oi;
     static std::shared_ptr<DrivebaseSubsystem> drivebaseSubsystem;
     static std::shared_ptr<ShooterSubsystem> shooterSubsystem;
     static std::shared_ptr<GearSubsystem> gearSubsystem;
