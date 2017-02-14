@@ -38,7 +38,7 @@ OI::OI() {
 	aButtonOperator->WhenPressed(new ShooterWheel(4000, 0)); //change to ShooterRPM variable
 	aButtonOperator->WhenReleased(new ShooterWheel(0, 0));
 
-	xButtonOperator->WhenPressed(new LoaderWheel(3000, 0));
+	xButtonOperator->WhenPressed(new LoaderWheel(4000, 0));
 	xButtonOperator->WhenReleased(new LoaderWheel(0, 0));
 
 	bButtonOperator->WhenPressed(new GearRetrieveGroup());
