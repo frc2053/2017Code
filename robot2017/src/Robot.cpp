@@ -11,7 +11,6 @@ std::shared_ptr<ShooterSubsystem> Robot::shooterSubsystem;
 std::shared_ptr<GearSubsystem> Robot::gearSubsystem;
 std::shared_ptr<ClimberSubsystem> Robot::climberSubsystem;
 std::shared_ptr<LedSubsystem> Robot::ledSubsystem;
-//std::unique_ptr<OI> Robot::oi;
 std::shared_ptr<NetworkTable> Robot::visionTable;
 std::shared_ptr<OI> Robot::oi;
 DriverStation::Alliance Robot::currentAlliance;
@@ -26,6 +25,9 @@ void Robot::RobotInit() {
     ledSubsystem.reset(new LedSubsystem());
 
 	oi.reset(new OI());
+
+	SmartDashboard::PutNumber("Shooter RPM", 4000);
+	SmartDashboard::PutNumber("Loader RPM", 3000);
 
 	currentAlliance = DriverStation::GetInstance().GetAlliance();
 
@@ -55,9 +57,6 @@ void Robot::RobotInit() {
 	double maxS = SmartDashboard::GetNumber("maxS", 255);
 	double maxV = SmartDashboard::GetNumber("maxV", 255);
 
-	//SmartDashboard::PutNumber("ShooterRPM", 4000);
-	//double ShooterRPM = SmartDashboard::GetNumber("ShooterRPM", 4000);
-
 	Robot::drivebaseSubsystem->ZeroYaw();
 	Robot::drivebaseSubsystem->SetAdjYaw(0);
 
@@ -82,7 +81,6 @@ void Robot::DisabledPeriodic() {
 	double maxH = SmartDashboard::GetNumber("maxH", 80);
 	double maxS = SmartDashboard::GetNumber("maxS", 255);
 	double maxV = SmartDashboard::GetNumber("maxV", 255);
-	//double ShooterRPM = SmartDashboard::GetNumber("ShooterRPM", 4000);
 
 	visionTable = NetworkTable::GetTable("vision");
 	visionTable->PutNumber("minH", minH);

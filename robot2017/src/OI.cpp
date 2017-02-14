@@ -26,16 +26,10 @@ OI::OI() {
 
 	rightBumperDriver->WhenPressed(new AlignCenter(0));
 
-
-	SmartDashboard::PutNumber("ShooterRPM", 4000);
-	double DefaultShooterRPM = SmartDashboard::GetNumber("ShooterRPM", 4000);
-	//double ShooterRPM = SmartDashboard::GetNumber("ShooterRPM", 1000);
-	//printf("Shooter RPM: %d\n", ShooterRPM);
-	//double ShooterRPM = SmartDashboard::("ShooterRPM",SmartDashboard::GetNumber("ShooterRPM", 1000));
-	//SmartDashboard::PutNumber("ShooterRPM", ShooterRPM);
-
-
-	aButtonOperator->WhenPressed(new ShooterWheel(4000, 0)); //change to ShooterRPM variable
+	//WILL NOT AFFECT SPEED IF YOU CHANGE THE SMARTDASHBOARD VALUE
+	//PLEASE CHANGE IT ON THE SMARTDASHBOARD
+	//FOR THE LOVE OF MARK MCLEOD
+	aButtonOperator->WhenPressed(new ShooterWheel(4000, 0));
 	aButtonOperator->WhenReleased(new ShooterWheel(0, 0));
 
 	xButtonOperator->WhenPressed(new LoaderWheel(4000, 0));
