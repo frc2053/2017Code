@@ -20,7 +20,9 @@ void LoaderWheel::Initialize() {
 
 void LoaderWheel::Execute()
 {
-	inputSpeed = SmartDashboard::GetNumber("Loader RPM", 3000);
+	if(!inputSpeed == 0) {
+		inputSpeed = SmartDashboard::GetNumber("Loader RPM", 3000);
+	}
 	timeCurrent = timer->Get();
 	if(timeTarget == 0)
 	{
