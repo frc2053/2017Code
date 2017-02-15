@@ -22,9 +22,9 @@ OI::OI() {
 	leftBumperOperator.reset(new JoystickButton(operatorJoystick.get(), 5));
 	rightBumperOperator.reset(new JoystickButton(operatorJoystick.get(), 6));
 
-	rightBumperDriver.reset(new JoystickButton(driverJoystick.get(), 6));
+	StartButtonDriver.reset(new JoystickButton(driverJoystick.get(), 8));
 
-	rightBumperDriver->WhenPressed(new AlignCenter(0));
+	StartButtonDriver->WhenPressed(new AlignCenter(0));
 
 	//WILL NOT AFFECT SPEED IF YOU CHANGE THE SMARTDASHBOARD VALUE
 	//PLEASE CHANGE IT ON THE SMARTDASHBOARD
