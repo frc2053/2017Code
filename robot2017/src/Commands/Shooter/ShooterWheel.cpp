@@ -19,7 +19,9 @@ void ShooterWheel::Initialize() {
 }
 
 void ShooterWheel::Execute() {
-	inputSpeed = SmartDashboard::GetNumber("Shooter RPM", 4000);
+	if(!inputSpeed == 0) {
+		inputSpeed = SmartDashboard::GetNumber("Shooter RPM", 4000);
+	}
 	timeCurrent = timer->Get();
 	if(timeTarget == 0) {
 		Robot::shooterSubsystem->RunShooterMotor(inputSpeed);
