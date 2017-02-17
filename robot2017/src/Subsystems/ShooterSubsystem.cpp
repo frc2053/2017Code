@@ -7,6 +7,9 @@ ShooterSubsystem::ShooterSubsystem() : Subsystem("ShooterSubsystem") {
 }
 
 void ShooterSubsystem::InitDefaultCommand() {
+	flywheelTalon->Set(0);
+	loaderTalon->Set(0);
+
 
 }
 

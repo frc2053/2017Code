@@ -18,7 +18,8 @@ void ShooterWheel::Initialize() {
 	timer->Start();
 }
 
-void ShooterWheel::Execute() {
+void ShooterWheel::Execute()
+{
 	if(!inputSpeed == 0) {
 		inputSpeed = SmartDashboard::GetNumber("Shooter RPM", 4000);
 	}

@@ -26,9 +26,7 @@ OI::OI() {
 
 	StartButtonDriver->WhenPressed(new AlignCenter(0));
 
-	//WILL NOT AFFECT SPEED IF YOU CHANGE THE SMARTDASHBOARD VALUE
-	//PLEASE CHANGE IT ON THE SMARTDASHBOARD
-	//FOR THE LOVE OF MARK MCLEOD
+
 	aButtonOperator->WhenPressed(new ShooterWheel(4000, 0));
 	aButtonOperator->WhenReleased(new ShooterWheel(0, 0));
 
