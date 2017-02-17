@@ -36,6 +36,7 @@ void ClimbMotor::Execute() {
 		}
 		else
 		{
+			Robot::climberSubsystem->RunLeftTalon(inputSpeed);
 			Robot::climberSubsystem->RunRightTalon(inputSpeed);
 			isDone = false;
 		}

@@ -19,8 +19,10 @@ OI::OI() {
 	bButtonOperator.reset(new JoystickButton(operatorJoystick.get(), 2));
 	xButtonOperator.reset(new JoystickButton(operatorJoystick.get(), 3));
 	yButtonOperator.reset(new JoystickButton(operatorJoystick.get(), 4));
-	leftBumperOperator.reset(new JoystickButton(operatorJoystick.get(), 5));
-	rightBumperOperator.reset(new JoystickButton(operatorJoystick.get(), 6));
+	//leftBumperOperator.reset(new JoystickButton(operatorJoystick.get(), 5));
+	//rightBumperOperator.reset(new JoystickButton(operatorJoystick.get(), 6));
+	StartButtonOperator.reset(new JoystickButton(operatorJoystick.get(), 8));
+
 
 	StartButtonDriver.reset(new JoystickButton(driverJoystick.get(), 8));
 
@@ -39,12 +41,8 @@ OI::OI() {
 	yButtonOperator->WhenPressed(new PushGearGroup());
 	yButtonOperator->WhenReleased(new RetractGearGroup());
 
-	leftBumperOperator->WhenPressed(new ClimbMotor(1, 0));
-	leftBumperOperator->WhenReleased(new ClimbMotor(0, 0));
-
-	rightBumperOperator->WhenPressed(new ClimbMotor(-1, 0));
-	rightBumperOperator->WhenReleased(new ClimbMotor(0, 0));
-
+	StartButtonOperator->WhenPressed(new ClimbMotor(1, 0));
+	StartButtonOperator->WhenReleased(new ClimbMotor(0, 0));
 
 
 	SmartDashboard::PutData("Zero Yaw", new ZeroYaw());
