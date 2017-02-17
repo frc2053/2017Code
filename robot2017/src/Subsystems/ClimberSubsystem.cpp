@@ -7,7 +7,8 @@ ClimberSubsystem::ClimberSubsystem() : Subsystem("ClimberSubsystem") {
 }
 
 void ClimberSubsystem::InitDefaultCommand() {
-	//should have the left and right talon set
+	leftTalon->Set(0);
+	rightTalon->Set(0);
 }
 
 void ClimberSubsystem::RunLeftTalon(float speed) {

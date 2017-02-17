@@ -13,37 +13,37 @@ void GearSubsystem::InitDefaultCommand() {
 }
 
 void GearSubsystem::SetFlapperUp() {
-	flapperSolenoid->Set(DoubleSolenoid::kForward);
+	flapperSolenoid->Set(frc::DoubleSolenoid::kForward);
 }
 
 void GearSubsystem::SetFlapperDown() {
-	flapperSolenoid->Set(DoubleSolenoid::kReverse);
+	flapperSolenoid->Set(frc::DoubleSolenoid::kReverse);
 }
 
 void GearSubsystem::SetPusherForward() {
-	pusherSolenoid->Set(DoubleSolenoid::kForward);
+	pusherSolenoid->Set(frc::DoubleSolenoid::kForward);
 }
 
 void GearSubsystem::SetPusherBack() {
-	pusherSolenoid->Set(DoubleSolenoid::kReverse);
+	pusherSolenoid->Set(frc::DoubleSolenoid::kReverse);
 }
 
 void GearSubsystem::SetChuteForward() {
-	chuteSolenoid->Set(DoubleSolenoid::kForward);
+	chuteSolenoid->Set(frc::DoubleSolenoid::kForward);
 }
 
 void GearSubsystem::SetChuteBack() {
-	chuteSolenoid->Set(DoubleSolenoid::kReverse);
+	chuteSolenoid->Set(frc::DoubleSolenoid::kReverse);
 }
 
-DoubleSolenoid::Value GearSubsystem::GetFlapperState() {
+frc::DoubleSolenoid::Value GearSubsystem::GetFlapperState() {
 	return flapperSolenoid->Get();
 }
 
-DoubleSolenoid::Value GearSubsystem::GetPusherState() {
+frc::DoubleSolenoid::Value GearSubsystem::GetPusherState() {
 	return pusherSolenoid->Get();
 }
 
-DoubleSolenoid::Value GearSubsystem::GetChuteState() {
+frc::DoubleSolenoid::Value GearSubsystem::GetChuteState() {
 	return chuteSolenoid->Get();
 }

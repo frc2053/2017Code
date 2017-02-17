@@ -11,6 +11,7 @@ LedSubsystem::LedSubsystem() : Subsystem("LEDSubsystem")
 
 void LedSubsystem::InitDefaultCommand()
 {
+
 }
 
 void LedSubsystem::SetRedLED(float red)
