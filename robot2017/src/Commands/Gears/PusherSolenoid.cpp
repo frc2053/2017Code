@@ -8,7 +8,6 @@ PusherSolenoid::PusherSolenoid(bool direction) {
 
 void PusherSolenoid::Initialize() {
 	isDone = false;
-	currentDirection = 0;
 }
 
 void PusherSolenoid::Execute() {

@@ -41,22 +41,24 @@ void RobotMap::init() {
     shooterSubsystemLoaderTalon.reset(new CANTalon(5));
 
     shooterSubsystemFlywheelTalon->SetControlMode(CANTalon::kSpeed);
+    //shooterSubsystemFlywheelTalon->Se
     shooterSubsystemFlywheelTalon->SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
-    shooterSubsystemFlywheelTalon->SetF(.0299707);
+    shooterSubsystemFlywheelTalon->SetF(0.03330078125); //.0299707
     shooterSubsystemFlywheelTalon->SetP(0);
     shooterSubsystemFlywheelTalon->SetI(0);
     shooterSubsystemFlywheelTalon->SetD(0);
 
     shooterSubsystemLoaderTalon->SetControlMode(CANTalon::kSpeed);
+    shooterSubsystemLoaderTalon->SetInverted(true);
     shooterSubsystemLoaderTalon->SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
-    shooterSubsystemLoaderTalon->SetF(.0299707);
+    shooterSubsystemLoaderTalon->SetF(0);
     shooterSubsystemLoaderTalon->SetP(0);
     shooterSubsystemLoaderTalon->SetI(0);
     shooterSubsystemLoaderTalon->SetD(0);
 
-    gearSubsystemFlapperSolenoid.reset(new frc::DoubleSolenoid(3, 4));
-    gearSubsystemPusherSolenoid.reset(new frc::DoubleSolenoid(2, 5));
-    gearSubsystemChuteSolenoid.reset(new frc::DoubleSolenoid(1, 6));
+    gearSubsystemFlapperSolenoid.reset(new frc::DoubleSolenoid(4, 5));
+    gearSubsystemPusherSolenoid.reset(new frc::DoubleSolenoid(2, 3));
+    gearSubsystemChuteSolenoid.reset(new frc::DoubleSolenoid(0, 1));
 
     climberSubsystemLeftTalon.reset(new CANTalon(7));
     climberSubsystemRightTalon.reset(new CANTalon(4));

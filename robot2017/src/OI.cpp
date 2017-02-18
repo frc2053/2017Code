@@ -10,6 +10,9 @@
 #include "Commands/Gears/GearRetrieveGroup.h"
 #include "Commands/Gears/PushGearGroup.h"
 #include "Commands/Gears/RetractGearGroup.h"
+#include "Commands/Gears/ChuteSolenoid.h"
+#include "Commands/Gears/FlapperSolenoid.h"
+#include "Commands/Gears/PusherSolenoid.h"
 
 OI::OI() {
 	driverJoystick.reset(new Joystick(0));
@@ -38,8 +41,11 @@ OI::OI() {
 	bButtonOperator->WhenPressed(new GearRetrieveGroup());
 	bButtonOperator->WhenReleased(new GearRetractGroup());
 
+	//yButtonOperator->WhenPressed(new PushGearGroup());
+	//yButtonOperator->WhenReleased(new RetractGearGroup());
 	yButtonOperator->WhenPressed(new PushGearGroup());
 	yButtonOperator->WhenReleased(new RetractGearGroup());
+
 
 	StartButtonOperator->WhenPressed(new ClimbMotor(1, 0));
 	StartButtonOperator->WhenReleased(new ClimbMotor(0, 0));

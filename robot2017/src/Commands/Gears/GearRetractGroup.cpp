@@ -1,9 +1,8 @@
 #include "GearRetractGroup.h"
 #include "FlapperSolenoid.h"
 #include "ChuteSolenoid.h"
+#include "../Autonomous/DoNothingAuto.h"
 
 GearRetractGroup::GearRetractGroup() {
-	AddParallel(new ChuteSolenoid(0));
-	Wait(.5);
-	AddParallel(new FlapperSolenoid(0));
+	AddSequential(new ChuteSolenoid(0));
 }

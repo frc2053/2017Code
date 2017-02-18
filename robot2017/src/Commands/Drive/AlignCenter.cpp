@@ -21,9 +21,9 @@ void AlignCenter::Initialize()
 	isDone = false;
 	speedX = 0;
 	isRotDone = false;
-	Robot::ledSubsystem->SetRedLED(1);
-	Robot::ledSubsystem->SetGreenLED(0);
-	Robot::ledSubsystem->SetBlueLED(0);
+	//Robot::ledSubsystem->SetRedLED(1);
+	//Robot::ledSubsystem->SetGreenLED(0);
+	//Robot::ledSubsystem->SetBlueLED(0);
 }
 
 void AlignCenter::Execute()
@@ -49,9 +49,9 @@ void AlignCenter::Execute()
 
 
 	if(speedX == 0 || abs(distanceToCenter) <= 2) {
-		Robot::ledSubsystem->SetRedLED(0);
-		Robot::ledSubsystem->SetGreenLED(0);
-		Robot::ledSubsystem->SetBlueLED(1);
+		//Robot::ledSubsystem->SetRedLED(0);
+		//Robot::ledSubsystem->SetGreenLED(0);
+		//Robot::ledSubsystem->SetBlueLED(1);
 		Robot::drivebaseSubsystem->MecanumDrive(0, 0, 0, 0);
 		isDone = true;
 	}

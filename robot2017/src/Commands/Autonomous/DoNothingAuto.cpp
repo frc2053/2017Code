@@ -20,7 +20,6 @@ void DoNothingAuto::Initialize()
 
 void DoNothingAuto::Execute()
 {
-	Robot::drivebaseSubsystem->MecanumDrive(0, 0, 0, 0);
 	timeCurrent = timer->Get();
 	if(timeCurrent >= timeTarget)
 	{

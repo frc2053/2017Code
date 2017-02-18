@@ -8,7 +8,6 @@ ChuteSolenoid::ChuteSolenoid(bool direction) {
 
 void ChuteSolenoid::Initialize() {
 	isDone = false;
-	currentDirection = 0;
 }
 
 void ChuteSolenoid::Execute() {
