@@ -7,17 +7,15 @@
 class SetLeds: public Command
 {
 public:
-	SetLeds(float red, float green, float blue);
+	SetLeds(std::string data);
 	void Initialize();
 	void Execute();
 	bool IsFinished();
 	void End();
 	void Interrupted();
 private:
-	float redChannel;
-	float greenChannel;
-	float blueChannel;
 	bool isDone;
+	std::string data;
 };
 
 #endif

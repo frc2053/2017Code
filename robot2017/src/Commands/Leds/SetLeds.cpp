@@ -1,11 +1,9 @@
 #include "SetLeds.h"
 
-SetLeds::SetLeds(float red, float green, float blue)
+SetLeds::SetLeds(std::string input_data)
 {
 	Requires(Robot::ledSubsystem.get());
-	redChannel = red;
-	greenChannel = green;
-	blueChannel = blue;
+	data = input_data;
 	isDone = false;
 }
 
@@ -17,9 +15,7 @@ void SetLeds::Initialize()
 void SetLeds::Execute()
 {
 	isDone = false;
-	Robot::ledSubsystem->SetRedLED(redChannel);
-	Robot::ledSubsystem->SetGreenLED(greenChannel);
-	Robot::ledSubsystem->SetBlueLED(blueChannel);
+	Robot::ledSubsystem->SendData(data);
 	isDone = true;
 }
 

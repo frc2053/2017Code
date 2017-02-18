@@ -16,15 +16,11 @@ std::shared_ptr<CANTalon> RobotMap::shooterSubsystemLoaderTalon;
 std::shared_ptr<CANTalon> RobotMap::climberSubsystemLeftTalon;
 std::shared_ptr<CANTalon> RobotMap::climberSubsystemRightTalon;
 
-std::shared_ptr<frc::DigitalOutput> RobotMap::ledSubsystemRedLED;
-std::shared_ptr<frc::DigitalOutput> RobotMap::ledSubsystemGreenLED;
-std::shared_ptr<frc::DigitalOutput> RobotMap::ledSubsystemBlueLED;
-
-
 std::shared_ptr<frc::PowerDistributionPanel> RobotMap::pdp;
 
 std::shared_ptr<AHRS> RobotMap::robotIMU;
 std::shared_ptr<TigerDrive> RobotMap::tigerDrive;
+std::shared_ptr<SerialPort> RobotMap::arduino;
 
 void RobotMap::init() {
     driveBaseSubsystemFrontLeftTalon.reset(new CANTalon(2));
@@ -65,12 +61,9 @@ void RobotMap::init() {
     climberSubsystemLeftTalon.reset(new CANTalon(7));
     climberSubsystemRightTalon.reset(new CANTalon(4));
 
-    ledSubsystemRedLED.reset(new frc::DigitalOutput(1));
-    ledSubsystemGreenLED.reset(new frc::DigitalOutput(2));
-    ledSubsystemBlueLED.reset(new frc::DigitalOutput(3));
-
     pdp.reset(new frc::PowerDistributionPanel());
 
     robotIMU.reset(new AHRS(frc::SPI::Port::kMXP));
     tigerDrive.reset(new TigerDrive(robotIMU.get()));
+    arduino.reset(new SerialPort(9600, SerialPort::Port::kUSB, 8, SerialPort::Parity::kParity_None, SerialPort::StopBits::kStopBits_One));
 }

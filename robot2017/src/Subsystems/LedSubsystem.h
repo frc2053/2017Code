@@ -7,15 +7,11 @@
 class LedSubsystem: public Subsystem
 {
 private:
-	std::shared_ptr<DigitalOutput> redLed;
-	std::shared_ptr<DigitalOutput> greenLed;
-	std::shared_ptr<DigitalOutput> blueLed;
+	std::shared_ptr<SerialPort> arduino;
 public:
 	LedSubsystem();
 	void InitDefaultCommand();
-	void SetRedLED(float red);
-	void SetGreenLED(float green);
-	void SetBlueLED(float blue);
+	void SendData(std::string data);
 };
 
 #endif

@@ -4,9 +4,7 @@
 
 LedSubsystem::LedSubsystem() : Subsystem("LEDSubsystem")
 {
-	redLed = RobotMap::ledSubsystemRedLED;
-	greenLed = RobotMap::ledSubsystemGreenLED;
-	blueLed = RobotMap::ledSubsystemBlueLED;
+	arduino = RobotMap::arduino;
 }
 
 void LedSubsystem::InitDefaultCommand()
@@ -14,20 +12,6 @@ void LedSubsystem::InitDefaultCommand()
 
 }
 
-void LedSubsystem::SetRedLED(float red)
-{
-	redLed->DisablePWM();
-	redLed->EnablePWM(red);
-}
-
-void LedSubsystem::SetGreenLED(float green)
-{
-	greenLed->DisablePWM();
-	greenLed->EnablePWM(green);
-}
-
-void LedSubsystem::SetBlueLED(float blue)
-{
-	blueLed->DisablePWM();
-	blueLed->EnablePWM(blue);
+void LedSubsystem::SendData(std::string data) {
+	arduino->Write(data);
 }
