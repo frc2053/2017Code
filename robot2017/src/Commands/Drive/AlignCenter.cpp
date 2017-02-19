@@ -54,6 +54,7 @@ void AlignCenter::Execute()
 		//Robot::ledSubsystem->SetBlueLED(1);
 		Robot::drivebaseSubsystem->MecanumDrive(0, 0, 0, 0);
 		isDone = true;
+		std::cout << "DONE WITH ALIGNMENT!" << std::endl;
 	}
 	else {
 		Robot::drivebaseSubsystem->MecanumDrive(speedX, 0, finalAutoRot, adjyaw);

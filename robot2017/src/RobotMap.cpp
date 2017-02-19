@@ -51,7 +51,7 @@ void RobotMap::init() {
     shooterSubsystemLoaderTalon->SetControlMode(CANTalon::kSpeed);
     shooterSubsystemLoaderTalon->SetInverted(true);
     shooterSubsystemLoaderTalon->SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
-    shooterSubsystemLoaderTalon->SetF(0);
+    shooterSubsystemLoaderTalon->SetF(0.03330078125);
     shooterSubsystemLoaderTalon->SetP(0);
     shooterSubsystemLoaderTalon->SetI(0);
     shooterSubsystemLoaderTalon->SetD(0);

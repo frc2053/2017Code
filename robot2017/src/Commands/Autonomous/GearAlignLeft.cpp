@@ -8,9 +8,9 @@
 #include "../Gears/RetractGearGroup.h"
 
 GearAlignLeft::GearAlignLeft() {
-	AddSequential(new DriveCommandAuto(0, -.5, 0, .7, 0)); //drive forward
+	AddSequential(new DriveCommandAuto(0, -.5, 0, 1, 0)); //drive forward
 	AddSequential(new AlignCenter(60)); //align with the goal
-	AddSequential(new DriveCommandAuto(0, -.5, 0, .5, 60)); //drive forward onto airship
+	AddSequential(new DriveCommandAuto(0, .5, 0, .5, 60)); //drive forward onto airship
 	AddSequential(new PushGearGroup());
 	AddSequential(new DoNothingAuto(.5)); //wait
 	AddSequential(new RetractGearGroup());

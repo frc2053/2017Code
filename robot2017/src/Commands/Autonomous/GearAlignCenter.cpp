@@ -8,7 +8,7 @@
 #include "DriveToBoilerShootCenter.h"
 
 GearAlignCenter::GearAlignCenter() {
-	AddSequential(new DriveCommandAuto(0, -.5, 0, .7, 0)); //drive forward
+	AddSequential(new DriveCommandAuto(0, -.5, 0, 1.3, 0)); //drive forward
 	AddSequential(new AlignCenter(0)); //align
 	AddSequential(new PushGearGroup());
 	AddSequential(new DoNothingAuto(.5)); //wait
