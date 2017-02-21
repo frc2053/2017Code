@@ -10,6 +10,8 @@ std::shared_ptr<frc::DoubleSolenoid> RobotMap::gearSubsystemFlapperSolenoid;
 std::shared_ptr<frc::DoubleSolenoid> RobotMap::gearSubsystemPusherSolenoid;
 std::shared_ptr<frc::DoubleSolenoid> RobotMap::gearSubsystemChuteSolenoid;
 
+std::shared_ptr<frc::DigitalInput> RobotMap::pressureplate;
+
 std::shared_ptr<CANTalon> RobotMap::shooterSubsystemFlywheelTalon;
 std::shared_ptr<CANTalon> RobotMap::shooterSubsystemLoaderTalon;
 

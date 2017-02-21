@@ -9,6 +9,7 @@ private:
 	std::shared_ptr<DoubleSolenoid> flapperSolenoid;
 	std::shared_ptr<DoubleSolenoid> pusherSolenoid;
 	std::shared_ptr<DoubleSolenoid> chuteSolenoid;
+	std::shared_ptr<DigitalInput> Gearpressureplate;
 public:
 	GearSubsystem();
 	void InitDefaultCommand();

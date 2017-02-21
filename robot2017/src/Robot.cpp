@@ -13,6 +13,9 @@ std::shared_ptr<ClimberSubsystem> Robot::climberSubsystem;
 std::shared_ptr<LedSubsystem> Robot::ledSubsystem;
 std::shared_ptr<NetworkTable> Robot::visionTable;
 std::shared_ptr<OI> Robot::oi;
+
+std::shared_ptr<DigitalInput> pressureplate;
+
 DriverStation::Alliance Robot::currentAlliance;
 bool Robot::doBoiler;
 
@@ -110,6 +113,11 @@ void Robot::TeleopInit() {
 
 void Robot::TeleopPeriodic() {
 	Scheduler::GetInstance()->Run();
+	//if(pressureplate->read)
+	//{
+
+
+	//}
 	SmartDashboard::PutNumber("centerX", visionTable->GetNumber("centerX", 0.0));
 	SmartDashboard::PutNumber("centerY", visionTable->GetNumber("centerY", 0.0));
 }
