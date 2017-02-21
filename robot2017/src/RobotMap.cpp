@@ -10,7 +10,7 @@ std::shared_ptr<frc::DoubleSolenoid> RobotMap::gearSubsystemFlapperSolenoid;
 std::shared_ptr<frc::DoubleSolenoid> RobotMap::gearSubsystemPusherSolenoid;
 std::shared_ptr<frc::DoubleSolenoid> RobotMap::gearSubsystemChuteSolenoid;
 
-std::shared_ptr<frc::DigitalInput> RobotMap::pressureplate;
+std::shared_ptr<frc::DigitalInput> RobotMap::gearSubsystemPressurePlate;
 
 std::shared_ptr<CANTalon> RobotMap::shooterSubsystemFlywheelTalon;
 std::shared_ptr<CANTalon> RobotMap::shooterSubsystemLoaderTalon;
@@ -22,7 +22,7 @@ std::shared_ptr<frc::PowerDistributionPanel> RobotMap::pdp;
 
 std::shared_ptr<AHRS> RobotMap::robotIMU;
 std::shared_ptr<TigerDrive> RobotMap::tigerDrive;
-std::shared_ptr<SerialPort> RobotMap::arduino;
+std::shared_ptr<frc::SerialPort> RobotMap::arduino;
 
 void RobotMap::init() {
     driveBaseSubsystemFrontLeftTalon.reset(new CANTalon(2));
@@ -61,6 +61,7 @@ void RobotMap::init() {
     gearSubsystemFlapperSolenoid.reset(new frc::DoubleSolenoid(3, 4)); //changed back to original robot
     gearSubsystemPusherSolenoid.reset(new frc::DoubleSolenoid(2, 5));
     gearSubsystemChuteSolenoid.reset(new frc::DoubleSolenoid(1, 6));
+    gearSubsystemPressurePlate.reset(new DigitalInput(1));
 
     climberSubsystemLeftTalon.reset(new CANTalon(7));
     climberSubsystemRightTalon.reset(new CANTalon(4));
@@ -69,5 +70,5 @@ void RobotMap::init() {
 
     robotIMU.reset(new AHRS(frc::SPI::Port::kMXP));
     tigerDrive.reset(new TigerDrive(robotIMU.get()));
-    arduino.reset(new SerialPort(9600, SerialPort::Port::kUSB, 8, SerialPort::Parity::kParity_None, SerialPort::StopBits::kStopBits_One));
+    arduino.reset(new frc::SerialPort(9600, frc::SerialPort::Port::kUSB, 8, frc::SerialPort::Parity::kParity_None, frc::SerialPort::StopBits::kStopBits_One));
 }

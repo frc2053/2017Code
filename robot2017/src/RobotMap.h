@@ -25,7 +25,7 @@ public:
 	static std::shared_ptr<CANTalon> climberSubsystemLeftTalon;
 	static std::shared_ptr<CANTalon> climberSubsystemRightTalon;
 
-	static std::shared_ptr<DigitalInput> pressureplate;
+	static std::shared_ptr<DigitalInput> gearSubsystemPressurePlate;
 
 	static std::shared_ptr<PowerDistributionPanel> pdp;
 

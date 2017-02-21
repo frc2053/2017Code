@@ -6,7 +6,7 @@ GearSubsystem::GearSubsystem() : Subsystem("GearSubsystem") {
 	flapperSolenoid = RobotMap::gearSubsystemFlapperSolenoid;
 	pusherSolenoid = RobotMap::gearSubsystemPusherSolenoid;
 	chuteSolenoid = RobotMap::gearSubsystemChuteSolenoid;
-	Gearpressureplate = RobotMap::pressureplate;
+	pressurePlate = RobotMap::gearSubsystemPressurePlate;
 }
 
 void GearSubsystem::InitDefaultCommand() {
@@ -31,10 +31,6 @@ void GearSubsystem::SetPusherBack() {
 
 void GearSubsystem::SetChuteForward() {
 	chuteSolenoid->Set(frc::DoubleSolenoid::kReverse);
-	//if(Gearpressureplate->r)
-	//{
-
-	//}
 }
 
 void GearSubsystem::SetChuteBack() {
@@ -51,4 +47,8 @@ frc::DoubleSolenoid::Value GearSubsystem::GetPusherState() {
 
 frc::DoubleSolenoid::Value GearSubsystem::GetChuteState() {
 	return chuteSolenoid->Get();
+}
+
+bool GearSubsystem::GetPressurePlateState() {
+	return pressurePlate->Get();
 }

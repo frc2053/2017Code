@@ -6,6 +6,8 @@
 #include "Commands/Autonomous/GearAlignLeft.h"
 #include "Commands/Autonomous/GearAlignRight.h"
 
+#include "Commands/Leds/SetLeds.h"
+
 std::shared_ptr<DrivebaseSubsystem> Robot::drivebaseSubsystem;
 std::shared_ptr<ShooterSubsystem> Robot::shooterSubsystem;
 std::shared_ptr<GearSubsystem> Robot::gearSubsystem;
@@ -13,8 +15,6 @@ std::shared_ptr<ClimberSubsystem> Robot::climberSubsystem;
 std::shared_ptr<LedSubsystem> Robot::ledSubsystem;
 std::shared_ptr<NetworkTable> Robot::visionTable;
 std::shared_ptr<OI> Robot::oi;
-
-std::shared_ptr<DigitalInput> pressureplate;
 
 DriverStation::Alliance Robot::currentAlliance;
 bool Robot::doBoiler;
@@ -113,13 +113,17 @@ void Robot::TeleopInit() {
 
 void Robot::TeleopPeriodic() {
 	Scheduler::GetInstance()->Run();
-	//if(pressureplate->read)
-	//{
-
-
-	//}
 	SmartDashboard::PutNumber("centerX", visionTable->GetNumber("centerX", 0.0));
 	SmartDashboard::PutNumber("centerY", visionTable->GetNumber("centerY", 0.0));
+	Command* ledCommand;
+	if(gearSubsystem.get()->GetPressurePlateState()) {
+		ledCommand = new SetLeds("1");
+		ledCommand->Run();
+	}
+	else {
+		ledCommand = new SetLeds("0");
+		ledCommand->Run();
+	}
 }
 
 void Robot::TestPeriodic() {

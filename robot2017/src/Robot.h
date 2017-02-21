@@ -24,8 +24,6 @@ public:
 
 	static frc::DriverStation::Alliance currentAlliance;
 
-	static std::shared_ptr<DigitalInput> pressureplate;
-
 	static bool doBoiler;
 
     virtual void RobotInit();
