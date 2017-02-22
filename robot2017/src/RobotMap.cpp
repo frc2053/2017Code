@@ -61,7 +61,7 @@ void RobotMap::init() {
     gearSubsystemFlapperSolenoid.reset(new frc::DoubleSolenoid(3, 4)); //changed back to original robot
     gearSubsystemPusherSolenoid.reset(new frc::DoubleSolenoid(2, 5));
     gearSubsystemChuteSolenoid.reset(new frc::DoubleSolenoid(1, 6));
-    gearSubsystemPressurePlate.reset(new DigitalInput(1));
+    gearSubsystemPressurePlate.reset(new frc::DigitalInput(0));
 
     climberSubsystemLeftTalon.reset(new CANTalon(7));
     climberSubsystemRightTalon.reset(new CANTalon(4));

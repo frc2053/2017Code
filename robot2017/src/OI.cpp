@@ -13,6 +13,7 @@
 #include "Commands/Gears/ChuteSolenoid.h"
 #include "Commands/Gears/FlapperSolenoid.h"
 #include "Commands/Gears/PusherSolenoid.h"
+#include "Commands/Leds/SetLeds.h"
 
 OI::OI() {
 	driverJoystick.reset(new Joystick(0));
@@ -25,7 +26,6 @@ OI::OI() {
 	//leftBumperOperator.reset(new JoystickButton(operatorJoystick.get(), 5));
 	//rightBumperOperator.reset(new JoystickButton(operatorJoystick.get(), 6));
 	StartButtonOperator.reset(new JoystickButton(operatorJoystick.get(), 8));
-
 
 	StartButtonDriver.reset(new JoystickButton(driverJoystick.get(), 8));
 

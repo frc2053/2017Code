@@ -15,7 +15,10 @@ void SetLeds::Initialize()
 void SetLeds::Execute()
 {
 	isDone = false;
-	Robot::ledSubsystem->SendData(data);
+	if(data != "1")
+	{
+		Robot::ledSubsystem->SendData(data);
+	}
 	isDone = true;
 }
 
