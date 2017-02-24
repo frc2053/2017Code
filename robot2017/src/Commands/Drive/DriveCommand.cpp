@@ -17,6 +17,7 @@ DriveCommand::DriveCommand(): Command() {
 	buttonYPressed = false;
 	leftBumperPressed = false;
 	rightBumperPressed = false;
+	leftStickPressed = false;
 }
 
 void DriveCommand::Initialize() {
@@ -34,6 +35,7 @@ void DriveCommand::Initialize() {
 	buttonYPressed = false;
 	leftBumperPressed  = false;
 	rightBumperPressed = false;
+	leftStickPressed = false;
 }
 
 void DriveCommand::Execute() {
@@ -55,6 +57,7 @@ void DriveCommand::Execute() {
 	buttonYPressed = Robot::oi->GetYButtonDriver();
 	leftBumperPressed  = Robot::oi->GetLeftBumperDriver();
 	rightBumperPressed = Robot::oi->GetRightBumperDriver();
+	leftStickPressed = Robot::oi->GetLeftStickButtonDriver();
 
 	//gets imu yaw and if the robot is done rotating
 	adjustedYaw = Robot::drivebaseSubsystem->GetAdjYaw();
@@ -111,6 +114,12 @@ void DriveCommand::SetAngleWithButton()
 	if(rightBumperPressed){
 		RobotMap::tigerDrive->turnController->SetSetpoint(70);
 		setAngle = 70;
+	}
+	if(leftStickPressed)
+	{
+		double rad = atan2(xAxis, yAxis);
+		double degrees = rad * (180 / M_PI);
+		setAngle = degrees;
 	}
 	//potential buttons to add later for rope:
 	//-30, 90, -150

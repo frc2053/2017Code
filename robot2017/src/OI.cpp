@@ -25,10 +25,7 @@ OI::OI() {
 	//leftBumperOperator.reset(new JoystickButton(operatorJoystick.get(), 5));
 	//rightBumperOperator.reset(new JoystickButton(operatorJoystick.get(), 6));
 	StartButtonOperator.reset(new JoystickButton(operatorJoystick.get(), 8));
-
-
 	StartButtonDriver.reset(new JoystickButton(driverJoystick.get(), 8));
-
 	StartButtonDriver->WhenPressed(new AlignCenter(0));
 
 
