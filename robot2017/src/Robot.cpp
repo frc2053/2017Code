@@ -6,6 +6,7 @@
 #include "Commands/Autonomous/GearAlignLeft.h"
 #include "Commands/Autonomous/GearAlignRight.h"
 
+
 #include "Commands/Leds/SetLeds.h"
 
 std::shared_ptr<DrivebaseSubsystem> Robot::drivebaseSubsystem;
@@ -115,6 +116,8 @@ void Robot::TeleopPeriodic() {
 	Scheduler::GetInstance()->Run();
 	SmartDashboard::PutNumber("centerX", visionTable->GetNumber("centerX", 0.0));
 	SmartDashboard::PutNumber("centerY", visionTable->GetNumber("centerY", 0.0));
+	SmartDashboard::PutNumber("Live Shooter Rpm", RobotMap::shooterSubsystemFlywheelTalon->GetSpeed());
+	SmartDashboard::PutNumber("Live Loader Rpm", RobotMap::shooterSubsystemLoaderTalon->GetSpeed());
 	Command* ledCommand;
 	if(gearSubsystem.get()->GetPressurePlateState()) {
 		ledCommand = new SetLeds("1");
