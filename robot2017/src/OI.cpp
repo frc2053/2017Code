@@ -13,6 +13,7 @@
 #include "Commands/Gears/ChuteSolenoid.h"
 #include "Commands/Gears/FlapperSolenoid.h"
 #include "Commands/Gears/PusherSolenoid.h"
+#include "Commands/Shooter/TurretGear.h"
 
 OI::OI() {
 	driverJoystick.reset(new Joystick(0));
@@ -22,7 +23,7 @@ OI::OI() {
 	bButtonOperator.reset(new JoystickButton(operatorJoystick.get(), 2));
 	xButtonOperator.reset(new JoystickButton(operatorJoystick.get(), 3));
 	yButtonOperator.reset(new JoystickButton(operatorJoystick.get(), 4));
-	//leftBumperOperator.reset(new JoystickButton(operatorJoystick.get(), 5));
+	leftBumperOperator.reset(new JoystickButton(operatorJoystick.get(), 5));
 	//rightBumperOperator.reset(new JoystickButton(operatorJoystick.get(), 6));
 	StartButtonOperator.reset(new JoystickButton(operatorJoystick.get(), 8));
 
@@ -49,6 +50,8 @@ OI::OI() {
 
 	StartButtonOperator->WhenPressed(new ClimbMotor(1, 0));
 	StartButtonOperator->WhenReleased(new ClimbMotor(0, 0));
+
+	leftBumperOperator->WhenPressed(new TurretGear());
 
 
 	SmartDashboard::PutData("Zero Yaw", new ZeroYaw());

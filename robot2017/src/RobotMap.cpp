@@ -14,6 +14,7 @@ std::shared_ptr<frc::DigitalInput> RobotMap::gearSubsystemPressurePlate;
 
 std::shared_ptr<CANTalon> RobotMap::shooterSubsystemFlywheelTalon;
 std::shared_ptr<CANTalon> RobotMap::shooterSubsystemLoaderTalon;
+std::shared_ptr<CANTalon> RobotMap::shooterSubsystemTurretTalon;
 
 std::shared_ptr<CANTalon> RobotMap::climberSubsystemLeftTalon;
 std::shared_ptr<CANTalon> RobotMap::climberSubsystemRightTalon;
@@ -41,6 +42,7 @@ void RobotMap::init() {
 
     shooterSubsystemFlywheelTalon.reset(new CANTalon(9));
     shooterSubsystemLoaderTalon.reset(new CANTalon(5));
+    shooterSubsystemTurretTalon.reset(new CANTalon(6));
 
     shooterSubsystemFlywheelTalon->SetControlMode(CANTalon::kSpeed);
     //shooterSubsystemFlywheelTalon->Se
@@ -58,10 +60,17 @@ void RobotMap::init() {
     shooterSubsystemLoaderTalon->SetI(0);
     shooterSubsystemLoaderTalon->SetD(0);
 
+    shooterSubsystemTurretTalon->SetControlMode(CANTalon::kPosition);
+    shooterSubsystemTurretTalon->SetFeedbackDevice(CANTalon::CtreMagEncoder_Absolute);
+    shooterSubsystemTurretTalon->SetP(0.2);
+    shooterSubsystemTurretTalon->SetI(0);
+    shooterSubsystemTurretTalon->SetD(0);
+
+
     gearSubsystemFlapperSolenoid.reset(new frc::DoubleSolenoid(3, 4)); //changed back to original robot
     gearSubsystemPusherSolenoid.reset(new frc::DoubleSolenoid(2, 5));
     gearSubsystemChuteSolenoid.reset(new frc::DoubleSolenoid(1, 6));
-    gearSubsystemPressurePlate.reset(new DigitalInput(1));
+    gearSubsystemPressurePlate.reset(new frc::DigitalInput(1));
 
     climberSubsystemLeftTalon.reset(new CANTalon(7));
     climberSubsystemRightTalon.reset(new CANTalon(4));
