@@ -127,7 +127,7 @@ void DriveCommand::SetAngleWithButton()
 
 void DriveCommand::RotateCommand()
 {
-	if(((rightBumperPressed || leftBumperPressed || buttonYPressed == true||buttonXPressed == true || buttonAPressed == true || buttonBPressed == true) && isRotDone == true) || (isRotDone == false))
+	if(((leftStickPressed || rightBumperPressed || leftBumperPressed || buttonYPressed == true||buttonXPressed == true || buttonAPressed == true || buttonBPressed == true) && isRotDone == true) || (isRotDone == false))
 	{
 		finalAutoRot = Robot::drivebaseSubsystem->CalculateRotValue(setAngle, setSpeed);
 	}

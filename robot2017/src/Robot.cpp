@@ -117,7 +117,7 @@ void Robot::TeleopPeriodic() {
 	SmartDashboard::PutNumber("centerX", visionTable->GetNumber("centerX", 0.0));
 	SmartDashboard::PutNumber("centerY", visionTable->GetNumber("centerY", 0.0));
 	SmartDashboard::PutNumber("Live Shooter Rpm", RobotMap::shooterSubsystemFlywheelTalon->GetSpeed());
-	SmartDashboard::PutNumber("Live Loader Rpm", RobotMap::shooterSubsystemLoaderTalon->GetSpeed());
+	//SmartDashboard::PutNumber("Live Loader Rpm", RobotMap::shooterSubsystemLoaderTalon->GetSpeed()); doesnt work for some reason, dont need this anyway
 	Command* ledCommand;
 	if(gearSubsystem.get()->GetPressurePlateState()) {
 		ledCommand = new SetLeds("1");
