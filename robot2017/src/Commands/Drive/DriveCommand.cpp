@@ -117,9 +117,11 @@ void DriveCommand::SetAngleWithButton()
 	}
 	if(leftStickPressed)
 	{
-		double rad = atan2(xAxis, yAxis);
-		double degrees = rad * (180 / M_PI);
-		setAngle = degrees;
+		if(xAxis != 0 && yAxis != 0) {
+			double rad = atan2(xAxis, yAxis);
+			double degrees = rad * (180 / M_PI);
+			setAngle = degrees;
+		}
 	}
 	//potential buttons to add later for rope:
 	//-30, 90, -150
@@ -128,6 +130,7 @@ void DriveCommand::SetAngleWithButton()
 void DriveCommand::RotateCommand()
 {
 	if(((leftStickPressed || rightBumperPressed || leftBumperPressed || buttonYPressed == true||buttonXPressed == true || buttonAPressed == true || buttonBPressed == true) && isRotDone == true) || (isRotDone == false))
+	if(((rightBumperPressed || leftBumperPressed || buttonYPressed == true||buttonXPressed == true || buttonAPressed == true || buttonBPressed == true || leftStickPressed == true) && isRotDone == true) || (isRotDone == false))
 	{
 		finalAutoRot = Robot::drivebaseSubsystem->CalculateRotValue(setAngle, setSpeed);
 	}
