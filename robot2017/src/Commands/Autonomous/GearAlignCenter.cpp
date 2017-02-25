@@ -16,7 +16,12 @@ GearAlignCenter::GearAlignCenter() {
 	AddSequential(new DoNothingAuto(.5)); //wait
 	AddSequential(new RetractGearGroup());
 	AddSequential(new DriveCommandAuto(0, .5, 0, .5, 0)); //drive backwards
+	std::cout << "FINISHED GEAR ALIGN CENTER" << std::endl;
 	if(Robot::doBoiler) {
+		std::cout << "MADE IT TO DO BOILER" << std::endl;
+
 		AddSequential(new DriveToBoilerShootCenter()); //go to boiler
+		std::cout << "FINISHED WITH DO BOILER" << std::endl;
+
 	}
 }

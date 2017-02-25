@@ -79,11 +79,11 @@ float TigerDrive::CalculateRotValue(float angle, float speed)
 	if(tooFarCW || tooFarCCW)
 	{
 		degreesToAngleAbs = fabs(degreesToAngle);
-		std::cout << "degreesToAngleAbs" << degreesToAngleAbs << std::endl;
+		//std::cout << "degreesToAngleAbs" << degreesToAngleAbs << std::endl;
 		turnController->Enable();
 		speedWhileRotating = rotateToAngleRate;
-		std::cout << "speedWhileRotating: " << speedWhileRotating << std::endl;
-		std::cout << "error: " << turnController->GetError() << std::endl;
+		//std::cout << "speedWhileRotating: " << speedWhileRotating << std::endl;
+		//std::cout << "error: " << turnController->GetError() << std::endl;
 		isRotDone = false;
 		//why not an exponential function? :(
 		/*if(degreesToAngleAbs <= 180)

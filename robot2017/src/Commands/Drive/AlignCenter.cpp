@@ -7,7 +7,7 @@ AlignCenter::AlignCenter(float inputAngle)
 	adjyaw = 0;
 	isDone = false;
 	speedX = 0;
-	std::cout << "Align Constructor" << std::endl;
+	//std::cout << "Align Constructor" << std::endl;
 	gearAngle = inputAngle;
 	isRotDone = false;
 	finalAutoRot = 0;
@@ -15,7 +15,7 @@ AlignCenter::AlignCenter(float inputAngle)
 
 void AlignCenter::Initialize()
 {
-	std::cout << "Align Init" << std::endl;
+	//std::cout << "Align Init" << std::endl;
 	distanceToCenter = 0;
 	adjyaw = 0;
 	isDone = false;
@@ -28,7 +28,7 @@ void AlignCenter::Initialize()
 
 void AlignCenter::Execute()
 {
-	std::cout << "Align Execute" << std::endl;
+	//std::cout << "Align Execute" << std::endl;
 	RobotMap::tigerDrive->turnController->SetSetpoint(gearAngle);
 	adjyaw = Robot::drivebaseSubsystem->GetAdjYaw();
 	isRotDone = Robot::drivebaseSubsystem->GetIsRotDone();
