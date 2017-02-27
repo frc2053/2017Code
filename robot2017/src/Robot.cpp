@@ -96,6 +96,7 @@ void Robot::DisabledPeriodic() {
 }
 
 void Robot::AutonomousInit() {
+	doBoiler = SmartDashboard::GetBoolean("Do Boiler", true);
 	selectedMode.reset(autoChooser.GetSelected());
 	if(selectedMode != nullptr){
 		selectedMode->Start();

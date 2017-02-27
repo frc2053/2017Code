@@ -3,6 +3,7 @@
 AlignCenter::AlignCenter(float inputAngle)
 {
 	Requires(Robot::drivebaseSubsystem.get());
+	SetTimeout(1);
 	distanceToCenter = 0;
 	adjyaw = 0;
 	isDone = false;
@@ -21,6 +22,7 @@ void AlignCenter::Initialize()
 	isDone = false;
 	speedX = 0;
 	isRotDone = false;
+	SetTimeout(1);
 	//Robot::ledSubsystem->SetRedLED(1);
 	//Robot::ledSubsystem->SetGreenLED(0);
 	//Robot::ledSubsystem->SetBlueLED(0);
