@@ -31,6 +31,7 @@ void DriveCommandAuto::Execute()
 	adjustedYaw = Robot::drivebaseSubsystem->GetAdjYaw();
 	isRotDone = Robot::drivebaseSubsystem->GetIsRotDone();
 	finalAutoRot = Robot::drivebaseSubsystem->CalculateRotValue(inputAngle, 1);
+
 	Robot::drivebaseSubsystem->MecanumDrive(inputSide, inputFow, finalAutoRot, adjustedYaw);
 	if((timeCurrent >= timeTarget) && isRotDone) {
 		Robot::drivebaseSubsystem->MecanumDrive(0,0,0,0);

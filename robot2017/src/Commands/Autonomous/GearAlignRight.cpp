@@ -9,9 +9,10 @@
 #include "DriveToBoilerClose.h"
 
 GearAlignRight::GearAlignRight() {
-	AddSequential(new DriveCommandAuto(0, -.5, 0, 1, 0));  //drive forward needs to drive farther
-	AddSequential(new AlignCenter(-60)); //align with gear
-	AddSequential(new DriveCommandAuto(0, -.5, 0, .5, -60)); //drive onto airship
+	AddSequential(new DriveCommandAuto(0, -.5, 0, .7, 0));  //drive forward needs to drive farther
+//	AddSequential(new AlignCenter(-60)); //align with gear
+	AddSequential(new DriveCommandAuto(-.5, -.5, 0, .3, -60)); //drive onto airship
+	AddSequential(new DoNothingAuto(.25)); //wait
 	AddSequential(new PushGearGroup());
 	AddSequential(new DoNothingAuto(.5)); //wait
 	AddSequential(new RetractGearGroup());

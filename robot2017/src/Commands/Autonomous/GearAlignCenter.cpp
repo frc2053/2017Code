@@ -6,6 +6,8 @@
 #include "../Gears/RetractGearGroup.h"
 #include "../Autonomous/DoNothingAuto.h"
 #include "DriveToBoilerShootCenter.h"
+#include "../Shooter/LoaderWheel.h"
+#include "../Shooter/ShooterWheel.h"
 
 GearAlignCenter::GearAlignCenter() {
 	AddSequential(new DriveCommandAuto(0, -.5, 0, 1.1, 0)); //drive forward
@@ -19,8 +21,18 @@ GearAlignCenter::GearAlignCenter() {
 	AddSequential(new PrintCommand("FINISHED GEAR ALIGN CENTER"));
 	if(Robot::doBoiler) {
 		AddSequential(new PrintCommand("MADE IT TO DO BOILER"));
+		AddSequential(new PrintCommand( "REACHED THE DRIVE TO BOILER SHOOT CENTER"));
+		//AddSequential(new DriveCommandAuto(0, 0, 0, 1, -135));
+		//AddSequential(new DoNothingAuto(1));
+		AddSequential(new PrintCommand("FINISHED ROTATING"));
+		AddSequential(new DriveCommandAuto(-.6, .4, 0, 2, -135));
 
-		AddSequential(new DriveToBoilerShootCenter()); //go to boiler
+		AddSequential(new ShooterWheel(SmartDashboard::GetNumber("Shooter RPM", 4000), 5)); //fires
+		AddSequential(new DoNothingAuto(.5));  //lets the shooter get to speed
+		AddSequential(new LoaderWheel(SmartDashboard::GetNumber("Loader RPM", 3000), 2)); //loads
+		//AddSequential(new DoNothingAuto(1));
+		AddSequential(new PrintCommand("END OF DRIVE COMMANDS"));
+		//AddSequential(new DriveToBoilerShootCenter()); //go to boiler
 		AddSequential(new PrintCommand("FINISHED WITH DO BOILER"));
 	}
 }

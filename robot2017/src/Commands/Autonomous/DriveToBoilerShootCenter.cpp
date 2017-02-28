@@ -9,9 +9,9 @@
 DriveToBoilerShootCenter::DriveToBoilerShootCenter() {
 	if(Robot::currentAlliance == frc::DriverStation::Alliance::kBlue) {
 		AddSequential(new PrintCommand( "REACHED THE DRIVE TO BOILER SHOOT CENTER"));
-		AddSequential(new DriveCommandAuto(0, 0, 0, 1, 135)); //
+		AddSequential(new DriveCommandAuto(0, 0, 0, 1, -135)); //
 		AddSequential(new DoNothingAuto(1));
-		AddSequential(new DriveCommandAuto(0, -.5, 0, 2, 135));
+		AddSequential(new DriveCommandAuto(0, -.5, 0, 2, -135));
 		AddSequential(new DoNothingAuto(1));
 		AddSequential(new PrintCommand("END OF DRIVE COMMANDS"));
 		//AddSequential(new AlignCenter(135)); //aligns with boiler
