@@ -25,7 +25,12 @@ GearAlignCenter::GearAlignCenter() {
 		//AddSequential(new DriveCommandAuto(0, 0, 0, 1, -135));
 		//AddSequential(new DoNothingAuto(1));
 		AddSequential(new PrintCommand("FINISHED ROTATING"));
-		AddSequential(new DriveCommandAuto(-.6, .4, 0, 2, -135));
+		AddSequential(new DriveCommandAuto(-1, 0, 0, .5, -90));//drives to boiler
+
+		AddSequential(new DriveCommandAuto(-.5, .5, 0, .5, -135));
+		AddSequential(new PrintCommand("FINISHED BOILER 135 DRIVE COMMAND"));
+
+
 
 		AddSequential(new ShooterWheel(SmartDashboard::GetNumber("Shooter RPM", 4000), 5)); //fires
 		AddSequential(new DoNothingAuto(.5));  //lets the shooter get to speed
