@@ -4,6 +4,7 @@
 ShooterSubsystem::ShooterSubsystem() : Subsystem("ShooterSubsystem") {
 	flywheelTalon = RobotMap::shooterSubsystemFlywheelTalon;
 	loaderTalon = RobotMap::shooterSubsystemLoaderTalon;
+	loaderServo = RobotMap::shooterSubsystemLoaderServo;
 }
 
 void ShooterSubsystem::InitDefaultCommand() {
@@ -18,5 +19,9 @@ void ShooterSubsystem::RunShooterMotor(float rpm) {
 
 void ShooterSubsystem::RunLoaderMotor(float rpm){
 	loaderTalon->Set(rpm);
+}
+
+void ShooterSubsystem::SetServoAngle(float angle) {
+	loaderServo->SetAngle(angle);
 }
 
