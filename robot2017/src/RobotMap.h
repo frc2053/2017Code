@@ -21,6 +21,7 @@ public:
 
 	static std::shared_ptr<CANTalon> shooterSubsystemFlywheelTalon;
 	static std::shared_ptr<CANTalon> shooterSubsystemLoaderTalon;
+	static std::shared_ptr<Servo> shooterSubsystemLoaderServo;
 
 	static std::shared_ptr<CANTalon> climberSubsystemLeftTalon;
 	static std::shared_ptr<CANTalon> climberSubsystemRightTalon;
