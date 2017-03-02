@@ -25,12 +25,12 @@ void ShooterWheel::Execute()
 	}
 	timeCurrent = timer->Get();
 	if(timeTarget == 0) {
-		if(RobotMap::shooterSubsystemFlywheelTalon->GetSpeed() > 2000) {
-			Robot::shooterSubsystem->SetServoAngle(90);
-		}
-		else {
-			Robot::shooterSubsystem->SetServoAngle(0);
-		}
+		//if(RobotMap::shooterSubsystemFlywheelTalon->GetSpeed() > 2000) {
+		//	Robot::shooterSubsystem->SetServoAngle(90);
+		//}
+		//else {
+		//	Robot::shooterSubsystem->SetServoAngle(0);
+		//}
 		Robot::shooterSubsystem->RunShooterMotor(inputSpeed);
 		isDone = true;
 	}

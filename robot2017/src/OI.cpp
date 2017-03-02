@@ -14,6 +14,8 @@
 #include "Commands/Gears/FlapperSolenoid.h"
 #include "Commands/Gears/PusherSolenoid.h"
 #include "Commands/Leds/SetLeds.h"
+#include  "Commands/Shooter/ShooterEndGroup.h"
+#include "Commands/Shooter/ShooterGroup.h"
 
 OI::OI() {
 	driverJoystick.reset(new Joystick(0));
@@ -34,8 +36,11 @@ OI::OI() {
 	aButtonOperator->WhenPressed(new ShooterWheel(4000, 0));
 	aButtonOperator->WhenReleased(new ShooterWheel(0, 0));
 
-	xButtonOperator->WhenPressed(new LoaderWheel(4000, 0));
-	xButtonOperator->WhenReleased(new LoaderWheel(0, 0));
+	//xButtonOperator->WhenPressed(new LoaderWheel(4000, 0));
+	//xButtonOperator->WhenReleased(new LoaderWheel(0, 0));
+
+	xButtonOperator->WhenPressed(new ShooterGroup());
+	xButtonOperator->WhenReleased(new ShooterEndGroup());
 
 	bButtonOperator->WhenPressed(new GearRetrieveGroup());
 	bButtonOperator->WhenReleased(new GearRetractGroup());
