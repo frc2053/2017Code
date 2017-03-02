@@ -3,6 +3,7 @@
 LoaderServo::LoaderServo(float angle) {
 	Requires(Robot::shooterSubsystem.get());
 	_angle = angle;
+	isDone = false;
 }
 
 void LoaderServo::Initialize() {
@@ -11,10 +12,11 @@ void LoaderServo::Initialize() {
 
 void LoaderServo::Execute() {
 	Robot::shooterSubsystem->SetServoAngle(_angle);
+	isDone = true;
 }
 
 bool LoaderServo::IsFinished() {
-	return true;
+	return isDone;
 }
 
 void LoaderServo::End() {

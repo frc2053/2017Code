@@ -14,6 +14,7 @@ public:
 	void Interrupted();
 private:
 	float _angle;
+	bool isDone;
 };
 
 #endif
