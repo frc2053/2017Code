@@ -7,7 +7,7 @@ LoaderServo::LoaderServo(float angle) {
 }
 
 void LoaderServo::Initialize() {
-	_angle = 90;
+	_angle = 60;
 }
 
 void LoaderServo::Execute() {

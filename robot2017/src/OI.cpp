@@ -33,14 +33,14 @@ OI::OI() {
 	StartButtonDriver->WhenPressed(new AlignCenter(0));
 
 
-	aButtonOperator->WhenPressed(new ShooterWheel(4000, 0));
+	aButtonOperator->WhileHeld(new ShooterWheel(4000, 0));
 	aButtonOperator->WhenReleased(new ShooterWheel(0, 0));
 
-	//xButtonOperator->WhenPressed(new LoaderWheel(4000, 0));
-	//xButtonOperator->WhenReleased(new LoaderWheel(0, 0));
+	xButtonOperator->WhenPressed(new LoaderWheel(4000, 0));
+	xButtonOperator->WhenReleased(new LoaderWheel(0, 0));
 
-	xButtonOperator->WhenPressed(new ShooterGroup());
-	xButtonOperator->WhenReleased(new ShooterEndGroup());
+	//xButtonOperator->WhenPressed(new ShooterGroup());
+	//xButtonOperator->WhenReleased(new ShooterEndGroup());
 
 	bButtonOperator->WhenPressed(new GearRetrieveGroup());
 	bButtonOperator->WhenReleased(new GearRetractGroup());

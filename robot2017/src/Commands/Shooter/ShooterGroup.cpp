@@ -9,5 +9,4 @@ ShooterGroup::ShooterGroup() {
 	AddSequential(new ShooterWheel(1, 0));
 	AddSequential(new DoNothingAuto(.7));
 	AddSequential(new LoaderWheel(1, 0));
-	AddSequential(new LoaderServo(180));
 }
