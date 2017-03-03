@@ -35,7 +35,7 @@ void ShooterWheel::Execute()
 			Robot::shooterSubsystem->SetServoAngle(171);
 		}
 		else if(RobotMap::shooterSubsystemFlywheelTalon->GetSpeed() < 10) {
-			Robot::shooterSubsystem->SetServoAngle(180);
+			Robot::shooterSubsystem->SetServoAngle(0);
 
 		}
 		Robot::shooterSubsystem->RunShooterMotor(inputSpeed);
@@ -45,7 +45,7 @@ void ShooterWheel::Execute()
 		if(timeCurrent >= timeTarget) {
 			Robot::shooterSubsystem->RunShooterMotor(0);
 
-			Robot::shooterSubsystem->SetServoAngle(80);
+			Robot::shooterSubsystem->SetServoAngle(100);
 
 			//isDone = true;
 		}
@@ -64,7 +64,7 @@ bool ShooterWheel::IsFinished() {
 }
 
 void ShooterWheel::End(){
-	Robot::shooterSubsystem->SetServoAngle(120);
+	Robot::shooterSubsystem->SetServoAngle(90);
 	timer->Stop();
 }
 

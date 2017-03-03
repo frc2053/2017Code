@@ -47,8 +47,9 @@ void RobotMap::init() {
     shooterSubsystemFlywheelTalon->SetControlMode(CANTalon::kSpeed);
     //shooterSubsystemFlywheelTalon->Se
     shooterSubsystemFlywheelTalon->SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
-    shooterSubsystemFlywheelTalon->SetF(0.03330078125); //.0299707
-    shooterSubsystemFlywheelTalon->SetP(0);
+    //shooterSubsystemFlywheelTalon->SetF(0.03330078125); //.0299707
+    shooterSubsystemFlywheelTalon->SetF(0.025);
+    shooterSubsystemFlywheelTalon->SetP(0.45);
     shooterSubsystemFlywheelTalon->SetI(0);
     shooterSubsystemFlywheelTalon->SetD(0);
 

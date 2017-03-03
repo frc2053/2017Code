@@ -14,7 +14,7 @@
 #include "Commands/Gears/FlapperSolenoid.h"
 #include "Commands/Gears/PusherSolenoid.h"
 #include "Commands/Leds/SetLeds.h"
-#include  "Commands/Shooter/ShooterEndGroup.h"
+#include "Commands/Shooter/ShooterEndGroup.h"
 #include "Commands/Shooter/ShooterGroup.h"
 
 OI::OI() {
@@ -26,11 +26,14 @@ OI::OI() {
 	xButtonOperator.reset(new JoystickButton(operatorJoystick.get(), 3));
 	yButtonOperator.reset(new JoystickButton(operatorJoystick.get(), 4));
 	//leftBumperOperator.reset(new JoystickButton(operatorJoystick.get(), 5));
-	//rightBumperOperator.reset(new JoystickButton(operatorJoystick.get(), 6));
+	rightBumperOperator.reset(new JoystickButton(operatorJoystick.get(), 6));
 	StartButtonOperator.reset(new JoystickButton(operatorJoystick.get(), 8));
 
 	StartButtonDriver.reset(new JoystickButton(driverJoystick.get(), 8));
 	StartButtonDriver->WhenPressed(new AlignCenter(0));
+
+	rightBumperOperator->WhenPressed(new  ShooterGroup);
+	rightBumperOperator->WhenReleased(new ShooterEndGroup);
 
 
 	aButtonOperator->WhileHeld(new ShooterWheel(4000, 0));

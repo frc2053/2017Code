@@ -21,7 +21,7 @@ public:
 	std::shared_ptr<JoystickButton> xButtonOperator;
 	std::shared_ptr<JoystickButton> yButtonOperator;
 	//std::shared_ptr<JoystickButton> leftBumperOperator;
-	//std::shared_ptr<JoystickButton> rightBumperOperator;
+	std::shared_ptr<JoystickButton> rightBumperOperator;
 	std::shared_ptr<JoystickButton> StartButtonDriver;
 	std::shared_ptr<JoystickButton> StartButtonOperator;
 
