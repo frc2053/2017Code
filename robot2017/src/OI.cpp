@@ -32,7 +32,7 @@ OI::OI() {
 	StartButtonDriver.reset(new JoystickButton(driverJoystick.get(), 8));
 	StartButtonDriver->WhenPressed(new AlignCenter(0));
 
-	rightBumperOperator->WhenPressed(new  ShooterGroup);
+	rightBumperOperator->WhenPressed(new ShooterGroup);
 	rightBumperOperator->WhenReleased(new ShooterEndGroup);
 
 

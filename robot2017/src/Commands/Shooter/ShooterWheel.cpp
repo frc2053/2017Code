@@ -31,30 +31,30 @@ void ShooterWheel::Execute()
 	}
 	timeCurrent = timer->Get();
 	if(timeTarget == 0) {
-		if(RobotMap::shooterSubsystemFlywheelTalon->GetSpeed() > 10) {
-			Robot::shooterSubsystem->SetServoAngle(171);
-		}
-		else if(RobotMap::shooterSubsystemFlywheelTalon->GetSpeed() < 10) {
-			Robot::shooterSubsystem->SetServoAngle(0);
+		//if(RobotMap::shooterSubsystemFlywheelTalon->GetSpeed() > 10) {
+			//Robot::shooterSubsystem->SetServoAngle(171);
+		//}
+		//else if(RobotMap::shooterSubsystemFlywheelTalon->GetSpeed() < 10) {
+		//	Robot::shooterSubsystem->SetServoAngle(0);
 
-		}
+		//}
 		Robot::shooterSubsystem->RunShooterMotor(inputSpeed);
-		//isDone = true;
+		isDone = true;
 	}
 	else {
 		if(timeCurrent >= timeTarget) {
-			Robot::shooterSubsystem->RunShooterMotor(0);
+			//Robot::shooterSubsystem->RunShooterMotor(0);
 
-			Robot::shooterSubsystem->SetServoAngle(100);
+			//Robot::shooterSubsystem->SetServoAngle(100);
 
-			//isDone = true;
+			isDone = true;
 		}
 		else {
 			//if(RobotMap::shooterSubsystemFlywheelTalon->GetSpeed() > 2000) {
-						Robot::shooterSubsystem->SetServoAngle(145);
+						//Robot::shooterSubsystem->SetServoAngle(145);
 			//		}
 			Robot::shooterSubsystem->RunShooterMotor(inputSpeed);
-			//isDone = false;
+			isDone = false;
 		}
 	}
 }
@@ -64,7 +64,7 @@ bool ShooterWheel::IsFinished() {
 }
 
 void ShooterWheel::End(){
-	Robot::shooterSubsystem->SetServoAngle(90);
+	//Robot::shooterSubsystem->SetServoAngle(90);
 	timer->Stop();
 }
 
