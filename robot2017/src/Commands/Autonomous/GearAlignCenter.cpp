@@ -12,43 +12,26 @@
 #include "../Shooter/ShooterEndGroup.h"
 
 GearAlignCenter::GearAlignCenter() {
+
+	AddSequential(new PrintCommand("Starting Gear Align Center"));
+
 	AddSequential(new DriveCommandAuto(0, -.5, 0, 1.2, 0)); //drive forward
-	//AddSequential(new AlignCenter(0)); //align
-	//AddSequential(new DriveCommandAuto(0, -.5, 0, .8, 0)); //drive forward
-	AddSequential(new DoNothingAuto(.25)); //wait
+	//AddSequential(new DoNothingAuto(.25)); //wait
 	AddSequential(new PushGearGroup());
-	AddSequential(new DoNothingAuto(.5)); //wait
+	AddSequential(new DoNothingAuto(.25)); //wait
 	AddSequential(new RetractGearGroup());
 	AddSequential(new DriveCommandAuto(0, .5, 0, .5, 0)); //drive backwards
-	AddSequential(new PrintCommand("FINISHED GEAR ALIGN CENTER"));
+
+	AddSequential(new PrintCommand("Finished Gear Align Center"));
+
+
 	if(Robot::doBoiler) {
-		AddSequential(new PrintCommand("MADE IT TO DO BOILER"));
-		AddSequential(new PrintCommand( "REACHED THE DRIVE TO BOILER SHOOT CENTER"));
-		//AddSequential(new DriveCommandAuto(0, 0, 0, 1, -135));
-		//AddSequential(new DoNothingAuto(1));
-		AddSequential(new PrintCommand("FINISHED ROTATING"));
-		AddSequential(new DriveCommandAuto(0, 0, 0, .5, -90));//TURNS 90
-		AddSequential(new PrintCommand("FINISHED TURNING 90"));
 
-		AddSequential(new DriveCommandAuto(-1, 0, 0, .95, -90));//DRIVE SIDEWAYS
-		AddSequential(new PrintCommand("FINISHED GETTING TO THE DSBOIFS	"));
-		AddSequential(new DriveCommandAuto(0, 0, 0, .5, -135));//ROT TO BOILER
+		AddSequential(new PrintCommand("Calling Boiler From Center"));
 
+		AddSequential(new DriveToBoilerShootCenter("center")); //go to boiler
 
-		AddSequential(new DriveCommandAuto(-.5, .5, 0, .5, -135));//DRIVES TO BOILER
-		AddSequential(new PrintCommand("FINISHED BOILER 135 DRIVE COMMAND"));
-
-
-		AddSequential(new ShooterGroup());
-		AddSequential(new DoNothingAuto(8));
-		AddSequential(new ShooterEndGroup());
-		//AddSequential(new ShooterWheel(SmartDashboard::GetNumber("Shooter RPM", 4000), 5)); //fires
-		//AddSequential(new DoNothingAuto(.5));  //lets the shooter get to speed
-		//AddSequential(new LoaderWheel(SmartDashboard::GetNumber("Loader RPM", 3000), 2)); //loads
-		//AddSequential(new DoNothingAuto(1));
-		AddSequential(new PrintCommand("END OF DRIVE COMMANDS"));
-		//AddSequential(new DriveToBoilerShootCenter()); //go to boiler
-		AddSequential(new PrintCommand("FINISHED WITH DO BOILER"));
+		AddSequential(new PrintCommand("Finished Boiler From Center"));
 
 	}
 }

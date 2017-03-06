@@ -6,7 +6,7 @@
 
 class DriveToBoilerShootCenter : public CommandGroup {
 public:
-	DriveToBoilerShootCenter();
+	DriveToBoilerShootCenter(std::string rlc);
 };
 
 #endif

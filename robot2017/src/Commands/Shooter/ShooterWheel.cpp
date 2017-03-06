@@ -23,36 +23,27 @@ void ShooterWheel::Execute()
 {
 	if(inputSpeed == 0)
 	{
+		Robot::shooterSubsystem->RunShooterMotor(0);
 		isDone = true;
 	}
 
 	if(!inputSpeed == 0) {
-		inputSpeed = SmartDashboard::GetNumber("Shooter RPM", 4000);
+		inputSpeed = SmartDashboard::GetNumber("Shooter RPM", 4200);
 	}
+
+
 	timeCurrent = timer->Get();
 	if(timeTarget == 0) {
-		//if(RobotMap::shooterSubsystemFlywheelTalon->GetSpeed() > 10) {
-			//Robot::shooterSubsystem->SetServoAngle(171);
-		//}
-		//else if(RobotMap::shooterSubsystemFlywheelTalon->GetSpeed() < 10) {
-		//	Robot::shooterSubsystem->SetServoAngle(0);
 
-		//}
 		Robot::shooterSubsystem->RunShooterMotor(inputSpeed);
-		isDone = true;
+		isDone = false;
 	}
 	else {
 		if(timeCurrent >= timeTarget) {
-			//Robot::shooterSubsystem->RunShooterMotor(0);
-
-			//Robot::shooterSubsystem->SetServoAngle(100);
-
+			Robot::shooterSubsystem->RunShooterMotor(0);
 			isDone = true;
 		}
 		else {
-			//if(RobotMap::shooterSubsystemFlywheelTalon->GetSpeed() > 2000) {
-						//Robot::shooterSubsystem->SetServoAngle(145);
-			//		}
 			Robot::shooterSubsystem->RunShooterMotor(inputSpeed);
 			isDone = false;
 		}
@@ -64,11 +55,9 @@ bool ShooterWheel::IsFinished() {
 }
 
 void ShooterWheel::End(){
-	//Robot::shooterSubsystem->SetServoAngle(90);
 	timer->Stop();
 }
 
 void ShooterWheel::Interrupted() {
 	timer->Stop();
 }
-
