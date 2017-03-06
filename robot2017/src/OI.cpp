@@ -35,7 +35,6 @@ OI::OI() {
 	rightBumperOperator->WhenPressed(new ShooterGroup);
 	rightBumperOperator->WhenReleased(new ShooterEndGroup);
 
-
 	aButtonOperator->WhileHeld(new ShooterWheel(4000, 0));
 	aButtonOperator->WhenReleased(new ShooterWheel(0, 0));
 

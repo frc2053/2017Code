@@ -11,13 +11,4 @@ ShooterGroup::ShooterGroup() {
 	AddSequential(new LoaderWheel(4000, 0));
 	Robot::shooterSubsystem->SetServoAngle(0);
 
-
-
-
-
-	//if(RobotMap::shooterSubsystemLoaderTalon->GetSpeed() > 40)
-	//{
-		//Robot::shooterSubsystem->SetServoAngle(0);
-	//}
-	//AddSequential(Robot::shooterSubsystem->SetServoAngle(180));
 }
