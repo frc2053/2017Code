@@ -59,9 +59,9 @@ bool ShooterWheel::IsFinished() {
 
 void ShooterWheel::End(){
 	Robot::shooterSubsystem->RunShooterMotor(0);
-	timer->Stop();
+	//timer->Stop();
 }
 
 void ShooterWheel::Interrupted() {
-	timer->Stop();
+	//timer->Stop();
 }

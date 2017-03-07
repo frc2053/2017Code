@@ -108,6 +108,13 @@ void Robot::AutonomousPeriodic() {
 }
 
 void Robot::TeleopInit() {
+	Robot::shooterSubsystem->RunLoaderMotor(0);
+	Robot::shooterSubsystem->RunShooterMotor(0);
+
+	Robot::climberSubsystem->RunLeftTalon(0);
+	Robot::climberSubsystem->RunRightTalon(0);
+
+	Robot::shooterSubsystem->SetServoAngle(0);
 	if (selectedMode != nullptr) {
 		selectedMode->Cancel();
 	}
@@ -118,7 +125,7 @@ void Robot::TeleopPeriodic() {
 	SmartDashboard::PutNumber("centerX", visionTable->GetNumber("centerX", 0.0));
 	SmartDashboard::PutNumber("centerY", visionTable->GetNumber("centerY", 0.0));
 	SmartDashboard::PutNumber("Live Shooter Rpm", RobotMap::shooterSubsystemFlywheelTalon->GetSpeed());
-	//SmartDashboard::PutNumber("Live Loader Rpm", RobotMap::shooterSubsystemLoaderTalon->GetSpeed()); doesnt work for some reason, dont need this anyway
+	SmartDashboard::PutNumber("Live Loader Rpm", RobotMap::shooterSubsystemLoaderTalon->GetSpeed());
 	Command* ledCommand;
 	if(gearSubsystem.get()->GetPressurePlateState()) {
 		ledCommand = new SetLeds("1");

@@ -20,10 +20,12 @@ void LoaderWheel::Initialize() {
 
 void LoaderWheel::Execute()
 {
-
+	isDone = false;
 	if(inputSpeed == 0)
 	{
+		Robot::shooterSubsystem->SetServoAngle(0);
 		Robot::shooterSubsystem->RunLoaderMotor(0);
+
 		isDone = true;
 	}
 
@@ -50,14 +52,14 @@ void LoaderWheel::Execute()
 
 			Robot::shooterSubsystem->RunLoaderMotor(inputSpeed);
 
-		//if(RobotMap::shooterSubsystemLoaderTalon->GetSpeed() < 2850) {
-		//	Robot::shooterSubsystem->SetServoAngle(90);
-		//	}
+		if(RobotMap::shooterSubsystemLoaderTalon->GetSpeed() > 2000) {
+			Robot::shooterSubsystem->SetServoAngle(90);
+		}
 		//else {
 			//Robot::shooterSubsystem->SetServoAngle(0);
 		//}
 
-			isDone = false;
+			//isDone = false;
 	//	}
 
 	//}
@@ -69,10 +71,10 @@ bool LoaderWheel::IsFinished() {
 
 void LoaderWheel::End() {
 	Robot::shooterSubsystem->RunLoaderMotor(0);
-	//	Robot::shooterSubsystem->SetServoAngle(0);
-	timer->Stop();
+	Robot::shooterSubsystem->SetServoAngle(0);
+	//timer->Stop();
 }
 
 void LoaderWheel::Interrupted() {
-	timer->Stop();
+	//timer->Stop();
 }

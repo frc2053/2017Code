@@ -23,15 +23,15 @@ void ShooterSubsystem::RunLoaderMotor(float rpm){
 }
 
 void ShooterSubsystem::SetServoAngle(float angle) {
-	//std::cout << "----------------" << std::endl;
+	std::cout << "----------------" << std::endl;
 
-	//std::cout << angle  << std::endl;
+	std::cout << angle  << std::endl;
 
 	loaderServo->SetAngle(angle);
 
-	//std::cout << loaderServo->GetAngle() << std::endl;
+	std::cout << loaderServo->GetAngle() << std::endl;
 
-	//std::cout << "----------------" << std::endl;
+	std::cout << "----------------" << std::endl;
 
 
 }

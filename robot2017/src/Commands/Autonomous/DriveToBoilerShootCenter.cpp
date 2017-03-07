@@ -34,11 +34,11 @@ DriveToBoilerShootCenter::DriveToBoilerShootCenter(std::string lrc) {
 
 		AddSequential(new DriveCommandAuto(0, 0, 0, .5, rev*(-90)));//Turn 90 Toward Boiler
 		AddSequential(new DriveCommandAuto(rev*(-1), 0, 0, .95, rev*(-90)));//Drive Forward Across Field
+		AddParallel(new ShooterWheel(BoilerShooterSpeed, 12)); //spins up shooter wheels and runs for 12 seconds or until auto done
 		AddSequential(new DriveCommandAuto(0, 0, 0, .5, rev*(-135)));//ROT TO BOILER
+		//AddParallel(new ShooterWheel(BoilerShooterSpeed, 12)); //spins up shooter wheels and runs for 12 seconds or until auto done
 
-		AddSequential(new ShooterWheel(BoilerShooterSpeed, 12)); //spins up shooter wheels and runs for 12 seconds or until auto done
-
-		AddSequential(new DriveCommandAuto(rev*(-.5), .5, 0, .5, rev*(-135)));//DRIVES TO BOILER
+		AddSequential(new DriveCommandAuto(rev*(-.5), .5, 0, .75, rev*(-135)));//DRIVES TO BOILER
 
 		AddSequential(new PrintCommand("Finished Boiler From Center"));
 
@@ -52,11 +52,11 @@ DriveToBoilerShootCenter::DriveToBoilerShootCenter(std::string lrc) {
 
 		AddSequential(new DriveCommandAuto(0, 0, 0, .5, 180)); //rotates to 180
 		AddSequential(new DriveCommandAuto(0, .5, 0, .5, 180)); //drives to drive station wall
+		AddParallel(new ShooterWheel(BoilerShooterSpeed, 12)); //spins up shooter wheels and runs for 12 seconds or until auto done
+
 		AddSequential(new DriveCommandAuto(0, 0, 0, .5, rev*(-135))); //rotates to boiler
 
-		AddSequential(new ShooterWheel(BoilerShooterSpeed, 12)); //spins up shooter wheels and runs for 12 seconds or until auto done
-
-		AddSequential(new DriveCommandAuto(rev*(-.5), .5, 0, .5, rev*(-135)));//DRIVES TO BOILER
+		AddSequential(new DriveCommandAuto(rev*(-.5), .5, 0, 1.5, rev*(-135)));//DRIVES TO BOILER
 
 		AddSequential(new PrintCommand("Finished Boiler LeftBlue / RightRed"));
 
@@ -71,7 +71,7 @@ DriveToBoilerShootCenter::DriveToBoilerShootCenter(std::string lrc) {
 		AddSequential(new DriveCommandAuto(rev*(-.5), .5, 0, 1.6, rev*(-135))); //drive onto airship
 		AddSequential(new DriveCommandAuto(rev*(-.75), 0, 0, 2, rev*(-90))); //drive onto airship
 
-		AddSequential(new ShooterWheel(BoilerShooterSpeed, 12)); //spins up shooter wheels and runs for 12 seconds or until auto done
+		AddParallel(new ShooterWheel(BoilerShooterSpeed, 12)); //spins up shooter wheels and runs for 12 seconds or until auto done
 
 		AddSequential(new PrintCommand("Finished Boiler RightBlue / LeftRed"));
 
@@ -81,7 +81,7 @@ DriveToBoilerShootCenter::DriveToBoilerShootCenter(std::string lrc) {
 	AddSequential(new PrintCommand("Auto Fire Commands!!!"));
 
 	AddSequential(new LoaderWheel(BoilerLoaderSpeed, 10)); //get laundry tub spinning up
-	AddSequential(new LoaderServo(0)); //open upper hopper to drop balls into laundry tub
+	AddSequential(new LoaderServo(90)); //open upper hopper to drop balls into laundry tub
 
 	AddSequential(new PrintCommand("Auto Fire Commands Done"));
 

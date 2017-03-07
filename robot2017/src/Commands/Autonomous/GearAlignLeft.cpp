@@ -25,13 +25,9 @@ GearAlignLeft::GearAlignLeft() {
 
 	if(Robot::doBoiler) {
 		AddSequential(new PrintCommand("Calling Boiler From Left"));
-		if(Robot::currentAlliance == frc::DriverStation::Alliance::kBlue) {
-			AddSequential(new DriveToBoilerShootCenter("leftblue")); //go to boiler
-		}
 
-		if(Robot::currentAlliance == frc::DriverStation::Alliance::kRed) {
-			AddSequential(new DriveToBoilerShootCenter("leftred")); //go to boiler
-		}
+		AddSequential(new DriveToBoilerShootCenter("leftblue")); //go to boiler
+
 		AddSequential(new PrintCommand("Finished Boiler From Left"));
 	}
 }
