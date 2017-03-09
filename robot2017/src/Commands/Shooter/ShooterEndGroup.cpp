@@ -12,6 +12,10 @@ ShooterEndGroup::ShooterEndGroup() {
 	AddParallel(new DoNothingAuto(0));
 	AddSequential(new DoNothingAuto(0));
 	AddSequential(new LoaderWheel(0, 0));
+<<<<<<< HEAD
 	Robot::shooterSubsystem->SetServoAngle(0);
 
+=======
+	AddSequential(new LoaderServo(90));
+>>>>>>> origin/master
 }

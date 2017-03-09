@@ -18,6 +18,7 @@ private:
 		float timeTarget;
 		float inputSpeed; //not rpm for loader, using max speed for now
 		bool isDone;
+		Command* hopperServoCmd;
 };
 
 #endif  // LoaderWheel_H

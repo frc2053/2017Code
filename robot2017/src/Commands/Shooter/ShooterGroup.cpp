@@ -10,6 +10,10 @@ ShooterGroup::ShooterGroup() {
 	AddParallel(new ShooterWheel(1, 0));
 	AddSequential(new DoNothingAuto(.5));
 	AddSequential(new LoaderWheel(1, 0));
+<<<<<<< HEAD
 
 
+=======
+	AddSequential(new LoaderServo(0));
+>>>>>>> origin/master
 }
