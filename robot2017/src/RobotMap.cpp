@@ -15,6 +15,7 @@ std::shared_ptr<frc::DigitalInput> RobotMap::gearSubsystemPressurePlate;
 std::shared_ptr<CANTalon> RobotMap::shooterSubsystemFlywheelTalon;
 std::shared_ptr<CANTalon> RobotMap::shooterSubsystemLoaderTalon;
 std::shared_ptr<frc::Servo> RobotMap::shooterSubsystemLoaderServo;
+std::shared_ptr<frc::Servo> RobotMap::shooterSubsystemHopperServo;
 
 std::shared_ptr<CANTalon> RobotMap::climberSubsystemLeftTalon;
 std::shared_ptr<CANTalon> RobotMap::climberSubsystemRightTalon;
@@ -43,6 +44,7 @@ void RobotMap::init() {
     shooterSubsystemFlywheelTalon.reset(new CANTalon(9));
     shooterSubsystemLoaderTalon.reset(new CANTalon(5));
     shooterSubsystemLoaderServo.reset(new frc::Servo(1));
+    shooterSubsystemHopperServo.reset(new frc::Servo(2));
 
     shooterSubsystemFlywheelTalon->SetControlMode(CANTalon::kSpeed);
     //shooterSubsystemFlywheelTalon->Se

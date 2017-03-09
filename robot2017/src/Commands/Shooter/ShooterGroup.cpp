@@ -9,6 +9,5 @@ ShooterGroup::ShooterGroup() {
 	AddSequential(new ShooterWheel(1, 0));
 	AddSequential(new DoNothingAuto(2.25));
 	AddSequential(new LoaderWheel(1, 0));
-	Robot::shooterSubsystem->SetServoAngle(0);
-
+	AddSequential(new LoaderServo(0));
 }
