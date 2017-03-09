@@ -1,4 +1,5 @@
 #include "LoaderWheel.h"
+#include "HopperServo.h"
 
 LoaderWheel::LoaderWheel(float speed, float time) {
 	Requires(Robot::shooterSubsystem.get());
@@ -9,6 +10,7 @@ LoaderWheel::LoaderWheel(float speed, float time) {
 	inputSpeed = speed;
 	//timer->Reset();
 	//timer->Start();
+	hopperServoCmd = new HopperServo(.5);
 }
 
 void LoaderWheel::Initialize() {
@@ -50,6 +52,8 @@ void LoaderWheel::Execute()
 
 			Robot::shooterSubsystem->RunLoaderMotor(inputSpeed);
 
+
+			Scheduler::GetInstance()->AddCommand(hopperServoCmd);
 		/*if(RobotMap::shooterSubsystemLoaderTalon->GetSpeed() > 2000) {
 			Robot::shooterSubsystem->SetServoAngle(90);
 		}*/
@@ -69,7 +73,7 @@ bool LoaderWheel::IsFinished() {
 
 void LoaderWheel::End() {
 	Robot::shooterSubsystem->RunLoaderMotor(0);
-	Robot::shooterSubsystem->SetServoAngle(0);
+	Scheduler::GetInstance()->Remove(hopperServoCmd);
 	//timer->Stop();
 }
 

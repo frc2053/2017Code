@@ -1,18 +1,30 @@
 #include "HopperServo.h"
 
-HopperServo::HopperServo(float angle) {
+HopperServo::HopperServo(float time) {
 	Requires(Robot::shooterSubsystem.get());
-	_angle = angle;
+	timer.reset(new Timer());
 	isDone = false;
+	timeTarget = time;
+	timeCurrent = 0;
+	timer->Reset();
+	timer->Start();
 }
 
 void HopperServo::Initialize() {
-	_angle = 0;
 }
 
 void HopperServo::Execute() {
-	Robot::shooterSubsystem->SetServoAngle(_angle);
-	isDone = true;
+	isDone = false;
+	timeCurrent = timer->Get();
+	if(timeCurrent >= timeTarget)
+	{
+		Robot::shooterSubsystem->SetHopperServoAngle(180);
+		timer->Reset();
+		timer->Start();
+	}
+	else {
+		Robot::shooterSubsystem->SetHopperServoAngle(0);
+	}
 }
 
 bool HopperServo::IsFinished() {

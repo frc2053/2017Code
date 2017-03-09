@@ -6,15 +6,17 @@
 
 class HopperServo : public Command {
 public:
-	HopperServo(float angle);
+	HopperServo(float time);
 	void Initialize();
 	void Execute();
 	bool IsFinished();
 	void End();
 	void Interrupted();
 private:
-	float _angle;
+	std::shared_ptr<Timer> timer;
 	bool isDone;
+	float timeCurrent;
+	float timeTarget;
 };
 
 #endif
