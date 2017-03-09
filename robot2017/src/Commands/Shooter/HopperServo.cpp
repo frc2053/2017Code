@@ -19,6 +19,7 @@ void HopperServo::Execute() {
 	if(timeCurrent >= timeTarget)
 	{
 		Robot::shooterSubsystem->SetHopperServoAngle(180);
+		frc::Wait(timeTarget);
 		timer->Reset();
 		timer->Start();
 	}

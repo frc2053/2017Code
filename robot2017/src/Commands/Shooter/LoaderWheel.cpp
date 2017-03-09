@@ -11,6 +11,7 @@ LoaderWheel::LoaderWheel(float speed, float time) {
 	//timer->Reset();
 	//timer->Start();
 	hopperServoCmd = new HopperServo(.5);
+	Scheduler::GetInstance()->AddCommand(hopperServoCmd);
 }
 
 void LoaderWheel::Initialize() {
@@ -53,7 +54,6 @@ void LoaderWheel::Execute()
 			Robot::shooterSubsystem->RunLoaderMotor(inputSpeed);
 
 
-			Scheduler::GetInstance()->AddCommand(hopperServoCmd);
 		/*if(RobotMap::shooterSubsystemLoaderTalon->GetSpeed() > 2000) {
 			Robot::shooterSubsystem->SetServoAngle(90);
 		}*/
