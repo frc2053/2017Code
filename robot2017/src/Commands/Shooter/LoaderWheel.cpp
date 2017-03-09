@@ -52,7 +52,7 @@ void LoaderWheel::Execute()
 
 			Robot::shooterSubsystem->RunLoaderMotor(inputSpeed);
 
-		if(RobotMap::shooterSubsystemLoaderTalon->GetSpeed() > 2000) {
+		if(RobotMap::shooterSubsystemLoaderTalon->GetSpeed() > 3300) {
 			Robot::shooterSubsystem->SetServoAngle(90);
 		}
 		//else {

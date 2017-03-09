@@ -81,7 +81,7 @@ DriveToBoilerShootCenter::DriveToBoilerShootCenter(std::string lrc) {
 	AddSequential(new PrintCommand("Auto Fire Commands!!!"));
 
 	AddSequential(new LoaderWheel(BoilerLoaderSpeed, 10)); //get laundry tub spinning up
-	AddSequential(new LoaderServo(90)); //open upper hopper to drop balls into laundry tub
+	//AddSequential(new LoaderServo(90)); //open upper hopper to drop balls into laundry tub
 
 	AddSequential(new PrintCommand("Auto Fire Commands Done"));
 

@@ -11,6 +11,7 @@ private:
 	std::shared_ptr<CANTalon> flywheelTalon;
 	std::shared_ptr<CANTalon> loaderTalon;
 	std::shared_ptr<Servo> loaderServo;
+	std::shared_ptr<Servo> hopperServo;
 public:
 
 	ShooterSubsystem();
@@ -18,6 +19,7 @@ public:
 	void RunShooterMotor(float rpm);
 	void RunLoaderMotor(float rpm);
 	void SetServoAngle(float angle);
+	void SetHopperServoAngle(float angle);
 };
 
 #endif

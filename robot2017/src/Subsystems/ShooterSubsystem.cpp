@@ -5,6 +5,7 @@ ShooterSubsystem::ShooterSubsystem() : Subsystem("ShooterSubsystem") {
 	flywheelTalon = RobotMap::shooterSubsystemFlywheelTalon;
 	loaderTalon = RobotMap::shooterSubsystemLoaderTalon;
 	loaderServo = RobotMap::shooterSubsystemLoaderServo;
+	hopperServo = RobotMap::shooterSubsystemhopperServo;
 }
 
 void ShooterSubsystem::InitDefaultCommand() {
@@ -34,5 +35,10 @@ void ShooterSubsystem::SetServoAngle(float angle) {
 	std::cout << "----------------" << std::endl;
 
 
+}
+
+void  ShooterSubsystem::SetHopperServoAngle(float angle)
+{
+	hopperServo->SetAngle(angle);
 }
 
