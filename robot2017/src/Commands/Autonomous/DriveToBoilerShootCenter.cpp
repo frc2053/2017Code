@@ -6,6 +6,7 @@
 #include "../Shooter/ShooterWheel.h"
 #include "../Shooter/LoaderServo.h"
 #include "../Autonomous/DoNothingAuto.h"
+#include "../Shooter/ShooterGroup.h"
 
 #define BoilerShooterSpeed 4200
 #define BoilerLoaderSpeed  3000
@@ -80,7 +81,8 @@ DriveToBoilerShootCenter::DriveToBoilerShootCenter(std::string lrc) {
 
 	AddSequential(new PrintCommand("Auto Fire Commands!!!"));
 
-	AddSequential(new LoaderWheel(BoilerLoaderSpeed, 10)); //get laundry tub spinning up
+	AddSequential(new ShooterGroup());
+	//AddSequential(new LoaderWheel(BoilerLoaderSpeed, 10)); //get laundry tub spinning up
 	//AddSequential(new LoaderServo(90)); //open upper hopper to drop balls into laundry tub
 
 	AddSequential(new PrintCommand("Auto Fire Commands Done"));

@@ -20,9 +20,13 @@ std::shared_ptr<OI> Robot::oi;
 DriverStation::Alliance Robot::currentAlliance;
 bool Robot::doBoiler;
 bool Robot::doHopper;
+//int Robot::isDataPassed;
 
 void Robot::RobotInit() {
 	RobotMap::init();
+
+	//isDataPassed = 0;
+
     drivebaseSubsystem.reset(new DrivebaseSubsystem());
     shooterSubsystem.reset(new ShooterSubsystem());
     gearSubsystem.reset(new GearSubsystem());
@@ -38,9 +42,10 @@ void Robot::RobotInit() {
 
 	doBoiler = true;
 	SmartDashboard::PutBoolean("Do Boiler", doBoiler);
+	SmartDashboard::PutBoolean("Do Hopper", doHopper);
 
 	doBoiler = SmartDashboard::GetBoolean("Do Boiler", true);
-	doHopper = SmartDashboard::GetBoolean("Do Hopper", true);
+	doHopper = SmartDashboard::GetBoolean("Do Hopper", false);
 
 	autoChooser.AddDefault("Do Nothing", new DoNothingAuto(15));
 	autoChooser.AddObject("Gear Align Center", new GearAlignCenter());
@@ -118,6 +123,10 @@ void Robot::TeleopInit() {
 	Robot::climberSubsystem->RunRightTalon(0);
 
 	Robot::shooterSubsystem->SetServoAngle(0);
+	Robot::shooterSubsystem->SetHopperServoAngle(0);
+
+	//isDataPassed = 0;
+
 	if (selectedMode != nullptr) {
 		selectedMode->Cancel();
 	}
@@ -131,10 +140,12 @@ void Robot::TeleopPeriodic() {
 	SmartDashboard::PutNumber("Live Loader Rpm", RobotMap::shooterSubsystemLoaderTalon->GetSpeed());
 	Command* ledCommand;
 	if(gearSubsystem.get()->GetPressurePlateState()) {
+		//isDataPassed = 0;
 		ledCommand = new SetLeds("1");
 		ledCommand->Run();
 	}
 	else {
+		//isDataPassed =  1;
 		std::cout << "PRESSURE PLATE WAS ACTIVATED" << std::endl;
 		ledCommand = new SetLeds("0");
 		ledCommand->Run();

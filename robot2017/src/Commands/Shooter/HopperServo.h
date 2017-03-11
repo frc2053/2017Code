@@ -17,6 +17,7 @@ private:
 	bool isDone;
 	float timeCurrent;
 	float timeTarget;
+	bool isDeployed;
 };
 
 #endif

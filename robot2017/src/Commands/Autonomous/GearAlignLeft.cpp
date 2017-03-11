@@ -5,13 +5,14 @@
 #include "DriveToBoilerShootCenter.h"
 #include "../Gears/RetractGearGroup.h"
 #include "../Gears/PushGearGroup.h"
+#include "DriveToHopper.h"
 
 
 GearAlignLeft::GearAlignLeft() {
 	AddSequential(new PrintCommand("Starting Gear Align Left"));
 
 	AddSequential(new DriveCommandAuto(0, -.5, 0, .85, 0));  //drive forward
-	//AddSequential(new AlignCenter(-60)); //align with gear
+	//AddSequential(new AlignCenter(60)); //align with gear
 	AddSequential(new DriveCommandAuto(.25, -.25, 0, 1.6, 60)); //drive onto airship
 
 	//AddSequential(new DoNothingAuto(.25)); //wait
@@ -30,4 +31,9 @@ GearAlignLeft::GearAlignLeft() {
 
 		AddSequential(new PrintCommand("Finished Boiler From Left"));
 	}
+
+	if(Robot::doHopper) {
+		AddSequential(new DriveToHopper("leftblue"));
+	}
+
 }
