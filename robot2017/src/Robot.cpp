@@ -20,12 +20,15 @@ std::shared_ptr<OI> Robot::oi;
 DriverStation::Alliance Robot::currentAlliance;
 bool Robot::doBoiler;
 bool Robot::doHopper;
-//int Robot::isDataPassed;
+int isDataPassed;
+bool isDifferent;
 
 void Robot::RobotInit() {
+	Command* ledCommand;
 	RobotMap::init();
 
-	//isDataPassed = 0;
+	isDataPassed = 0;
+	isDifferent =  true;
 
     drivebaseSubsystem.reset(new DrivebaseSubsystem());
     shooterSubsystem.reset(new ShooterSubsystem());
@@ -44,7 +47,7 @@ void Robot::RobotInit() {
 	SmartDashboard::PutBoolean("Do Boiler", doBoiler);
 	SmartDashboard::PutBoolean("Do Hopper", doHopper);
 
-	doBoiler = SmartDashboard::GetBoolean("Do Boiler", true);
+	doBoiler = SmartDashboard::GetBoolean("Do Boiler", false);
 	doHopper = SmartDashboard::GetBoolean("Do Hopper", false);
 
 	autoChooser.AddDefault("Do Nothing", new DoNothingAuto(15));
@@ -78,6 +81,11 @@ void Robot::RobotInit() {
 	visionTable->PutNumber("maxH", maxH);
 	visionTable->PutNumber("maxS", maxS);
 	visionTable->PutNumber("maxV", maxV);
+
+	ledCommand = new SetLeds("03", 0);
+	ledCommand->Run();
+
+
 }
 
 void Robot::DisabledInit(){
@@ -103,6 +111,20 @@ void Robot::DisabledPeriodic() {
 }
 
 void Robot::AutonomousInit() {
+	Command* ledCommand;
+	if(Robot::currentAlliance == frc::DriverStation::Alliance::kBlue)
+		{
+			ledCommand = new SetLeds("2", 0);
+			ledCommand->Run();
+
+
+		}
+	else
+	{
+		ledCommand =  new SetLeds("1",  0);
+		ledCommand->Run();
+
+	}
 	doBoiler = SmartDashboard::GetBoolean("Do Boiler", true);
 	doHopper = SmartDashboard::GetBoolean("Do Hopper", true);
 	selectedMode.reset(autoChooser.GetSelected());
@@ -116,6 +138,21 @@ void Robot::AutonomousPeriodic() {
 }
 
 void Robot::TeleopInit() {
+	Command* ledCommand;
+		if(Robot::currentAlliance == frc::DriverStation::Alliance::kBlue)
+			{
+				ledCommand = new SetLeds("2", 0);
+				ledCommand->Run();
+
+
+			}
+		else
+		{
+			ledCommand =  new SetLeds("1",  0);
+			ledCommand->Run();
+
+		}
+
 	Robot::shooterSubsystem->RunLoaderMotor(0);
 	Robot::shooterSubsystem->RunShooterMotor(0);
 
@@ -125,7 +162,8 @@ void Robot::TeleopInit() {
 	Robot::shooterSubsystem->SetServoAngle(0);
 	Robot::shooterSubsystem->SetHopperServoAngle(0);
 
-	//isDataPassed = 0;
+	isDataPassed = 0;
+	isDifferent = true;
 
 	if (selectedMode != nullptr) {
 		selectedMode->Cancel();
@@ -139,17 +177,23 @@ void Robot::TeleopPeriodic() {
 	SmartDashboard::PutNumber("Live Shooter Rpm", RobotMap::shooterSubsystemFlywheelTalon->GetSpeed());
 	SmartDashboard::PutNumber("Live Loader Rpm", RobotMap::shooterSubsystemLoaderTalon->GetSpeed());
 	Command* ledCommand;
-	if(gearSubsystem.get()->GetPressurePlateState()) {
-		//isDataPassed = 0;
-		ledCommand = new SetLeds("1");
-		ledCommand->Run();
-	}
-	else {
-		//isDataPassed =  1;
-		std::cout << "PRESSURE PLATE WAS ACTIVATED" << std::endl;
-		ledCommand = new SetLeds("0");
-		ledCommand->Run();
-	}
+
+		if(gearSubsystem.get()->GetPressurePlateState()  && isDifferent)
+		{
+			isDataPassed = 0;
+			ledCommand = new SetLeds("20", isDataPassed);
+			ledCommand->Run();
+			isDifferent  = false;
+		}
+		else if(!gearSubsystem.get()->GetPressurePlateState())
+		{
+			ledCommand = new SetLeds("21", isDataPassed);
+			ledCommand->Run();
+			isDataPassed = 1;
+			isDifferent  = true;
+		}
+
+
 }
 
 void Robot::TestPeriodic() {

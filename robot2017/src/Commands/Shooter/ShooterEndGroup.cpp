@@ -5,9 +5,11 @@
 #include "LoaderServo.h"
 #include "../Autonomous/DoNothingAuto.h"
 #include "HopperServo.h"
+#include "../Leds/SetLeds.h"
 
 
 ShooterEndGroup::ShooterEndGroup() {
+	Command* ledCommand;
 	AddSequential(new LoaderServo(0));
 	AddSequential(new HopperServo(0));
 	AddParallel(new DoNothingAuto(0));

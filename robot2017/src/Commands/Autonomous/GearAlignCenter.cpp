@@ -15,10 +15,10 @@ GearAlignCenter::GearAlignCenter() {
 
 	AddSequential(new PrintCommand("Starting Gear Align Center"));
 
-	AddSequential(new DriveCommandAuto(0, -.5, 0, 1.2, 0)); //drive forward
-	AddSequential(new DoNothingAuto(.25)); //wait
+	AddSequential(new DriveCommandAuto(0, -.5, 0, 1.3, 0)); //drive forward
+	AddSequential(new DoNothingAuto(.35)); //wait
 	AddSequential(new PushGearGroup());
-	AddSequential(new DoNothingAuto(.25)); //wait
+	AddSequential(new DoNothingAuto(.35)); //wait
 	AddSequential(new RetractGearGroup());
 	AddSequential(new DriveCommandAuto(0, .5, 0, .5, 0)); //drive backwards
 

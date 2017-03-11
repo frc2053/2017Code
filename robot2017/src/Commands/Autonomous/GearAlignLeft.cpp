@@ -24,16 +24,16 @@ GearAlignLeft::GearAlignLeft() {
 
 	AddSequential(new PrintCommand("Finished Gear Align Left"));
 
-	if(Robot::doBoiler) {
-		AddSequential(new PrintCommand("Calling Boiler From Left"));
+	//if(Robot::doBoiler) {
+		//AddSequential(new PrintCommand("Calling Boiler From Left"));
 
-		AddSequential(new DriveToBoilerShootCenter("leftblue")); //go to boiler
+		//AddSequential(new DriveToBoilerShootCenter("leftblue")); //go to boiler
 
-		AddSequential(new PrintCommand("Finished Boiler From Left"));
-	}
+		//AddSequential(new PrintCommand("Finished Boiler From Left"));
+	//}
 
-	if(Robot::doHopper) {
+	//if(Robot::doHopper) {
 		AddSequential(new DriveToHopper("leftblue"));
-	}
+	//}
 
 }

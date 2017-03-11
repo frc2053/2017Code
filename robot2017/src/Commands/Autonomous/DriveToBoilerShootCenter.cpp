@@ -34,7 +34,7 @@ DriveToBoilerShootCenter::DriveToBoilerShootCenter(std::string lrc) {
 		AddSequential(new PrintCommand("Starting Boiler From Center"));
 
 		AddSequential(new DriveCommandAuto(0, 0, 0, .5, rev*(-90)));//Turn 90 Toward Boiler
-		AddSequential(new DriveCommandAuto(rev*(-1), 0, 0, .95, rev*(-90)));//Drive Forward Across Field
+		AddSequential(new DriveCommandAuto(rev*(-1), 0, 0, 1, rev*(-90)));//Drive Forward Across Field
 		AddParallel(new ShooterWheel(BoilerShooterSpeed, 12)); //spins up shooter wheels and runs for 12 seconds or until auto done
 		AddSequential(new DriveCommandAuto(0, 0, 0, .5, rev*(-135)));//ROT TO BOILER
 		//AddParallel(new ShooterWheel(BoilerShooterSpeed, 12)); //spins up shooter wheels and runs for 12 seconds or until auto done

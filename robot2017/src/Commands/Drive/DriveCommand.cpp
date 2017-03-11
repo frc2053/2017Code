@@ -108,12 +108,12 @@ void DriveCommand::SetAngleWithButton()
 	}
 
 	if(leftBumperPressed){
-		RobotMap::tigerDrive->turnController->SetSetpoint(-70);
-		setAngle = -70;
+		RobotMap::tigerDrive->turnController->SetSetpoint(-30);
+		setAngle = -30;
 	}
 	if(rightBumperPressed){
-		RobotMap::tigerDrive->turnController->SetSetpoint(70);
-		setAngle = 70;
+		RobotMap::tigerDrive->turnController->SetSetpoint(30);
+		setAngle = 30;
 	}
 	if(leftStickPressed)
 	{

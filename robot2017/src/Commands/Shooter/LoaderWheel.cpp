@@ -1,5 +1,6 @@
 #include "LoaderWheel.h"
 #include "HopperServo.h"
+#include "../Leds/SetLeds.h"
 
 LoaderWheel::LoaderWheel(float speed, float time) {
 	Requires(Robot::shooterSubsystem.get());
@@ -13,10 +14,16 @@ LoaderWheel::LoaderWheel(float speed, float time) {
 	hopperServoCmd = new HopperServo(.5);
 	std::cout << "ADDING NEW HOPPER SERVO COMMAND" << std::endl;
 	Scheduler::GetInstance()->AddCommand(hopperServoCmd);
+	isPassed = 0;
 }
 
 void LoaderWheel::Initialize() {
+	//Command* ledCommand;
+
+	//ledCommand = new SetLeds("16", 0);
+	//ledCommand->Run();
 	isDone = false;
+	isPassed = 0;
 	//timeCurrent = 0;
 	//timer->Reset();
 	//timer->Start();
@@ -24,6 +31,8 @@ void LoaderWheel::Initialize() {
 
 void LoaderWheel::Execute()
 {
+	Command* ledCommand;
+
 	isDone = false;
 	if(inputSpeed == 0)
 	{
@@ -36,6 +45,18 @@ void LoaderWheel::Execute()
 		inputSpeed = SmartDashboard::GetNumber("Loader RPM", 3000);
 	}
 
+	if(inputSpeed > 0 && isPassed == 0)
+	{
+		ledCommand = new SetLeds("17", isPassed);
+		ledCommand->Run();
+		isPassed = 1;
+	}
+	if(inputSpeed == 0 && isPassed == 0)
+	{
+		ledCommand = new SetLeds("16", isPassed);
+		ledCommand->Run();
+		isPassed = 1;
+	}
 	//timeCurrent = timer->Get();
 
 	//if(timeTarget == 0)

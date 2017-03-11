@@ -1,10 +1,11 @@
 #include "SetLeds.h"
 
-SetLeds::SetLeds(std::string input_data)
+SetLeds::SetLeds(std::string input_data, int isPressed)
 {
 	Requires(Robot::ledSubsystem.get());
 	data = input_data;
 	isDone = false;
+	Pressed = isPressed;
 }
 
 void SetLeds::Initialize()
@@ -15,8 +16,9 @@ void SetLeds::Initialize()
 void SetLeds::Execute()
 {
 	isDone = false;
-	if(data != "1")
+	if(Pressed != 1)
 	{
+		std::cout << "MADE IT TO THE SEND DATA" << std::endl;
 		Robot::ledSubsystem->SendData(data);
 	}
 	isDone = true;

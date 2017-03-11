@@ -18,6 +18,8 @@ private:
 	float adjyaw;
 	float speedX;
 	bool isDone;
+	float speed;
+	float speedY;
 	float gearAngle;
 	bool isRotDone;
 	float finalAutoRot;

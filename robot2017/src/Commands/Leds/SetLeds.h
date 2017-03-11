@@ -7,7 +7,7 @@
 class SetLeds: public Command
 {
 public:
-	SetLeds(std::string data);
+	SetLeds(std::string data, int isPressed);
 	void Initialize();
 	void Execute();
 	bool IsFinished();
@@ -15,6 +15,7 @@ public:
 	void Interrupted();
 private:
 	bool isDone;
+	int Pressed;
 	std::string data;
 };
 

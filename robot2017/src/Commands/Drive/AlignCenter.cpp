@@ -7,7 +7,9 @@ AlignCenter::AlignCenter(float inputAngle)
 	distanceToCenter = 0;
 	adjyaw = 0;
 	isDone = false;
+	speed = 0;
 	speedX = 0;
+	speedY = 0;
 	//std::cout << "Align Constructor" << std::endl;
 	gearAngle = inputAngle;
 	isRotDone = false;
@@ -20,7 +22,9 @@ void AlignCenter::Initialize()
 	distanceToCenter = 0;
 	adjyaw = 0;
 	isDone = false;
+	speed = 0;
 	speedX = 0;
+	speedY = 0;
 	isRotDone = false;
 	SetTimeout(1);
 	//Robot::ledSubsystem->SetRedLED(1);
@@ -46,7 +50,8 @@ void AlignCenter::Execute()
 	}
 
 
-	speedX = CalculateSpeedValue(distanceToCenter);
+	//I'm ignoring the return value and and directly using x and y - needed to translate FOD from ROD
+	speed = CalculateSpeedValue(distanceToCenter);
 	std::cout << "speedX: " << speedX << std::endl;
 
 
@@ -59,7 +64,8 @@ void AlignCenter::Execute()
 		std::cout << "DONE WITH ALIGNMENT!" << std::endl;
 	}
 	else {
-		Robot::drivebaseSubsystem->MecanumDrive(speedX, 0, finalAutoRot, adjyaw);
+		std::cout << speedX << " " << speedY << " " << finalAutoRot  << " " << adjyaw << std::endl;
+		Robot::drivebaseSubsystem->MecanumDrive(speedX, speedY, finalAutoRot, adjyaw);
 		isDone = false;
 	}
 
@@ -68,7 +74,6 @@ void AlignCenter::Execute()
 
 bool AlignCenter::IsFinished()
 {
-	std::cout << "Align IsFinished" << std::endl;
 	return isDone;
 }
 
@@ -85,19 +90,35 @@ void AlignCenter::Interrupted()
 float AlignCenter::CalculateSpeedValue(int distToCenter) {
 	float returnedSpeed = 0;
 	if(distToCenter > 2) {
+		std::cout << "TOO FAR RIGHT" << std::endl;
 		returnedSpeed = -.2;
+		speedX = -.5;
+		speedY = .86;
 		isDone = false;
 	}
 
 	if(distToCenter < -2 ) {
+		std::cout << "TOO FAR LEFT" << std::endl;
 		returnedSpeed = .2;
+		speedX = .5;
+		speedY = -.86;
 		isDone = false;
 	}
 
 	if(abs(distToCenter) <= 2) {
+		std::cout << "MADE IT" << std::endl;
 		returnedSpeed = 0;
+		speedX = 0;
+		speedY = 0;
 		isDone = true;
 	}
 
-	return returnedSpeed;
+	if (gearAngle > 0) {
+		speedX = speedX * 1;
+		speedY = speedY * -1;
+	}
+	std::cout << "speedX: " << speedX << " speedY: " << speedY << std::endl;
+
+
+	return speed;
 }
