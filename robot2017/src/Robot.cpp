@@ -19,7 +19,7 @@ std::shared_ptr<OI> Robot::oi;
 
 DriverStation::Alliance Robot::currentAlliance;
 bool Robot::doBoiler;
-bool Robot::doHopper;
+bool Robot::doCamera;
 int isDataPassed;
 bool isDifferent;
 
@@ -44,11 +44,13 @@ void Robot::RobotInit() {
 	currentAlliance = DriverStation::GetInstance().GetAlliance();
 
 	doBoiler = true;
+	doCamera = false;
+
 	SmartDashboard::PutBoolean("Do Boiler", doBoiler);
-	SmartDashboard::PutBoolean("Do Hopper", doHopper);
+	SmartDashboard::PutBoolean("Do Camera", doCamera);
 
 	doBoiler = SmartDashboard::GetBoolean("Do Boiler", false);
-	doHopper = SmartDashboard::GetBoolean("Do Hopper", false);
+	doCamera = SmartDashboard::GetBoolean("Do Camera", false);
 
 	autoChooser.AddDefault("Do Nothing", new DoNothingAuto(15));
 	autoChooser.AddObject("Gear Align Center", new GearAlignCenter());
@@ -126,7 +128,8 @@ void Robot::AutonomousInit() {
 
 	}
 	doBoiler = SmartDashboard::GetBoolean("Do Boiler", true);
-	doHopper = SmartDashboard::GetBoolean("Do Hopper", true);
+	doCamera = SmartDashboard::GetBoolean("Do Camera", false);
+
 	selectedMode.reset(autoChooser.GetSelected());
 	if(selectedMode != nullptr){
 		selectedMode->Start();

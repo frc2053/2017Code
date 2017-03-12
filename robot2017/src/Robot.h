@@ -26,6 +26,7 @@ public:
 
 	static bool doBoiler;
 	static bool doHopper;
+	static bool doCamera;
 
     virtual void RobotInit();
 	virtual void DisabledInit();

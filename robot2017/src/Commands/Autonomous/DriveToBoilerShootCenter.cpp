@@ -58,6 +58,7 @@ DriveToBoilerShootCenter::DriveToBoilerShootCenter(std::string lrc) {
 		AddSequential(new DriveCommandAuto(0, 0, 0, .5, rev*(-135))); //rotates to boiler
 
 		AddSequential(new DriveCommandAuto(rev*(-.5), .5, 0, 1.5, rev*(-135)));//DRIVES TO BOILER
+		AddSequential(new DriveCommandAuto(0, 0, 0, .25, rev*(-135))); //drive onto airship
 
 		AddSequential(new PrintCommand("Finished Boiler LeftBlue / RightRed"));
 
@@ -73,6 +74,8 @@ DriveToBoilerShootCenter::DriveToBoilerShootCenter(std::string lrc) {
 		AddSequential(new DriveCommandAuto(rev*(-.75), 0, 0, 2, rev*(-90))); //drive onto airship
 
 		AddParallel(new ShooterWheel(BoilerShooterSpeed, 12)); //spins up shooter wheels and runs for 12 seconds or until auto done
+		AddSequential(new DriveCommandAuto(0, 0, 0, .25, rev*(-135))); //drive onto airship
+
 
 		AddSequential(new PrintCommand("Finished Boiler RightBlue / LeftRed"));
 
