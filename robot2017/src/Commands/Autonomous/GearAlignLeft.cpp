@@ -14,8 +14,12 @@ GearAlignLeft::GearAlignLeft() {
 	AddSequential(new DriveCommandAuto(0, -.5, 0, .7, 0));  //drive forward
 	AddSequential(new DriveCommandAuto(.25, -.43, 0, .4, 60)); //drive towards airship
 	AddSequential(new PrintCommand("GOT TO ALIGN IN GEARALIGN LEFT"));
+<<<<<<< HEAD
 	if(Robot::doCamera)
 	{
+=======
+	if(Robot::doCamera) {
+>>>>>>> origin/master
 		AddSequential(new AlignCenter(60)); //align with gear
 	}
 	AddSequential(new PrintCommand("FINISHED ALIGNING IN GEARALIGN LEFT"));
