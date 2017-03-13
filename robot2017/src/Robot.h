@@ -25,7 +25,6 @@ public:
 	static frc::DriverStation::Alliance currentAlliance;
 
 	static bool doBoiler;
-	static bool doHopper;
 	static bool doCamera;
 
     virtual void RobotInit();

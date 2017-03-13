@@ -49,8 +49,8 @@ void Robot::RobotInit() {
 	SmartDashboard::PutBoolean("Do Boiler", doBoiler);
 	SmartDashboard::PutBoolean("Do Camera", doCamera);
 
-	doBoiler = SmartDashboard::GetBoolean("Do Boiler", false);
-	doCamera = SmartDashboard::GetBoolean("Do Camera", false);
+	//doBoiler = SmartDashboard::GetBoolean("Do Boiler", true);
+	//doCamera = SmartDashboard::GetBoolean("Do Camera", false);
 
 	autoChooser.AddDefault("Do Nothing", new DoNothingAuto(15));
 	autoChooser.AddObject("Gear Align Center", new GearAlignCenter());
@@ -127,6 +127,8 @@ void Robot::AutonomousInit() {
 		ledCommand->Run();
 
 	}
+
+
 	doBoiler = SmartDashboard::GetBoolean("Do Boiler", true);
 	doCamera = SmartDashboard::GetBoolean("Do Camera", false);
 
@@ -192,11 +194,23 @@ void Robot::TeleopPeriodic() {
 		{
 			ledCommand = new SetLeds("21", isDataPassed);
 			ledCommand->Run();
+			//if(Robot::currentAlliance == frc::DriverStation::Alliance::kBlue)
+			//{
+			//	ledCommand = new SetLeds("27", isDataPassed); //Need to change the Arduino code to have solid blue
+			//	ledCommand->Run();
+			//}
+			//else
+			//{
+			//	ledCommand =  new SetLeds("28",  isDataPassed); //Need to change the Arduino code to have solid red
+			//	ledCommand->Run();
+			//}
 			isDataPassed = 1;
 			isDifferent  = true;
 		}
-
-
+		else
+		{
+			//std::cout << "Third Case!" << std::endl;
+		}
 }
 
 void Robot::TestPeriodic() {
