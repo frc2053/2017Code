@@ -12,7 +12,9 @@ GearAlignRight::GearAlignRight() {
 
 	AddSequential(new DriveCommandAuto(0, -.5, 0, .95, 0));  //drive forward
 	AddSequential(new DriveCommandAuto(-.25, -.43, 0, .4, -60)); //drive towards airship
-	AddSequential(new AlignCenter(-60)); //align with gear
+	if(Robot::doCamera) {
+		AddSequential(new AlignCenter(-60)); //align with gear
+	}
 	AddSequential(new DriveCommandAuto(-.25, -.43, 0, 1.5, -60)); //drive onto airship
 
 	AddSequential(new DoNothingAuto(.25)); //wait
