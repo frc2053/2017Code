@@ -44,7 +44,7 @@ void AlignCenter::Execute()
 
 
 	if(fabs(Robot::oi->GetLeftXAxisDriver()) > .1 || fabs(Robot::oi->GetLeftYAxisDriver()) > .1 || fabs(Robot::oi->GetRightXAxisDriver()) > .1) {
-		std::cout << "Override!" << std::endl;
+		//std::cout << "Override!" << std::endl;
 		this->Cancel();
 		isDone = true;
 	}
@@ -52,7 +52,7 @@ void AlignCenter::Execute()
 
 	//I'm ignoring the return value and and directly using x and y - needed to translate FOD from ROD
 	speed = CalculateSpeedValue(distanceToCenter);
-	std::cout << "speedX: " << speedX << std::endl;
+	//std::cout << "speedX: " << speedX << std::endl;
 
 
 	if(speedX == 0 || abs(distanceToCenter) <= 2) {
@@ -61,15 +61,15 @@ void AlignCenter::Execute()
 		//Robot::ledSubsystem->SetBlueLED(1);
 		Robot::drivebaseSubsystem->MecanumDrive(0, 0, 0, 0);
 		isDone = true;
-		std::cout << "DONE WITH ALIGNMENT!" << std::endl;
+		//std::cout << "DONE WITH ALIGNMENT!" << std::endl;
 	}
 	else {
-		std::cout << speedX << " " << speedY << " " << finalAutoRot  << " " << adjyaw << std::endl;
+		//std::cout << speedX << " " << speedY << " " << finalAutoRot  << " " << adjyaw << std::endl;
 		Robot::drivebaseSubsystem->MecanumDrive(speedX, speedY, finalAutoRot, adjyaw);
 		isDone = false;
 	}
 
-	std::cout << "isDone: " <<  isDone << std::endl;
+	//std::cout << "isDone: " <<  isDone << std::endl;
 }
 
 bool AlignCenter::IsFinished()
@@ -79,12 +79,12 @@ bool AlignCenter::IsFinished()
 
 void AlignCenter::End()
 {
-	std::cout << "Align End" << std::endl;
+	//std::cout << "Align End" << std::endl;
 }
 
 void AlignCenter::Interrupted()
 {
-	std::cout << "Align Interrupted" << std::endl;
+	//std::cout << "Align Interrupted" << std::endl;
 }
 
 float AlignCenter::CalculateSpeedValue(int distToCenter) {
@@ -117,7 +117,7 @@ float AlignCenter::CalculateSpeedValue(int distToCenter) {
 		speedX = speedX * 1;
 		speedY = speedY * -1;
 	}
-	std::cout << "speedX: " << speedX << " speedY: " << speedY << std::endl;
+	//std::cout << "speedX: " << speedX << " speedY: " << speedY << std::endl;
 
 
 	return speed;

@@ -10,10 +10,10 @@
 GearAlignRight::GearAlignRight() {
 	AddSequential(new PrintCommand("Starting Gear Align Right"));
 
-	AddSequential(new DriveCommandAuto(0, -.5, 0, .95, 0));  //drive forward
+	AddSequential(new DriveCommandAuto(0, -.5, 0, .75, 0));  //drive forward
 	AddSequential(new DriveCommandAuto(-.25, -.43, 0, .4, -60)); //drive towards airship
 	//if(Robot::doCamera)
-	if(SmartDashboard::GetBoolean("Do Camera", true))
+	if(false)
 	{
 		AddSequential(new PrintCommand("TRIED TO DO GEAR ALIGN CENTER -60!"));
 		AddSequential(new AlignCenter(-60)); //align with gear

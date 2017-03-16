@@ -7,7 +7,7 @@
 
 
 ShooterGroup::ShooterGroup() {
-	AddSequential(new PrintCommand("MADE IT TO SHOOTER GROUP"));
+	//AddSequential(new PrintCommand("MADE IT TO SHOOTER GROUP"));
 	AddParallel(new DoNothingAuto(0));
 	AddParallel(new ShooterWheel(1, 0));
 	AddSequential(new DoNothingAuto(.5));
@@ -15,7 +15,7 @@ ShooterGroup::ShooterGroup() {
 	AddParallel(new LoaderWheel(1, 0));
 	AddSequential(new DoNothingAuto(0.01));
 	//AddSequential(new LoaderServo(150));
-	AddParallel(new PrintCommand("MADE IT TO THE HOPPER"));
+	//AddParallel(new PrintCommand("MADE IT TO THE HOPPER"));
 	AddParallel(new HopperServo(.25));
-	AddParallel(new PrintCommand("FINISHED SHOOTER GROUP"));
+	//AddParallel(new PrintCommand("FINISHED SHOOTER GROUP"));
 }

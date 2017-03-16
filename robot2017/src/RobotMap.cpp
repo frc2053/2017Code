@@ -44,7 +44,7 @@ void RobotMap::init() {
     shooterSubsystemFlywheelTalon.reset(new CANTalon(9));
     shooterSubsystemLoaderTalon.reset(new CANTalon(5));
     shooterSubsystemLoaderServo.reset(new frc::Servo(1));
-    shooterSubsystemHopperServo.reset(new frc::Servo(2));
+    shooterSubsystemHopperServo.reset(new frc::Servo(0));
 
     shooterSubsystemFlywheelTalon->SetControlMode(CANTalon::kSpeed);
     //shooterSubsystemFlywheelTalon->Se
@@ -66,7 +66,7 @@ void RobotMap::init() {
     gearSubsystemFlapperSolenoid.reset(new frc::DoubleSolenoid(3, 4)); //changed back to original robot
     gearSubsystemPusherSolenoid.reset(new frc::DoubleSolenoid(2, 5));
     gearSubsystemChuteSolenoid.reset(new frc::DoubleSolenoid(1, 6));
-    gearSubsystemPressurePlate.reset(new frc::DigitalInput(9));
+    gearSubsystemPressurePlate.reset(new frc::DigitalInput(0));
 
     climberSubsystemLeftTalon.reset(new CANTalon(7));
     climberSubsystemRightTalon.reset(new CANTalon(4));

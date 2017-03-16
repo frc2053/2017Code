@@ -12,12 +12,12 @@ HopperServo::HopperServo(float time) {
 }
 
 void HopperServo::Initialize() {
-	std::cout << "MADE IT TO HOPPER SERVO INIT" << std::endl;
+	//std::cout << "MADE IT TO HOPPER SERVO INIT" << std::endl;
 	isDeployed = false;
 }
 
 void HopperServo::Execute() {
-	std::cout << "." << std::endl;
+	//std::cout << "." << std::endl;
 	isDone = false;
 	timeCurrent = timer->Get();
 
@@ -31,7 +31,7 @@ void HopperServo::Execute() {
 		{
 			//std::cout << "MADE IT TO THE HOPPER SERVO ANGLE 180" << std::endl;
 			//Robot::shooterSubsystem->SetHopperServoAngle(180);
-			std::cout << "TIMER EXPIRED" << std::endl;
+			//std::cout << "TIMER EXPIRED" << std::endl;
 			isDeployed = !isDeployed;
 			timer->Reset();
 			timer->Start();
@@ -40,12 +40,12 @@ void HopperServo::Execute() {
 		}
 
 		if(isDeployed) {
-			std::cout << "MADE IT TO THE HOPPER SERVO ANGLE 180" << std::endl;
+			//std::cout << "MADE IT TO THE HOPPER SERVO ANGLE 180" << std::endl;
 			Robot::shooterSubsystem->SetHopperServoAngle(0);
 		}
 		else
 		{
-			std::cout << "MADE IT TO THE HOPPER SERVO ANGLE 0" << std::endl;
+			//std::cout << "MADE IT TO THE HOPPER SERVO ANGLE 0" << std::endl;
 			Robot::shooterSubsystem->SetHopperServoAngle(75);
 		}
 
@@ -57,7 +57,7 @@ bool HopperServo::IsFinished() {
 }
 
 void HopperServo::End() {
-	std::cout << "HOPPER SERVO DONE" << std::endl;
+	//std::cout << "HOPPER SERVO DONE" << std::endl;
 }
 
 void HopperServo::Interrupted() {

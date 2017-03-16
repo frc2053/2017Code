@@ -11,11 +11,12 @@
 GearAlignLeft::GearAlignLeft() {
 	AddSequential(new PrintCommand("Starting Gear Align Left"));
 
-	AddSequential(new DriveCommandAuto(0, -.5, 0, .7, 0));  //drive forward
+	AddSequential(new DriveCommandAuto(0, -.5, 0, .75, 0));  //drive forward
 	AddSequential(new DriveCommandAuto(.25, -.43, 0, .4, 60)); //drive towards airship
 	AddSequential(new PrintCommand("GOT TO ALIGN IN GEARALIGN LEFT"));
 
-	if(Robot::doCamera) {
+	if(false) {
+		std::cout << "GOT TO CAMERA IN GEAR ALIGN LEFT" << std::endl;
 		AddSequential(new AlignCenter(60)); //align with gear
 	}
 	AddSequential(new PrintCommand("FINISHED ALIGNING IN GEARALIGN LEFT"));

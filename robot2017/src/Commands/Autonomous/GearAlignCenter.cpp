@@ -15,7 +15,7 @@ GearAlignCenter::GearAlignCenter() {
 
 	AddSequential(new PrintCommand("Starting Gear Align Center"));
 
-	AddSequential(new DriveCommandAuto(0, -.5, 0, 1.3, 0)); //drive forward
+	AddSequential(new DriveCommandAuto(0, -.5, 0, 1.1, 0)); //drive forward
 	AddSequential(new DoNothingAuto(.35)); //wait
 	AddSequential(new PushGearGroup());
 	AddSequential(new DoNothingAuto(.35)); //wait

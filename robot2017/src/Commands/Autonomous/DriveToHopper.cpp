@@ -19,12 +19,12 @@ DriveToHopper::DriveToHopper(std::string lrc) {
 	AddSequential(new PrintCommand("In Hopper Processing"));
 
 
-	if(Robot::currentAlliance == frc::DriverStation::Alliance::kBlue) {
+	if(!(Robot::isRed)) {
 		rev = 1; // tested auto on blue setup, this remains positive
 	}
 
 
-	if(Robot::currentAlliance == frc::DriverStation::Alliance::kRed) {
+	if(Robot::isRed) {
 		rev = -1; // reverse some directions for red field setup
 	}
 

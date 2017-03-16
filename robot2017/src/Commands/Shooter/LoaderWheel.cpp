@@ -12,7 +12,7 @@ LoaderWheel::LoaderWheel(float speed, float time) {
 	//timer->Reset();
 	//timer->Start();
 	hopperServoCmd = new HopperServo(.5);
-	std::cout << "ADDING NEW HOPPER SERVO COMMAND" << std::endl;
+	//std::cout << "ADDING NEW HOPPER SERVO COMMAND" << std::endl;
 	Scheduler::GetInstance()->AddCommand(hopperServoCmd);
 	isPassed = 0;
 }

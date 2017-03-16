@@ -18,7 +18,7 @@ void SetLeds::Execute()
 	isDone = false;
 	if(Pressed != 1)
 	{
-		std::cout << "MADE IT TO THE SEND DATA" << std::endl;
+		//std::cout << "MADE IT TO THE SEND DATA" << std::endl;
 		Robot::ledSubsystem->SendData(data);
 	}
 	isDone = true;

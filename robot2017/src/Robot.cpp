@@ -22,6 +22,7 @@ bool Robot::doBoiler;
 bool Robot::doCamera;
 int isDataPassed;
 bool isDifferent;
+bool Robot::isRed;
 
 void Robot::RobotInit() {
 	Command* ledCommand;
@@ -45,12 +46,15 @@ void Robot::RobotInit() {
 
 	doBoiler = true;
 	doCamera = false;
+	isRed = true;
 
 	SmartDashboard::PutBoolean("Do Boiler", doBoiler);
 	SmartDashboard::PutBoolean("Do Camera", doCamera);
+	SmartDashboard::PutBoolean("Is Red", isRed);
 
 	doBoiler = SmartDashboard::GetBoolean("Do Boiler", true);
 	doCamera = SmartDashboard::GetBoolean("Do Camera", false);
+	isRed = SmartDashboard::GetBoolean("Is Red",  true);
 
 	autoChooser.AddDefault("Do Nothing", new DoNothingAuto(15));
 	autoChooser.AddObject("Gear Align Center", new GearAlignCenter());
@@ -59,18 +63,18 @@ void Robot::RobotInit() {
 
 	SmartDashboard::PutData("Auto Mode Chooser", &autoChooser);
 
-	SmartDashboard::PutNumber("minH", 44);
-	SmartDashboard::PutNumber("minS", 163);
-	SmartDashboard::PutNumber("minV", 83);
-	SmartDashboard::PutNumber("maxH", 80);
-	SmartDashboard::PutNumber("maxS", 255);
+	SmartDashboard::PutNumber("minH", 78);
+	SmartDashboard::PutNumber("minS", 37);
+	SmartDashboard::PutNumber("minV", 158);
+	SmartDashboard::PutNumber("maxH", 100);
+	SmartDashboard::PutNumber("maxS", 168);
 	SmartDashboard::PutNumber("maxV", 255);
 
-	double minH = SmartDashboard::GetNumber("minH", 44);
-	double minS = SmartDashboard::GetNumber("minS", 163);
-	double minV = SmartDashboard::GetNumber("minV", 83);
-	double maxH = SmartDashboard::GetNumber("maxH", 80);
-	double maxS = SmartDashboard::GetNumber("maxS", 255);
+	double minH = SmartDashboard::GetNumber("minH", 78);
+	double minS = SmartDashboard::GetNumber("minS", 37);
+	double minV = SmartDashboard::GetNumber("minV", 158);
+	double maxH = SmartDashboard::GetNumber("maxH", 100);
+	double maxS = SmartDashboard::GetNumber("maxS", 168);
 	double maxV = SmartDashboard::GetNumber("maxV", 255);
 
 	Robot::drivebaseSubsystem->ZeroYaw();
@@ -114,7 +118,9 @@ void Robot::DisabledPeriodic() {
 
 void Robot::AutonomousInit() {
 	Command* ledCommand;
-	if(Robot::currentAlliance == frc::DriverStation::Alliance::kBlue)
+	currentAlliance = DriverStation::GetInstance().GetAlliance();
+
+	if(!(Robot::isRed))
 		{
 			ledCommand = new SetLeds("2", 0);
 			ledCommand->Run();
@@ -144,8 +150,9 @@ void Robot::AutonomousPeriodic() {
 
 void Robot::TeleopInit() {
 	Command* ledCommand;
-		if(Robot::currentAlliance == frc::DriverStation::Alliance::kBlue)
+		if(!(Robot::isRed))
 			{
+				std::cout <<  "Alliance is blue" << std::endl;
 				ledCommand = new SetLeds("2", 0);
 				ledCommand->Run();
 
@@ -153,6 +160,7 @@ void Robot::TeleopInit() {
 			}
 		else
 		{
+			std::cout <<  "Alliance is red" << std::endl;
 			ledCommand =  new SetLeds("1",  0);
 			ledCommand->Run();
 
@@ -192,20 +200,24 @@ void Robot::TeleopPeriodic() {
 		}
 		else if(!gearSubsystem.get()->GetPressurePlateState())
 		{
-			ledCommand = new SetLeds("21", isDataPassed);
-			ledCommand->Run();
-			//if(Robot::currentAlliance == frc::DriverStation::Alliance::kBlue)
-			//{
-			//	ledCommand = new SetLeds("27", isDataPassed); //Need to change the Arduino code to have solid blue
-			//	ledCommand->Run();
-			//}
-			//else
-			//{
-			//	ledCommand =  new SetLeds("28",  isDataPassed); //Need to change the Arduino code to have solid red
-			//	ledCommand->Run();
-			//}
-			isDataPassed = 1;
-			isDifferent  = true;
+			//ledCommand = new SetLeds("21", isDataPassed);
+			//ledCommand->Run();
+			if(!(Robot::isRed))
+			{
+				ledCommand = new SetLeds("23", isDataPassed);
+				ledCommand->Run();
+				isDataPassed = 1;
+				isDifferent  = true;
+			}
+			else
+			{
+				ledCommand =  new SetLeds("24",  isDataPassed);
+				ledCommand->Run();
+				isDataPassed = 1;
+				isDifferent  = true;
+			}
+			//isDataPassed = 1;
+			//isDifferent  = true;
 		}
 		else
 		{
