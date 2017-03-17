@@ -8,8 +8,8 @@
 #include "../Autonomous/DoNothingAuto.h"
 #include "../Shooter/ShooterGroup.h"
 
-#define BoilerShooterSpeed 4900
-#define BoilerLoaderSpeed  3000
+#define BoilerShooterSpeed 5200
+#define BoilerLoaderSpeed  3200
 
 RED_DriveToBoiler::RED_DriveToBoiler(std::string pos) {
 
@@ -41,7 +41,7 @@ RED_DriveToBoiler::RED_DriveToBoiler(std::string pos) {
 		AddSequential(new DriveCommandAuto(0, .5, 0, .5, 180)); //drives to drive station wall
 		AddParallel(new ShooterWheel(BoilerShooterSpeed, 12)); //spins up shooter wheels and runs for 12 seconds or until auto done
 
-		AddSequential(new DriveCommandAuto(0, 0, 0, .5, -135)); //rotates to boiler
+		AddSequential(new DriveCommandAuto(0, 0, 0, .5, 135)); //rotates to boiler
 
 		AddSequential(new DriveCommandAuto(.5, .5, 0, 1.5, 135));//DRIVES TO BOILER
 		AddSequential(new DriveCommandAuto(0, 0, 0, .25, 135)); //drive onto airship

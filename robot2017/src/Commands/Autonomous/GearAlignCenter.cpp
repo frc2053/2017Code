@@ -21,8 +21,9 @@ GearAlignCenter::GearAlignCenter() {
 	AddSequential(new DoNothingAuto(.35)); //wait
 	AddSequential(new PushGearGroup());
 	AddSequential(new DoNothingAuto(.35)); //wait
-	AddSequential(new RetractGearGroup());
+	//AddSequential(new RetractGearGroup());
 	AddSequential(new DriveCommandAuto(0, .5, 0, .5, 0)); //drive backwards
+	AddSequential(new RetractGearGroup());
 
 	AddSequential(new PrintCommand("Finished Gear Align Center"));
 

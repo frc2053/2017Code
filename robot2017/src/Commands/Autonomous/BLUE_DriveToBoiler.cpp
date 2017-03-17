@@ -8,8 +8,8 @@
 #include "../Autonomous/DoNothingAuto.h"
 #include "../Shooter/ShooterGroup.h"
 
-#define BoilerShooterSpeed 4900
-#define BoilerLoaderSpeed  3000
+#define BoilerShooterSpeed 5200
+#define BoilerLoaderSpeed  3200
 
 BLUE_DriveToBoiler::BLUE_DriveToBoiler(std::string pos) {
 	std::string gearPos = pos;
