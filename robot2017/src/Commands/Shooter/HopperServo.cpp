@@ -57,6 +57,7 @@ bool HopperServo::IsFinished() {
 }
 
 void HopperServo::End() {
+	Robot::shooterSubsystem->SetHopperServoAngle(75);
 	//std::cout << "HOPPER SERVO DONE" << std::endl;
 }
 

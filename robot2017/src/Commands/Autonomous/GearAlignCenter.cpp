@@ -6,6 +6,8 @@
 #include "../Gears/RetractGearGroup.h"
 #include "../Autonomous/DoNothingAuto.h"
 #include "DriveToBoilerShootCenter.h"
+#include "BLUE_DriveToBoiler.h"
+#include "RED_DriveToBoiler.h"
 #include "../Shooter/LoaderWheel.h"
 #include "../Shooter/ShooterWheel.h"
 #include "../Shooter/ShooterGroup.h"
@@ -25,13 +27,8 @@ GearAlignCenter::GearAlignCenter() {
 	AddSequential(new PrintCommand("Finished Gear Align Center"));
 
 
-	if(Robot::doBoiler) {
-
 		AddSequential(new PrintCommand("Calling Boiler From Center"));
-
-		AddSequential(new DriveToBoilerShootCenter("center")); //go to boiler
 
 		AddSequential(new PrintCommand("Finished Boiler From Center"));
 
-	}
 }

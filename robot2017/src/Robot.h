@@ -39,7 +39,10 @@ public:
 private:
 	int  isDataPassed;
 	bool isDifferent;
+	bool started;
 	frc::SendableChooser<frc::Command*> autoChooser;
+	frc::SendableChooser<frc::Command*> boilerChooser;
 	std::unique_ptr<frc::Command> selectedMode;
+	std::unique_ptr<frc::Command> selectedBoiler;
 };
 #endif

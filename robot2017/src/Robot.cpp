@@ -5,7 +5,8 @@
 #include "Commands/Autonomous/GearAlignCenter.h"
 #include "Commands/Autonomous/GearAlignLeft.h"
 #include "Commands/Autonomous/GearAlignRight.h"
-
+#include "Commands/Autonomous/BLUE_DriveToBoiler.h"
+#include "Commands/Autonomous/RED_DriveToBoiler.h"
 
 #include "Commands/Leds/SetLeds.h"
 
@@ -61,7 +62,16 @@ void Robot::RobotInit() {
 	autoChooser.AddObject("Gear Align Right", new GearAlignRight());
 	autoChooser.AddObject("Gear Align Left", new GearAlignLeft());
 
+	boilerChooser.AddDefault("Red Center", new RED_DriveToBoiler("center"));
+	boilerChooser.AddObject("Red Left", new RED_DriveToBoiler("leftred"));
+	boilerChooser.AddObject("Red Right", new RED_DriveToBoiler("rightred"));
+
+	boilerChooser.AddObject("Blue Center", new  BLUE_DriveToBoiler("center"));
+	boilerChooser.AddObject("Blue Right", new  BLUE_DriveToBoiler("rightblue"));
+	boilerChooser.AddObject("Blue Left", new  BLUE_DriveToBoiler("leftblue"));
+
 	SmartDashboard::PutData("Auto Mode Chooser", &autoChooser);
+	SmartDashboard::PutData("Boiler Chooser", &boilerChooser);
 
 	SmartDashboard::PutNumber("minH", 78);
 	SmartDashboard::PutNumber("minS", 37);
@@ -118,6 +128,7 @@ void Robot::DisabledPeriodic() {
 
 void Robot::AutonomousInit() {
 	Command* ledCommand;
+	started  = false;
 	currentAlliance = DriverStation::GetInstance().GetAlliance();
 
 	if(!(Robot::isRed))
@@ -139,6 +150,7 @@ void Robot::AutonomousInit() {
 	doCamera = SmartDashboard::GetBoolean("Do Camera", false);
 
 	selectedMode.reset(autoChooser.GetSelected());
+	selectedBoiler.reset(boilerChooser.GetSelected());
 	if(selectedMode != nullptr){
 		selectedMode->Start();
 	}
@@ -146,6 +158,10 @@ void Robot::AutonomousInit() {
 
 void Robot::AutonomousPeriodic() {
 	Scheduler::GetInstance()->Run();
+	if(selectedMode->IsRunning() == false && started == false) {
+		selectedBoiler->Start();
+		started = true;
+	}
 }
 
 void Robot::TeleopInit() {
@@ -173,7 +189,7 @@ void Robot::TeleopInit() {
 	Robot::climberSubsystem->RunRightTalon(0);
 
 	Robot::shooterSubsystem->SetServoAngle(0);
-	Robot::shooterSubsystem->SetHopperServoAngle(0);
+	Robot::shooterSubsystem->SetHopperServoAngle(75);
 
 	isDataPassed = 0;
 	isDifferent = true;

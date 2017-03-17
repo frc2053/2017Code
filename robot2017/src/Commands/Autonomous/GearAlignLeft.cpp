@@ -11,7 +11,7 @@
 GearAlignLeft::GearAlignLeft() {
 	AddSequential(new PrintCommand("Starting Gear Align Left"));
 
-	AddSequential(new DriveCommandAuto(0, -.5, 0, .75, 0));  //drive forward
+	AddSequential(new DriveCommandAuto(0, -.5, 0, .65, 0));  //drive forward
 	AddSequential(new DriveCommandAuto(.25, -.43, 0, .4, 60)); //drive towards airship
 	AddSequential(new PrintCommand("GOT TO ALIGN IN GEARALIGN LEFT"));
 
@@ -24,17 +24,19 @@ GearAlignLeft::GearAlignLeft() {
 
 	AddSequential(new DoNothingAuto(.25)); //wait
 	AddSequential(new PushGearGroup());
-	AddSequential(new DoNothingAuto(.25)); //wait
-	AddSequential(new RetractGearGroup());
+	AddSequential(new DoNothingAuto(.45)); //wait
+	//AddSequential(new RetractGearGroup());
+	//AddSequential(new DoNothingAuto(.5)); //wait
+
 
 	AddSequential(new DriveCommandAuto(-.25, .43, 0, .6, 60)); //backs up
+	AddSequential(new RetractGearGroup());
 
 	AddSequential(new PrintCommand("Finished Gear Align Left"));
 
 	if(Robot::doBoiler) {
 		AddSequential(new PrintCommand("Calling Boiler From Left"));
 
-		AddSequential(new DriveToBoilerShootCenter("leftblue")); //go to boiler
 
 		AddSequential(new PrintCommand("Finished Boiler From Left"));
 	}
